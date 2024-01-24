@@ -1,3 +1,4 @@
+"use client";
 import { motion } from "framer-motion";
 import HomeIcon from "./HomeIcon";
 export default function Home() {
