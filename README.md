@@ -28,7 +28,6 @@ In my part-time job, many customers frequently exhibit confidence in their vehic
 ### Frontend
 - **Frontend Framework**: 
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
-
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
 - **Component Library**: 
@@ -40,7 +39,6 @@ In my part-time job, many customers frequently exhibit confidence in their vehic
 ### Backend
 - **Backend Framework**: 
 ![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
-
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
 - **Database**: 
@@ -50,6 +48,7 @@ In my part-time job, many customers frequently exhibit confidence in their vehic
 ![mongoose](https://img.shields.io/badge/mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=ffff)
 
 ### Hosting
+
 - **Frontend & Backend**:
 ![Vercel](https://img.shields.io/badge/Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)
 ## Acknowledgements
