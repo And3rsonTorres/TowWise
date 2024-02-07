@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+# TowWise
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+TowWise is a web application designed to provide users with information about the maximum towing capacity of their vehicles. The app serves as a valuable tool for individuals who need to tow trailers, or other loads, offering insights into the safe and optimal towing limits based on their specific vehicle models.
+## Table of contents
+* [Background](#Background)
+* [Features](#Features)
+* [Tech Stack](#TechStack)
+* [Acknowledgements](#Acknowledgements)
+* [Authors](#Authors)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Background
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+In my part-time job, many customers frequently exhibit confidence in their vehicles, asserting they can tow anything. A few years ago, the company implemented an update to the system, mandating us to take pictures of the towing vehicles for safety reasons during rentals. However, there seems to be a lack of consideration from the customer's perspective regarding potential risks. As a customer myself,  I recognize that often we focus on achieving our objectives without thoroughly considering the potential downsides, especially since vehicles are primarily viewed as tools to accomplish tasks.
+## Features
 
-## Learn More
+* Towing capacities 
+    * 2018-2023 various models
+    * More (coming soon)
+* US VIN decoding (coming soon)
+* category of possible trailers you can tow(coming soon)
+* autocomplete formatted
 
-To learn more about Next.js, take a look at the following resources:
+## Tech Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Frontend
+- **Frontend Framework**: 
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
-## Deploy on Vercel
+- **Component Library**: 
+![NextUI](https://img.shields.io/badge/NextUI-000000?style=for-the-badge&logo=nextui&logoColor=ffff)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **CSS Library**: 
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Backend
+- **Backend Framework**: 
+![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
+
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+
+- **Database**: 
+![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+
+- **ORM**: 
+![mongoose](https://img.shields.io/badge/mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=ffff)
+
+### Hosting
+- **Frontend & Backend**:
+![Vercel](https://img.shields.io/badge/Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)
+## Acknowledgements
+
+
+## Authors
+
+- [@Anderson Torres](https://www.github.com/and3rsontorres)
+
