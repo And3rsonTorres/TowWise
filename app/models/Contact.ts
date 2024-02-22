@@ -7,5 +7,5 @@ const contactSchema = new mongoose.Schema({
 },{
     timestamps: true
 });
-const contact = mongoose.model("Contact", contactSchema);
+const contact = mongoose.model("Contact", contactSchema) || mongoose.models.Contact;
 export default contact;

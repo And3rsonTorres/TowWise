@@ -8,7 +8,8 @@ const HomeIcon = (props) => (
     width={185}
     height={41}
     fill="none"
-    animate={{ x: ["-400%", "2%", "0%"], y: ["0%", "4%", "0%"] }}
+    initial={{ opacity: 0, x: '-100vw' }}
+    animate={{ opacity: 1, x: ["-400%", "4%", "0%"], y: ["0%", "4%", "0%"] }}
     transition={{ duration: 3 }}    
   >
     <g filter="url(#LogoText)">

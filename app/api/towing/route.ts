@@ -1,32 +1,32 @@
 import ConnectDB  from '@/app/lib/mongo';
-import { GetParams } from '@/app/lib/Types';
+import { Vehicles } from '@/app/lib/Types';
 import VehicleModel from "@/app/models/Towing";
   
 export async function GET(request: Request) {
   await ConnectDB();
   const {searchParams} = new URL(request.url);
   
-  const params:GetParams = {
-    year: parseInt(searchParams.get('year') || '0'),
-    make: searchParams.get('make') || '',
-    modelTrim: searchParams.get('modelTrim') || ''
+  const params:Vehicles = {
+    Year: parseInt(searchParams.get('year') || '0'),
+    Make: searchParams.get('make') || '',
+    Model: searchParams.get('model') || ''
   }
-    if (params.year < 1998) {
+    if (params.Year < 1998) {
       return Response.json("Year must be greater than or equal to 1998 and must have a make");
     }
   
-    if (params.make.length < 3) {
+    if (params.Make.length < 3) {
       return Response.json("Make must be at least 3 characters long");
     }
   
     let vehicles: typeof VehicleModel[] | null = null; // Declare vehicles as nullable
   
     // Query vehicles based on parameters
-    if (params.modelTrim) {
-      vehicles = await VehicleModel.find({Year: params.year, Make: params.make, 'Model Trim': params.modelTrim});
+    if (params.Model) {
+      vehicles = await VehicleModel.find({Year: params.Year, Make: params.Make, Model: params.Model});
 
     } else {
-      vehicles = await VehicleModel.find({ Year: params.year, Make: params.make });
+      vehicles = await VehicleModel.find({ Year: params.Year, Make: params.Make });
     }
   
     return Response.json(vehicles);

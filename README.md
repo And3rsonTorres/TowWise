@@ -56,5 +56,5 @@ In my part-time job, many customers frequently exhibit confidence in their vehic
 
 ## Authors
 
-- [@Anderson Torres](https://www.github.com/and3rsontorres)
+- [Anderson Torres](https://www.github.com/and3rsontorres)
 
