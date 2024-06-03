@@ -1,39 +1,44 @@
-import ConnectDB  from '@/app/lib/mongo';
-import { Vehicles } from '@/app/lib/Types';
+/**
+ * GET handler for towing vehicle data API route.
+ * Connects to MongoDB, validates query parameters, finds vehicles matching parameters, and returns vehicle trim data.
+ * POST and PUT handlers redirect to error images.
+ */
+import ConnectDB from "@/app/lib/mongo";
 import VehicleModel from "@/app/models/Towing";
-  
-export async function GET(request: Request) {
-  await ConnectDB();
-  const {searchParams} = new URL(request.url);
-  
-  const params:Vehicles = {
-    Year: parseInt(searchParams.get('year') || '0'),
-    Make: searchParams.get('make') || '',
-    Model: searchParams.get('model') || ''
-  }
-    if (params.Year < 1998) {
-      return Response.json("Year must be greater than or equal to 1998 and must have a make");
-    }
-  
-    if (params.Make.length < 3) {
-      return Response.json("Make must be at least 3 characters long");
-    }
-  
-    let vehicles: typeof VehicleModel[] | null = null; // Declare vehicles as nullable
-  
-    // Query vehicles based on parameters
-    if (params.Model) {
-      vehicles = await VehicleModel.find({Year: params.Year, Make: params.Make, Model: params.Model});
+import { NextRequest, NextResponse } from "next/server";
+import { TowingSchema } from "@/app/lib/utils/Validations";
 
-    } else {
-      vehicles = await VehicleModel.find({ Year: params.Year, Make: params.Make });
-    }
-  
-    return Response.json(vehicles);
-}  
-export async function POST(request: Request) {
-  return Response.json({message: "405 Method Not Allowed"});
+export async function GET(req: NextRequest) {
+  await ConnectDB();
+
+  const { searchParams } = new URL(req.url);
+  const params = {
+    Year: parseInt(searchParams.get("year") || "0"),
+    Make: searchParams.get("make") || "",
+    Model: searchParams.get("model") || "",
+    TrimName: searchParams.get("trimName") || "",
+  };
+  let parsed = TowingSchema.safeParse(params);
+
+  if (parsed.success) {
+    return NextResponse.json(
+      await VehicleModel.find(
+        {
+          Year: params.Year,
+          Make: params.Make,
+          Model: params.Model,
+          "Trim.TrimName": params.TrimName,
+        },
+        { _id: 0, "Trim.$": 1 }
+      )
+    );
+  } else {
+    return NextResponse.json({ error: parsed.error }, { status: 404 });
+  }
 }
-export async function PUT(request: Request) {
-  return Response.json({message: "405 Method Not Allowed"});
+export async function POST(req: NextRequest) {
+  return NextResponse.redirect("https://http.dog/405.jpg");
+}
+export async function PUT(req: NextRequest) {
+  return NextResponse.redirect("https://http.dog/405.jpg");
 }

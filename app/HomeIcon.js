@@ -1,4 +1,4 @@
-import * as React from "react"
+import * as React from "react";
 import { motion } from "framer-motion";
 
 const HomeIcon = (props) => (
@@ -8,9 +8,9 @@ const HomeIcon = (props) => (
     width={185}
     height={41}
     fill="none"
-    initial={{ opacity: 0, x: '-100vw' }}
+    initial={{ opacity: 0, x: "-100vw" }}
     animate={{ opacity: 1, x: ["-400%", "4%", "0%"], y: ["0%", "4%", "0%"] }}
-    transition={{ duration: 3 }}    
+    transition={{ duration: 3 }}
   >
     <g filter="url(#LogoText)">
       <path
@@ -128,6 +128,6 @@ const HomeIcon = (props) => (
         height={80}
       />
     </defs>
-    </motion.svg>
-)
-export default HomeIcon
+  </motion.svg>
+);
+export default HomeIcon;
