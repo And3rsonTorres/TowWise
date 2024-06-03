@@ -1,26 +1,36 @@
-import  ConnectDB  from '@/app/lib/mongo/index';
+import ConnectDB from "@/app/lib/mongo/index";
 import contact from "@/app/models/Contact";
-
-export async function POST(request: Request) {
+import { NextRequest, NextResponse } from "next/server";
+import { ContactSchema } from "@/app/lib/utils/Validations";
+export async function POST(req: NextRequest) {
   await ConnectDB();
-  const body = await request.json();
-  const newContact = new contact({
-    name: body.name,
-    email: body.email,
-    message: body.message,
-  });
-  const savedContact = await newContact.save();
-  return Response.json(savedContact);
+  try {
+    const form = await req.json();
+    const newContact = new contact({
+      name: form.name,
+      email: form.email,
+      message: form.message,
+    });
+    let parsed = ContactSchema.safeParse(newContact);
+    if (parsed.success) {
+      await newContact.save();
+      return NextResponse.json("Contact Saved Successfully");
+    } else {
+      return NextResponse.json(
+        { error: parsed.error.flatten() },
+        { status: 400 }
+      );
+    }
+  } catch (error) {
+    // Handle any other errors
+    console.error(error);
+    return NextResponse.json(
+      { error: "An error occurred while processing your request" },
+      { status: 500 }
+    );
+  }
 }
 
-/*
-export async function GET(request: Request){
-    await ConnectDB();
-    const message = await contact.find();
-    
-    return Response.json(message);
+export async function PUT(request: NextRequest) {
+  return NextResponse.json({ message: "405 Method Not Allowed" });
 }
-*/
-export async function PUT(request: Request) {
-    return Response.json({message: "405 Method Not Allowed"});
-  }

@@ -12,7 +12,7 @@
 import { Button, Tooltip } from "@nextui-org/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import ThemeIcon from "@/public/assets/ThemeIcon";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
@@ -30,18 +30,12 @@ export function ThemeSwitcher() {
         size="sm"
         aria-label="themes"
         radius="full"
-        className="bg-gradient-to-r from-white via-grey to-black via-20%"
+        className="text-gray-700  bg-chocolate_cosmos dark:text-warning"
         onClick={() =>
           theme === "dark" ? setTheme("light") : setTheme("dark")
         }
       >
-        <Image
-          src="/assets/theme.gif"
-          width={32}
-          height={32}
-          alt="themes"
-          priority={true}
-        />
+        <ThemeIcon dark={theme === "dark"} />
       </Button>
     </Tooltip>
   );
