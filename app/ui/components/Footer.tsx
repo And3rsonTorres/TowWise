@@ -1,17 +1,35 @@
-import { motion } from "framer-motion";
+/**
+ * Renders the footer component for the application.
+ * The footer includes a copyright notice and links to the background image sources.
+ */
+import Link from "next/link";
 
 export default function Footer() {
   return (
-    <motion.div
-      className="w-full flex  flex-col justify-center items-center bg-chocolate_cosmos text-white py-3"
-      initial={{ y: -20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8 }}
-    >
-      <p> © {new Date().getFullYear()} · Anderson Torres</p>
+    <div className="w-full flex  flex-col justify-center items-center bg-[#52001F] text-white font-medium py-3">
+      <p> © 2024-{new Date().getFullYear()} · Anderson Torres</p>
       <p className="text-tiny">
-        Images from unplash by Aiden Frazier & Eugene Chystiakov
+        Background from unplash by{" "}
+        <Link
+          className="underline"
+          href={
+            "https://unsplash.com/photos/aerial-photography-of-road-and-mountain-EKNVOn3zWUw"
+          }
+          target="_blank"
+        >
+          Aiden Frazier
+        </Link>{" "}
+        &{" "}
+        <Link
+          className="underline"
+          href={
+            "https://unsplash.com/photos/white-suv-on-road-near-mountain-during-daytime-Iib52-P3NO4"
+          }
+          target="_blank"
+        >
+          Eugene Chystiakov
+        </Link>
       </p>
-    </motion.div>
+    </div>
   );
 }

@@ -1,15 +1,10 @@
+/**
+ * Represents a contact in the application.
+ * This model is backed by a MongoDB collection using Mongoose.
+ */
 import mongoose from "mongoose";
+import { contactSchema } from "../lib/mongo/Schema";
 
-const contactSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: false },
-    message: { type: String, required: true },
-  },
-  {
-    timestamps: true,
-  },
-);
-const contact =
-  mongoose.model("Contact", contactSchema) || mongoose.models.Contact;
-export default contact;
+const Contact =
+  mongoose.models.Contact || mongoose.model("Contact", contactSchema);
+export default Contact;

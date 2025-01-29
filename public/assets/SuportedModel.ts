@@ -5864,16 +5864,6 @@ export const SupportedVehicles: Vehicles[] = [
   },
   {
     Year: 2018,
-    Make: "Chevrolet",
-    Model: "Colorado Extended",
-    Trim: [
-      {
-        TrimName: "Extended Cab 2.8L Turbo Diesel",
-      },
-    ],
-  },
-  {
-    Year: 2018,
     Make: "Chrysler",
     Model: "Pacifica",
     Trim: [
