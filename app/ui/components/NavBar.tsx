@@ -12,9 +12,9 @@ import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export default function NavBar() {
   return (
-    <nav className="bg-chocolate_cosmos p-2 flex justify-center group">
+    <nav className="bg-[#52001F] py-1 flex justify-center group">
       <HomeIcon />
-      <div className="absolute  top-6 right-4 group-hover:rotate-45 dark:group-hover:rotate-12">
+      <div className="absolute top-2 right-4 group-hover:rotate-45 dark:group-hover:rotate-12">
         <ThemeSwitcher />
       </div>
     </nav>

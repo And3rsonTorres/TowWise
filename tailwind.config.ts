@@ -15,11 +15,6 @@ const config: Config = {
         DarkModeBG: "url('/assets/eugene-chystiakov-Iib52-P3NO4-unsplash.jpg')",
       },
     },
-    colors: {
-      chocolate_cosmos: "#52001F",
-      gray: "#dddddd",
-      white: "#ffffff",
-    },
   },
   darkMode: "class",
   plugins: [nextui()],
