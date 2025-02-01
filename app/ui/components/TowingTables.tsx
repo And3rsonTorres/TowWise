@@ -6,9 +6,9 @@
  */
 
 import React from "react";
-import { Chip } from "@nextui-org/react";
+import { Chip } from "@heroui/react";
 import { Vehicles } from "../../lib/Types";
-import { motion } from "framer-motion";
+import * as motion from "motion/react-client";
 
 const TowingTable: React.FC<{ vehicle: Vehicles }> = ({ vehicle }) => {
   try {

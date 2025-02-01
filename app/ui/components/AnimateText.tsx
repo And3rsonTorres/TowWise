@@ -3,7 +3,8 @@
  * Each line fades in with a delay, and each character in a line also
  * fades in with a delay. Customizable delays are provided.
  */
-import { motion, Variants } from "framer-motion";
+
+import * as motion from "motion/react-client";
 import { AnimatedTextProps } from "@/app/lib/Types";
 
 const staggerDelay = 0.5;
@@ -12,7 +13,7 @@ const letterStaggerDelay = 0.2;
 const createLineAnimation = (text: string, lineIndex: number): JSX.Element => {
   const characters: string[] = text.split("");
 
-  const characterVariants: Variants = {
+  const characterVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
   };
