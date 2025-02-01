@@ -4,7 +4,7 @@
  * This component can be used to indicate that content is being loaded or processed.
  */
 import React from "react";
-import { motion } from "framer-motion";
+import * as motion from "motion/react-client";
 
 const Loading: React.FC = () => {
   return (

@@ -5,7 +5,7 @@
  */
 "use client";
 import React, { useState, useEffect } from "react";
-import { Button, Tooltip } from "@nextui-org/react";
+import { Button, Tooltip } from "@heroui/react";
 
 export default function Up() {
   const [visible, setVisible] = useState(false);

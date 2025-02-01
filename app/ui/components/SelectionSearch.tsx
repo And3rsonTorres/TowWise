@@ -16,7 +16,7 @@ import {
   processingVehicles,
   fetchingVehicle,
 } from "@/app/lib/utils/VehicleUtils";
-import { Button, Select, SelectItem, Chip } from "@nextui-org/react";
+import { Button, Select, SelectItem, Chip } from "@heroui/react";
 import { CheckIcon } from "@/public/assets/CheckIcon";
 import { Vehicles, VehicleContextType, State, Action } from "@/app/lib/Types";
 import TowingTable from "./TowingTables";
