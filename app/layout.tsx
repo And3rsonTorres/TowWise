@@ -2,12 +2,13 @@ import type { Metadata } from "next";
 import { Providers } from "./providers";
 import { Inter } from "next/font/google";
 import "./globals.css";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TowWise",
+  title: "TowWise · Vehicle Towing Capacity & Safety Advisor",
   description:
-    "TowWise is a web application designed to provide users with information about the maximum towing capacity of their vehicles. The app serves as a valuable tool for individuals who need to tow trailers, or other loads, offering insights into the safe and optimal towing limits based on their specific vehicle models.",
+    "TowWise provides accurate vehicle towing capacities, US VIN decoding via NHTSA, trailer category compatibility, and 80% rule safety calculations for confident towing.",
 };
 
 export default function RootLayout({
@@ -16,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} bg-LightModeBG dark:bg-DarkModeBG bg-cover bg-no-repeat bg-center`}
+        className={`${inter.className} min-h-screen bg-LightModeBG dark:bg-DarkModeBG bg-cover bg-no-repeat bg-center bg-fixed text-slate-100 selection:bg-amber-500 selection:text-black flex flex-col justify-between`}
       >
         <Providers>{children}</Providers>
       </body>

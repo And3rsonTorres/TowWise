@@ -1,30 +1,25 @@
-/**
- * The `SearchBySelection` component is a React component that allows users to search for vehicle information based on various selection criteria such as year, make, model, and trim.
- *
- * The component uses the `useReducer` hook to manage the state of the selection process, and the `useEffect` hook to fetch the initial data for the selection options.
- *
- * The component renders a series of `Select` components that allow the user to choose the year, make, model, and trim of the vehicle they are interested in. As the user makes selections, the component updates the state and fetches the corresponding options for the next selection.
- *
- * When the user clicks the "Find My Car Capacity" button, the component fetches the vehicle information based on the selected criteria and renders a `TowingTable` component with the details of the selected vehicle.
- *
- * The component also includes a `Loading` component that is displayed while the initial data is being fetched.
- */
 "use client";
-import React, { useEffect, useReducer, createContext } from "react";
+import React, { useEffect, useReducer, createContext, useState } from "react";
 import {
   fetchTrims,
   processingVehicles,
   fetchingVehicle,
 } from "@/app/lib/utils/VehicleUtils";
-import { Button, Select, SelectItem, Chip } from "@heroui/react";
+import { Button, Select, SelectItem, Chip, Tabs, Tab, Card, CardBody } from "@heroui/react";
 import { CheckIcon } from "@/public/assets/CheckIcon";
 import { Vehicles, VehicleContextType, State, Action } from "@/app/lib/Types";
 import TowingTable from "./TowingTables";
 import Loading from "./Loading";
+import VinSearch from "./VinSearch";
+import AutoCompleteSearch from "./AutoComplete";
 
 export const VehicleContext = createContext<VehicleContextType | null>(null);
 
 export default function SearchBySelection() {
+  const [activeTab, setActiveTab] = useState<string>("dropdown");
+  const [searchError, setSearchError] = useState<string | null>(null);
+  const [isSearching, setIsSearching] = useState<boolean>(false);
+
   const initialState: State = {
     year: "",
     make: "",
@@ -71,13 +66,26 @@ export default function SearchBySelection() {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
+    let isMounted = true;
     const fetchData = async () => {
       dispatch({ type: "SET_LOADING", payload: true });
-      const result = await fetchTrims();
-      dispatch({ type: "SET_DATA", payload: result });
-      dispatch({ type: "SET_LOADING", payload: false });
+      try {
+        const result = await fetchTrims();
+        if (isMounted) {
+          dispatch({ type: "SET_DATA", payload: result });
+        }
+      } catch (err) {
+        console.error("Failed to load vehicle catalog:", err);
+      } finally {
+        if (isMounted) {
+          dispatch({ type: "SET_LOADING", payload: false });
+        }
+      }
     };
     fetchData();
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   const handleYearChange = (selectedYear: string) => {
@@ -85,70 +93,105 @@ export default function SearchBySelection() {
     dispatch({ type: "SET_MAKE", payload: "" });
     dispatch({ type: "SET_MODEL", payload: "" });
     dispatch({ type: "SET_TRIM", payload: "" });
+    dispatch({ type: "SET_SELECTED_VEHICLE", payload: null });
+    setSearchError(null);
 
-    if (selectedYear && state.data) {
+    if (selectedYear && state.data?.makeMap?.[selectedYear]) {
       dispatch({
         type: "SET_MAKE_OPTIONS",
-        payload: Array.from(state.data.makeMap[selectedYear]),
+        payload: Array.from(state.data.makeMap[selectedYear] || []),
       });
-      dispatch({ type: "SET_MODEL_OPTIONS", payload: [] });
-      dispatch({ type: "SET_TRIM_OPTIONS", payload: [] });
+    } else {
+      dispatch({ type: "SET_MAKE_OPTIONS", payload: [] });
     }
+    dispatch({ type: "SET_MODEL_OPTIONS", payload: [] });
+    dispatch({ type: "SET_TRIM_OPTIONS", payload: [] });
   };
 
   const handleMakeChange = (selectedMake: string) => {
     dispatch({ type: "SET_MAKE", payload: selectedMake });
     dispatch({ type: "SET_MODEL", payload: "" });
     dispatch({ type: "SET_TRIM", payload: "" });
-    if (selectedMake && state.data) {
+    dispatch({ type: "SET_SELECTED_VEHICLE", payload: null });
+    setSearchError(null);
+
+    if (selectedMake && state.year && state.data?.modelMap?.[state.year]?.[selectedMake]) {
       dispatch({
         type: "SET_MODEL_OPTIONS",
-        payload: Array.from(state.data.modelMap[state.year][selectedMake]),
+        payload: Array.from(state.data.modelMap[state.year][selectedMake] || []),
       });
-      dispatch({ type: "SET_TRIM_OPTIONS", payload: [] });
+    } else {
+      dispatch({ type: "SET_MODEL_OPTIONS", payload: [] });
     }
+    dispatch({ type: "SET_TRIM_OPTIONS", payload: [] });
   };
 
   const handleModelChange = (selectedModel: string) => {
     dispatch({ type: "SET_MODEL", payload: selectedModel });
     dispatch({ type: "SET_TRIM", payload: "" });
-    if (selectedModel && state.data) {
+    dispatch({ type: "SET_SELECTED_VEHICLE", payload: null });
+    setSearchError(null);
+
+    if (
+      selectedModel &&
+      state.year &&
+      state.make &&
+      state.data?.trimOptionsMap?.[state.year]?.[state.make]?.[selectedModel]
+    ) {
       dispatch({
         type: "SET_TRIM_OPTIONS",
-        payload: Array.from(
-          state.data.trimOptionsMap[state.year][state.make][selectedModel]
-        ),
+        payload: Array.from(state.data.trimOptionsMap[state.year][state.make][selectedModel] || []),
       });
+    } else {
+      dispatch({ type: "SET_TRIM_OPTIONS", payload: [] });
     }
   };
 
   const handleTrimChange = (selectedTrim: string) => {
     dispatch({ type: "SET_TRIM", payload: selectedTrim });
-    dispatch({ type: "SET_TRIM_INDEX", payload: Number(selectedTrim) });
+    const idx = state.trimOptions.indexOf(selectedTrim);
+    dispatch({ type: "SET_TRIM_INDEX", payload: idx >= 0 ? idx : 0 });
+    dispatch({ type: "SET_SELECTED_VEHICLE", payload: null });
+    setSearchError(null);
   };
 
   const handleSearch = async () => {
-    const vehicle: Vehicles = {
-      Year: parseInt(state.year),
-      Make: state.make,
-      Model: state.model,
-      Trim: [
-        { TrimName: state.trimOptions.map((trim) => trim)[state.trimIndex] },
-      ],
-    };
-    const result: Vehicles[] = await fetchingVehicle(vehicle);
-    vehicle.Trim = result?.[0]?.Trim;
-    dispatch({ type: "SET_SELECTED_VEHICLE", payload: vehicle });
+    if (!state.year || !state.make || !state.model) return;
+
+    setIsSearching(true);
+    setSearchError(null);
+
+    try {
+      const vehicleQuery: Vehicles = {
+        Year: parseInt(state.year, 10),
+        Make: state.make,
+        Model: state.model,
+        Trim: state.trim ? [{ TrimName: state.trim }] : [],
+      };
+
+      const result: Vehicles[] = await fetchingVehicle(vehicleQuery);
+
+      if (result && result.length > 0 && result[0]?.Trim && result[0].Trim.length > 0) {
+        dispatch({ type: "SET_SELECTED_VEHICLE", payload: result[0] });
+      } else {
+        setSearchError(`No towing specs found for ${state.year} ${state.make} ${state.model} ${state.trim || ""}.`);
+      }
+    } catch (err) {
+      setSearchError("Failed to retrieve towing specifications. Please try again.");
+    } finally {
+      setIsSearching(false);
+    }
   };
 
   const renderValue = (items: any) => (
-    <div className="overflow-scroll">
+    <div className="overflow-hidden flex flex-wrap gap-1">
       {items.map((item: any) => (
         <Chip
-          startContent={<CheckIcon size={18} />}
+          startContent={<CheckIcon size={16} />}
           color="success"
-          variant="shadow"
+          variant="flat"
           key={item.key}
+          size="sm"
         >
           {item.textValue}
         </Chip>
@@ -158,117 +201,179 @@ export default function SearchBySelection() {
 
   if (state.loading) {
     return (
-      <div>
+      <div className="py-12">
         <Loading />
+        <p className="text-center text-sm text-slate-300 mt-4 animate-pulse">
+          Loading vehicle towing catalog...
+        </p>
       </div>
     );
   }
 
+  const availableYears = Object.keys(state.data?.makeMap || {}).sort((a, b) => Number(b) - Number(a));
+
   return (
     <VehicleContext.Provider value={{ state, dispatch }}>
-      <div className="md:grid grid-cols-10 w-9/12 lg:w-7/12 mx-auto">
-        <Select
-          isRequired
-          label="Year"
-          variant="flat"
-          color="primary"
-          className="col-span-2"
-          selectedKeys={[state.year]}
-          onChange={(e) => handleYearChange(e.target.value)}
-          renderValue={renderValue}
-        >
-          {Object.keys(state.data.makeMap).map((year) => (
-            <SelectItem
-              key={year}
-              value={year}
-              variant="shadow"
-              color="warning"
-            >
-              {year}
-            </SelectItem>
-          ))}
-        </Select>
-        <Select
-          isRequired
-          label="Make"
-          variant="flat"
-          color="primary"
-          className="col-span-2"
-          selectedKeys={[state.make]}
-          onChange={(e) => handleMakeChange(e.target.value)}
-          isDisabled={!state.year}
-          renderValue={renderValue}
-        >
-          {state.makeOptions.map((make) => (
-            <SelectItem
-              key={make}
-              value={make}
-              variant="shadow"
-              color="warning"
-              className="overflow-scroll"
-            >
-              {make}
-            </SelectItem>
-          ))}
-        </Select>
-        <Select
-          isRequired
-          label="Model"
-          variant="flat"
-          color="primary"
-          className="col-span-3"
-          selectedKeys={[state.model]}
-          onChange={(e) => handleModelChange(e.target.value)}
-          isDisabled={!state.make}
-          renderValue={renderValue}
-        >
-          {state.modelOptions.map((model) => (
-            <SelectItem
-              key={model}
-              value={model}
-              variant="shadow"
-              color="warning"
-              className="overflow-scroll"
-            >
-              {model}
-            </SelectItem>
-          ))}
-        </Select>
-        <Select
-          isRequired
-          label="Trim"
-          variant="flat"
-          color="primary"
-          className="col-span-3"
-          selectedKeys={[state.trim]}
-          onChange={(e) => handleTrimChange(e.target.value)}
-          isDisabled={!state.model}
-          renderValue={renderValue}
-        >
-          {state.trimOptions.map((trimName, index) => (
-            <SelectItem
-              key={index}
-              value={trimName}
-              variant="shadow"
-              color="warning"
-              className="overflow-scroll"
-            >
-              {trimName}
-            </SelectItem>
-          ))}
-        </Select>
-        <Button
-          color="primary"
-          isDisabled={!state.trim}
-          className="w-full p-4 sm:col-span-10"
-          size="lg"
-          variant="shadow"
-          onPress={handleSearch}
-        >
-          Find My Car Capacity
-        </Button>
+      <div className="w-full max-w-4xl mx-auto px-4 mb-8">
+        {/* Navigation Tabs for 3 Lookup Modes */}
+        <div className="flex justify-center mb-6">
+          <Tabs
+            selectedKey={activeTab}
+            onSelectionChange={(key) => setActiveTab(String(key))}
+            variant="solid"
+            color="primary"
+            size="lg"
+            radius="full"
+            className="shadow-xl"
+          >
+            <Tab
+              key="dropdown"
+              title={
+                <div className="flex items-center gap-2">
+                  <span>🚗</span>
+                  <span>Vehicle Selector</span>
+                </div>
+              }
+            />
+            <Tab
+              key="autocomplete"
+              title={
+                <div className="flex items-center gap-2">
+                  <span>⚡</span>
+                  <span>Quick Search</span>
+                </div>
+              }
+            />
+            <Tab
+              key="vin"
+              title={
+                <div className="flex items-center gap-2">
+                  <span>📋</span>
+                  <span>US VIN Decoder</span>
+                </div>
+              }
+            />
+          </Tabs>
+        </div>
+
+        {/* Tab 1: Dropdown Selector */}
+        {activeTab === "dropdown" && (
+          <Card className="bg-slate-900/80 border border-slate-800 shadow-2xl backdrop-blur-md p-4 sm:p-6 mb-8">
+            <CardBody className="gap-6">
+              <div>
+                <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                  <span>🚗</span> Select Vehicle by Specifications
+                </h2>
+                <p className="text-sm text-slate-300 mt-1">
+                  Choose your vehicle&apos;s model year, manufacturer make, model, and trim package.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <Select
+                  isRequired
+                  label="1. Year"
+                  placeholder="Select Year"
+                  variant="bordered"
+                  color="primary"
+                  selectedKeys={state.year ? [state.year] : []}
+                  onChange={(e) => handleYearChange(e.target.value)}
+                  renderValue={renderValue}
+                >
+                  {availableYears.map((year) => (
+                    <SelectItem key={year} value={year} textValue={year}>
+                      {year}
+                    </SelectItem>
+                  ))}
+                </Select>
+
+                <Select
+                  isRequired
+                  label="2. Make"
+                  placeholder="Select Make"
+                  variant="bordered"
+                  color="primary"
+                  selectedKeys={state.make ? [state.make] : []}
+                  onChange={(e) => handleMakeChange(e.target.value)}
+                  isDisabled={!state.year || state.makeOptions.length === 0}
+                  renderValue={renderValue}
+                >
+                  {state.makeOptions.map((make) => (
+                    <SelectItem key={make} value={make} textValue={make}>
+                      {make}
+                    </SelectItem>
+                  ))}
+                </Select>
+
+                <Select
+                  isRequired
+                  label="3. Model"
+                  placeholder="Select Model"
+                  variant="bordered"
+                  color="primary"
+                  selectedKeys={state.model ? [state.model] : []}
+                  onChange={(e) => handleModelChange(e.target.value)}
+                  isDisabled={!state.make || state.modelOptions.length === 0}
+                  renderValue={renderValue}
+                >
+                  {state.modelOptions.map((model) => (
+                    <SelectItem key={model} value={model} textValue={model}>
+                      {model}
+                    </SelectItem>
+                  ))}
+                </Select>
+
+                <Select
+                  isRequired
+                  label="4. Trim / Engine"
+                  placeholder="Select Trim"
+                  variant="bordered"
+                  color="primary"
+                  selectedKeys={state.trim ? [state.trim] : []}
+                  onChange={(e) => handleTrimChange(e.target.value)}
+                  isDisabled={!state.model || state.trimOptions.length === 0}
+                  renderValue={renderValue}
+                >
+                  {state.trimOptions.map((trimName) => (
+                    <SelectItem key={trimName} value={trimName} textValue={trimName}>
+                      {trimName}
+                    </SelectItem>
+                  ))}
+                </Select>
+              </div>
+
+              <Button
+                color="primary"
+                isDisabled={!state.year || !state.make || !state.model || isSearching}
+                isLoading={isSearching}
+                className="w-full font-bold text-base py-6 tracking-wide shadow-lg"
+                size="lg"
+                variant="shadow"
+                onPress={handleSearch}
+              >
+                Find My Vehicle Towing Capacity
+              </Button>
+
+              {searchError && (
+                <div className="p-4 bg-danger-900/30 border border-danger-700/50 rounded-xl text-danger-300 text-sm text-center">
+                  {searchError}
+                </div>
+              )}
+            </CardBody>
+          </Card>
+        )}
+
+        {/* Tab 2: Autocomplete Instant Search */}
+        {activeTab === "autocomplete" && <AutoCompleteSearch />}
+
+        {/* Tab 3: US VIN Decoder */}
+        {activeTab === "vin" && <VinSearch />}
       </div>
-      {state.selectedVehicle && <TowingTable vehicle={state.selectedVehicle} />}
+
+      {/* Render Selected Vehicle Table */}
+      {activeTab === "dropdown" && state.selectedVehicle && (
+        <TowingTable vehicle={state.selectedVehicle} />
+      )}
     </VehicleContext.Provider>
   );
 }

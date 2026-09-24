@@ -1,0 +1,1775 @@
+import { Vehicles } from "@/app/lib/Types";
+
+/**
+ * Comprehensive embedded serverless vehicle towing database (2015–2024).
+ * Covers North America's most popular full-size and mid-size trucks, heavy-duty trucks,
+ * 3-row SUVs, crossovers, luxury haulers, and modern electric towing vehicles.
+ */
+export const SERVERLESS_VEHICLES: Vehicles[] = [
+  // ==========================================
+  // FORD TRUCKS & SUVS (2015–2024)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Ford",
+    Model: "F-150",
+    Trim: [
+      {
+        TrimName: "3.5L EcoBoost V-6 Max Trailer Tow",
+        Engine: "3.5L EcoBoost Twin-Turbo V6 (400 hp / 500 lb-ft)",
+        Transmission: "10-Speed SelectShift Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 13500,
+        Notes: "Class-leading conventional towing with Max Trailer Tow Package, 3.73 rear axle, and 20-inch wheels.",
+      },
+      {
+        TrimName: "5.0L Ti-VCT V-8",
+        Engine: "5.0L Coyote V8 (400 hp / 410 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 13000,
+        Notes: "Equipped with Heavy-Duty Payload Package and trailer brake controller.",
+      },
+      {
+        TrimName: "3.5L PowerBoost Full Hybrid V-6",
+        Engine: "3.5L PowerBoost Turbo Hybrid (430 hp / 570 lb-ft)",
+        Transmission: "10-Speed Hybrid Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 12700,
+        Notes: "Includes 7.2 kW Pro Power Onboard mobile power plant in truck bed.",
+      },
+      {
+        TrimName: "2.7L EcoBoost V-6",
+        Engine: "2.7L EcoBoost Twin-Turbo V6 (325 hp / 400 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "RWD / 4WD",
+        "Max Towing Capacity": 10100,
+        Notes: "Standard trailer tow package.",
+      },
+      {
+        TrimName: "F-150 Lightning (Extended Range Battery)",
+        Engine: "Dual Electric Motors (580 hp / 775 lb-ft)",
+        Transmission: "Single-Speed Direct Drive",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 10000,
+        Notes: "Requires Max Trailer Tow Package on XLT and Lariat trims.",
+      },
+      {
+        TrimName: "F-150 Lightning (Standard Range Battery)",
+        Engine: "Dual Electric Motors (452 hp / 775 lb-ft)",
+        Transmission: "Single-Speed Direct Drive",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 7700,
+        Notes: "Standard battery pack with Class IV hitch receiver.",
+      },
+    ],
+  },
+  {
+    Year: 2023,
+    Make: "Ford",
+    Model: "F-150",
+    Trim: [
+      {
+        TrimName: "3.5L EcoBoost V-6 Max Tow",
+        Engine: "3.5L EcoBoost V6 (400 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 14000,
+        Notes: "SuperCrew or SuperCab 8-ft bed configuration with Max Trailer Tow.",
+      },
+      {
+        TrimName: "5.0L V-8 Tow Package",
+        Engine: "5.0L V8 (400 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 13000,
+        Notes: "Class IV hitch receiver and trailer brake controller.",
+      },
+      {
+        TrimName: "Raptor 3.5L High-Output V-6",
+        Engine: "3.5L Twin-Turbo EcoBoost (450 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 8200,
+        Notes: "Off-road long travel Fox Live Valve shocks tuned for desert running.",
+      },
+    ],
+  },
+  {
+    Year: 2021,
+    Make: "Ford",
+    Model: "F-150",
+    Trim: [
+      {
+        TrimName: "3.5L EcoBoost V-6 Max Tow",
+        Engine: "3.5L EcoBoost V6 (400 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 14000,
+        Notes: "Class-leading 14,000 lbs conventional rating.",
+      },
+      {
+        TrimName: "5.0L Coyote V-8",
+        Engine: "5.0L V8 (400 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 13000,
+        Notes: "Standard trailer tow package.",
+      },
+    ],
+  },
+  {
+    Year: 2018,
+    Make: "Ford",
+    Model: "F-150",
+    Trim: [
+      {
+        TrimName: "3.5L EcoBoost V-6 Max Trailer Tow",
+        Engine: "3.5L Twin-Turbo V6 (375 hp / 470 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 13200,
+        Notes: "SuperCrew with 20-inch wheels and Max Trailer Tow Package.",
+      },
+      {
+        TrimName: "5.0L V-8 (3.73 Axle)",
+        Engine: "5.0L V8 (395 hp / 400 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 11600,
+        Notes: "Tow package with heavy duty cooling.",
+      },
+      {
+        TrimName: "2.7L EcoBoost V-6",
+        Engine: "2.7L Twin-Turbo V6 (325 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "RWD / 4WD",
+        "Max Towing Capacity": 9000,
+        Notes: "Mid-level trailer tow package.",
+      },
+    ],
+  },
+  {
+    Year: 2016,
+    Make: "Ford",
+    Model: "F-150",
+    Trim: [
+      {
+        TrimName: "3.5L EcoBoost V-6 Max Tow",
+        Engine: "3.5L EcoBoost V6 (365 hp / 420 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 12200,
+        Notes: "First generation aluminum body with Max Trailer Tow.",
+      },
+      {
+        TrimName: "5.0L V-8",
+        Engine: "5.0L V8 (385 hp / 387 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 11100,
+        Notes: "Regular and SuperCab 4x4 configurations.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Ford",
+    Model: "F-250 Super Duty",
+    Trim: [
+      {
+        TrimName: "6.7L High Output Power Stroke Turbo Diesel",
+        Engine: "6.7L Power Stroke V8 Turbo Diesel (500 hp / 1,200 lb-ft)",
+        Transmission: "TorqShift 10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 22000,
+        Notes: "Conventional towing limit. Gooseneck / 5th-wheel capability reaches 23,000 lbs.",
+      },
+      {
+        TrimName: "7.3L Godzilla V-8 Gas",
+        Engine: "7.3L OHV V8 Gas (430 hp / 485 lb-ft)",
+        Transmission: "TorqShift 10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 17200,
+        Notes: "Gas heavy duty rating with 4.30 axle ratio.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Ford",
+    Model: "Expedition",
+    Trim: [
+      {
+        TrimName: "Heavy-Duty Trailer Tow Package (3.5L EcoBoost)",
+        Engine: "3.5L EcoBoost Twin-Turbo V6 (380-440 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 9300,
+        Notes: "Features Pro Trailer Backup Assist 2.0, 3.73 e-LSD, and integrated brake controller.",
+      },
+      {
+        TrimName: "Expedition MAX (Extended Length)",
+        Engine: "3.5L EcoBoost V6 (400 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 9000,
+        Notes: "Long wheelbase version with heavy-duty cooling.",
+      },
+      {
+        TrimName: "Standard Class IV (Without Heavy-Duty Tow)",
+        Engine: "3.5L EcoBoost V6 (380 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 6000,
+        Notes: "Factory standard rating without auxiliary transmission cooler.",
+      },
+    ],
+  },
+  {
+    Year: 2020,
+    Make: "Ford",
+    Model: "Expedition",
+    Trim: [
+      {
+        TrimName: "Heavy-Duty Trailer Tow Package (3.5L EcoBoost)",
+        Engine: "3.5L Twin-Turbo EcoBoost V6 (375 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "2WD / 4WD",
+        "Max Towing Capacity": 9300,
+        Notes: "2WD rated at 9,300 lbs; 4WD rated at 9,200 lbs.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Ford",
+    Model: "Explorer",
+    Trim: [
+      {
+        TrimName: "Class IV Trailer Tow (3.0L EcoBoost ST / Platinum)",
+        Engine: "3.0L Twin-Turbo EcoBoost V6 (400 hp / 415 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 5600,
+        Notes: "Explorer ST with standard Class IV hitch and sport-tuned suspension.",
+      },
+      {
+        TrimName: "Class IV Trailer Tow (2.3L EcoBoost)",
+        Engine: "2.3L Turbo I-4 (300 hp / 310 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 5300,
+        Notes: "XLT and Limited with factory Class IV hitch package.",
+      },
+    ],
+  },
+  {
+    Year: 2018,
+    Make: "Ford",
+    Model: "Explorer",
+    Trim: [
+      {
+        TrimName: "Class III Trailer Tow (3.5L EcoBoost Twin-Turbo)",
+        Engine: "3.5L Twin-Turbo V6 (365 hp)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 5000,
+        Notes: "Explorer Sport and Platinum models.",
+      },
+      {
+        TrimName: "Class III Trailer Tow (3.5L Ti-VCT V-6)",
+        Engine: "3.5L V6 (290 hp)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD / FWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Factory tow package with oil cooler.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Ford",
+    Model: "Bronco",
+    Trim: [
+      {
+        TrimName: "Bronco Raptor (3.0L EcoBoost V-6)",
+        Engine: "3.0L Twin-Turbo EcoBoost V6 (418 hp / 440 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 4500,
+        Notes: "Reinforced frame and Fox Live Valve 3.1 dampers yield 4,500 lbs limit.",
+      },
+      {
+        TrimName: "4-Door Standard (2.7L / 2.3L EcoBoost)",
+        Engine: "2.7L or 2.3L EcoBoost",
+        Transmission: "10-Speed Automatic / 7-Speed Manual",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 3500,
+        Notes: "Class II trailer hitch with 4-pin wiring connector.",
+      },
+      {
+        TrimName: "2-Door Standard",
+        Engine: "2.3L or 2.7L EcoBoost",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 3500,
+        Notes: "Short wheelbase limits high-speed towing stability.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Ford",
+    Model: "Ranger",
+    Trim: [
+      {
+        TrimName: "Trailer Tow Package (2.7L EcoBoost / 2.3L I-4)",
+        Engine: "2.3L or 2.7L EcoBoost",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 7500,
+        Notes: "Includes Class IV receiver hitch and 4/7-pin connector.",
+      },
+      {
+        TrimName: "Ranger Raptor (3.0L EcoBoost)",
+        Engine: "3.0L Twin-Turbo EcoBoost V6 (405 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 5510,
+        Notes: "Watts link rear suspension limits max tow rating compared to leaf spring models.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Ford",
+    Model: "Maverick",
+    Trim: [
+      {
+        TrimName: "4K Tow Package (2.0L EcoBoost AWD)",
+        Engine: "2.0L EcoBoost Turbo I-4 (250 hp / 277 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 4000,
+        Notes: "Requires 4K Tow Package (upgraded radiator, transmission cooler, lower axle gearing, trailer brake controller).",
+      },
+      {
+        TrimName: "2.5L Hybrid (Standard)",
+        Engine: "2.5L Atkinson 4-Cylinder Hybrid (191 hp)",
+        Transmission: "e-CVT",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 2000,
+        Notes: "Standard light utility rating for utility trailers or jet skis.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // CHEVROLET TRUCKS & SUVS (2015–2024)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Chevrolet",
+    Model: "Silverado 1500",
+    Trim: [
+      {
+        TrimName: "6.2L EcoTec3 V-8 Max Trailering",
+        Engine: "6.2L V8 (420 hp / 460 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 13300,
+        Notes: "Max Trailering Package, 3.42 axle ratio, heavy-duty rear springs, and 20-inch wheels.",
+      },
+      {
+        TrimName: "3.0L Duramax Turbo-Diesel I-6",
+        Engine: "3.0L LZ0 Duramax Inline-6 Turbo Diesel (305 hp / 495 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "2WD / 4WD",
+        "Max Towing Capacity": 13300,
+        Notes: "Exceptional towing fuel economy and massive 495 lb-ft low-RPM torque.",
+      },
+      {
+        TrimName: "5.3L EcoTec3 V-8 Trailering Package",
+        Engine: "5.3L V8 (355 hp / 383 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 11300,
+        Notes: "Standard trailer tow package with integrated brake controller.",
+      },
+      {
+        TrimName: "TurboMax 2.7L High-Output I-4",
+        Engine: "2.7L Turbo High-Output I-4 (310 hp / 430 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 9500,
+        Notes: "Generates 430 lb-ft of torque at just 1,500 RPM.",
+      },
+      {
+        TrimName: "Silverado EV (Work Truck / RST)",
+        Engine: "Dual Ultium Electric Motors (Up to 754 hp / 785 lb-ft)",
+        Transmission: "Single-Speed Direct Drive",
+        Drivetrain: "e4WD",
+        "Max Towing Capacity": 10000,
+        Notes: "Air suspension with four-wheel steer and 200 kWh battery pack.",
+      },
+    ],
+  },
+  {
+    Year: 2021,
+    Make: "Chevrolet",
+    Model: "Silverado 1500",
+    Trim: [
+      {
+        TrimName: "6.2L V-8 Max Trailering Package",
+        Engine: "6.2L EcoTec3 V8 (420 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 13300,
+        Notes: "Requires Max Trailering package with enhanced cooling.",
+      },
+      {
+        TrimName: "5.3L V-8 Trailering Package",
+        Engine: "5.3L V8 (355 hp)",
+        Transmission: "8-Speed / 10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 11500,
+        Notes: "Double Cab or Crew Cab with 3.42 axle ratio.",
+      },
+      {
+        TrimName: "3.0L Duramax Diesel",
+        Engine: "3.0L Turbo Diesel I-6 (277 hp / 460 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 9500,
+        Notes: "First generation LM2 Duramax engine.",
+      },
+    ],
+  },
+  {
+    Year: 2017,
+    Make: "Chevrolet",
+    Model: "Silverado 1500",
+    Trim: [
+      {
+        TrimName: "6.2L V-8 Max Trailering",
+        Engine: "6.2L EcoTec3 V8 (420 hp / 460 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 12500,
+        Notes: "Double Cab 4x4 with Max Trailering Package and 3.42 rear axle.",
+      },
+      {
+        TrimName: "5.3L V-8 Trailering Package",
+        Engine: "5.3L V8 (355 hp / 383 lb-ft)",
+        Transmission: "6-Speed / 8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 11100,
+        Notes: "With factory hitch and integrated trailer brake controller.",
+      },
+      {
+        TrimName: "4.3L EcoTec3 V-6",
+        Engine: "4.3L V6 (285 hp / 305 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "RWD / 4WD",
+        "Max Towing Capacity": 7600,
+        Notes: "Standard entry V6 towing configuration.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Chevrolet",
+    Model: "Silverado 2500HD",
+    Trim: [
+      {
+        TrimName: "6.6L Duramax Turbo-Diesel V-8",
+        Engine: "6.6L Duramax Turbo-Diesel V8 (470 hp / 975 lb-ft)",
+        Transmission: "Allison 10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 22500,
+        Notes: "Conventional towing limit. Max 5th-wheel/gooseneck reaches 22,500 lbs on 2500HD.",
+      },
+      {
+        TrimName: "6.6L Gas V-8",
+        Engine: "6.6L OHV V8 Gas (401 hp / 464 lb-ft)",
+        Transmission: "Allison 10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 18700,
+        Notes: "Paired with Allison 10-speed transmission for 2024+.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Chevrolet",
+    Model: "Tahoe",
+    Trim: [
+      {
+        TrimName: "Max Trailering Package (5.3L / 6.2L V-8 2WD)",
+        Engine: "5.3L or 6.2L EcoTec3 V8",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "2WD",
+        "Max Towing Capacity": 8400,
+        Notes: "8,400 lbs for 2WD 5.3L; 8,200 lbs for 4WD 5.3L; 8,300 lbs for 2WD 6.2L; 8,100 lbs for 4WD 6.2L.",
+      },
+      {
+        TrimName: "3.0L Duramax Turbo-Diesel",
+        Engine: "3.0L Duramax Diesel I-6 (305 hp / 495 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "2WD / 4WD",
+        "Max Towing Capacity": 8200,
+        Notes: "High torque low-RPM towing with enhanced cooling.",
+      },
+      {
+        TrimName: "Standard Trailering (Without Max Trailering)",
+        Engine: "5.3L V8",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 7700,
+        Notes: "Factory standard hitch without 2-speed transfer case or heavy-duty radiator.",
+      },
+    ],
+  },
+  {
+    Year: 2018,
+    Make: "Chevrolet",
+    Model: "Tahoe",
+    Trim: [
+      {
+        TrimName: "Max Trailering Package (5.3L V-8 2WD)",
+        Engine: "5.3L EcoTec3 V8 (355 hp)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "2WD",
+        "Max Towing Capacity": 8600,
+        Notes: "8,600 lbs 2WD; 8,400 lbs 4WD with 3.42 axle ratio and auxiliary cooler.",
+      },
+      {
+        TrimName: "Tahoe Premier 6.2L V-8",
+        Engine: "6.2L EcoTec3 V8 (420 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 8100,
+        Notes: "RST 6.2L Performance Edition.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Chevrolet",
+    Model: "Suburban",
+    Trim: [
+      {
+        TrimName: "Max Trailering Package (5.3L V-8 2WD)",
+        Engine: "5.3L EcoTec3 V8",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "2WD",
+        "Max Towing Capacity": 8300,
+        Notes: "8,200 lbs on 4WD 5.3L; 8,100 lbs on 6.2L V8.",
+      },
+      {
+        TrimName: "Standard Equipment (Without Max Trailering)",
+        Engine: "5.3L V8",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 7600,
+        Notes: "Standard factory equipment rating.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Chevrolet",
+    Model: "Colorado",
+    Trim: [
+      {
+        TrimName: "2.7L Turbo Plus / Turbo High-Output",
+        Engine: "2.7L Turbocharged I-4 (310 hp / 391-430 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 7700,
+        Notes: "Class-leading midsize pickup capacity with Trailering Package.",
+      },
+      {
+        TrimName: "Colorado ZR2",
+        Engine: "2.7L Turbo High-Output (430 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 6000,
+        Notes: "Multimatic DSSV spool-valve dampers alter capacity.",
+      },
+    ],
+  },
+  {
+    Year: 2018,
+    Make: "Chevrolet",
+    Model: "Colorado",
+    Trim: [
+      {
+        TrimName: "2.8L Duramax Turbo-Diesel",
+        Engine: "2.8L 4-Cylinder Turbo Diesel (181 hp / 369 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD / 2WD",
+        "Max Towing Capacity": 7700,
+        Notes: "Includes exhaust brake and integrated trailer brake controller.",
+      },
+      {
+        TrimName: "3.6L V-6 Trailering Package",
+        Engine: "3.6L DOHC V6 (308 hp / 275 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD / 2WD",
+        "Max Towing Capacity": 7000,
+        Notes: "Standard V6 towing package.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Chevrolet",
+    Model: "Traverse",
+    Trim: [
+      {
+        TrimName: "Factory Trailering Package (2.5L Turbo I-4)",
+        Engine: "2.5L Turbocharged Inline-4 (328 hp / 326 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD / FWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Standard 5,000 lbs on Z71 trim with twin-clutch AWD.",
+      },
+      {
+        TrimName: "Base Model (Without Trailering Package)",
+        Engine: "2.5L Turbo I-4",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1500,
+        Notes: "Standard light utility rating.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // RAM TRUCKS (2015–2024)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "RAM",
+    Model: "1500",
+    Trim: [
+      {
+        TrimName: "5.7L HEMI V-8 with eTorque (3.92 Axle)",
+        Engine: "5.7L HEMI V8 eTorque Mild Hybrid (395 hp / 410 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "RWD / 4WD",
+        "Max Towing Capacity": 12750,
+        Notes: "Max Tow Package in Quad Cab 4x2 with 3.92 axle ratio.",
+      },
+      {
+        TrimName: "5.7L HEMI V-8 (3.21 Highway Axle)",
+        Engine: "5.7L HEMI V8 (395 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 8420,
+        Notes: "Standard 3.21 axle ratio optimizes highway mileage over towing capacity.",
+      },
+      {
+        TrimName: "3.6L Pentastar V-6 with eTorque",
+        Engine: "3.6L Pentastar V6 (305 hp / 269 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 7730,
+        Notes: "Great balance of fuel economy and medium trailer hauling.",
+      },
+      {
+        TrimName: "1500 TRX 6.2L Supercharged HEMI",
+        Engine: "6.2L Supercharged HEMI V8 (702 hp / 650 lb-ft)",
+        Transmission: "8-Speed Heavy-Duty Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 8100,
+        Notes: "Final edition supercharged truck with Bilstein Black Hawk e2 dampers.",
+      },
+    ],
+  },
+  {
+    Year: 2020,
+    Make: "RAM",
+    Model: "1500",
+    Trim: [
+      {
+        TrimName: "3.0L EcoDiesel V-6",
+        Engine: "3.0L EcoDiesel V6 (260 hp / 480 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 12560,
+        Notes: "Class-leading half-ton diesel towing capacity with 480 lb-ft of torque.",
+      },
+      {
+        TrimName: "5.7L HEMI V-8 (3.92 Axle)",
+        Engine: "5.7L HEMI V8 (395 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 12750,
+        Notes: "Equipped with factory Class IV hitch and 3.92 rear differential.",
+      },
+    ],
+  },
+  {
+    Year: 2016,
+    Make: "RAM",
+    Model: "1500",
+    Trim: [
+      {
+        TrimName: "5.7L HEMI V-8 (3.92 Axle)",
+        Engine: "5.7L HEMI V8 (395 hp / 410 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 10650,
+        Notes: "Regular Cab 4x2 8-ft bed.",
+      },
+      {
+        TrimName: "3.0L EcoDiesel V-6",
+        Engine: "3.0L EcoDiesel (240 hp / 420 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 9290,
+        Notes: "High efficiency diesel.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "RAM",
+    Model: "2500",
+    Trim: [
+      {
+        TrimName: "6.7L Cummins Turbo Diesel",
+        Engine: "6.7L Inline-6 Cummins Turbo Diesel (370 hp / 850 lb-ft)",
+        Transmission: "6-Speed Heavy Duty Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 19980,
+        Notes: "Conventional towing rating with factory rear auto-level air suspension.",
+      },
+      {
+        TrimName: "6.4L Heavy-Duty HEMI V-8",
+        Engine: "6.4L HEMI V8 (410 hp / 429 lb-ft)",
+        Transmission: "8-Speed Heavy Duty Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 17730,
+        Notes: "Heavy duty gas capability.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // TOYOTA TRUCKS & SUVS (2015–2024)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Toyota",
+    Model: "Tundra",
+    Trim: [
+      {
+        TrimName: "i-FORCE MAX 3.4L Twin-Turbo Hybrid (SR5 / Limited)",
+        Engine: "3.4L Twin-Turbo V6 Hybrid (437 hp / 583 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 12000,
+        Notes: "SR5, Limited, Platinum with Tow Package and integrated trailer brake controller.",
+      },
+      {
+        TrimName: "i-FORCE 3.4L Twin-Turbo V-6 (Gas)",
+        Engine: "3.4L Twin-Turbo V6 (389 hp / 479 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "RWD",
+        "Max Towing Capacity": 12000,
+        Notes: "Double Cab 6.5ft bed with Tow Package.",
+      },
+      {
+        TrimName: "TRD Pro (i-FORCE MAX Hybrid)",
+        Engine: "3.4L Twin-Turbo Hybrid (437 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 11175,
+        Notes: "FOX internal bypass coilovers slightly reduce capacity.",
+      },
+    ],
+  },
+  {
+    Year: 2020,
+    Make: "Toyota",
+    Model: "Tundra",
+    Trim: [
+      {
+        TrimName: "5.7L i-FORCE V-8 Tow Package",
+        Engine: "5.7L 32-Valve DOHC V8 (381 hp / 401 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "RWD / 4WD",
+        "Max Towing Capacity": 10200,
+        Notes: "Legendary bulletproof 5.7L 3UR-FE engine with heavy-duty engine oil and transmission coolers.",
+      },
+      {
+        TrimName: "TRD Pro 5.7L V-8",
+        Engine: "5.7L V8 (381 hp)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 9200,
+        Notes: "With factory tuned dual exhaust and Fox shocks.",
+      },
+    ],
+  },
+  {
+    Year: 2016,
+    Make: "Toyota",
+    Model: "Tundra",
+    Trim: [
+      {
+        TrimName: "5.7L V-8 Tow Package",
+        Engine: "5.7L V8 (381 hp / 401 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 10500,
+        Notes: "Regular Cab 4x2 with 4.30 axle ratio.",
+      },
+      {
+        TrimName: "4.6L V-8",
+        Engine: "4.6L V8 (310 hp / 327 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 6800,
+        Notes: "Standard entry V8.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Toyota",
+    Model: "Tacoma",
+    Trim: [
+      {
+        TrimName: "i-FORCE 2.4L Turbocharged I-4",
+        Engine: "2.4L Turbo I-4 (278 hp / 317 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 6500,
+        Notes: "SR5, TRD Sport, and TRD Off-Road with tow prep package.",
+      },
+      {
+        TrimName: "i-FORCE MAX 2.4L Hybrid",
+        Engine: "2.4L Turbo Hybrid (326 hp / 465 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 6000,
+        Notes: "Trailhunter and TRD Pro hybrid battery placement adjusts tow rating to 6,000 lbs.",
+      },
+    ],
+  },
+  {
+    Year: 2021,
+    Make: "Toyota",
+    Model: "Tacoma",
+    Trim: [
+      {
+        TrimName: "3.5L V-6 with Tow Package",
+        Engine: "3.5L V6 (278 hp / 265 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 6800,
+        Notes: "Access Cab 4x2; Double Cab models rated up to 6,400–6,700 lbs with factory receiver hitch.",
+      },
+      {
+        TrimName: "2.7L 4-Cylinder",
+        Engine: "2.7L I-4 (159 hp)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "RWD",
+        "Max Towing Capacity": 3500,
+        Notes: "Bumper ball hitch rating without auxiliary engine oil cooler.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Toyota",
+    Model: "Sequoia",
+    Trim: [
+      {
+        TrimName: "i-FORCE MAX 3.4L Twin-Turbo Hybrid (SR5 2WD)",
+        Engine: "3.4L Twin-Turbo Hybrid V6 (437 hp / 583 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "2WD",
+        "Max Towing Capacity": 9520,
+        Notes: "Class-leading full-size SUV towing capacity with factory tow hitch.",
+      },
+      {
+        TrimName: "i-FORCE MAX 3.4L Twin-Turbo Hybrid (Limited/Platinum 4WD)",
+        Engine: "3.4L Twin-Turbo Hybrid V6",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 9010,
+        Notes: "Includes Load-Leveling Rear Air Suspension and Adaptive Variable Suspension.",
+      },
+    ],
+  },
+  {
+    Year: 2019,
+    Make: "Toyota",
+    Model: "Sequoia",
+    Trim: [
+      {
+        TrimName: "5.7L V-8 (All Trims with Tow Package)",
+        Engine: "5.7L V8 (381 hp / 401 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "2WD / 4WD",
+        "Max Towing Capacity": 7400,
+        Notes: "2WD rated at 7,400 lbs; 4WD rated at 7,100 lbs with factory hitch and transmission cooler.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Toyota",
+    Model: "4Runner",
+    Trim: [
+      {
+        TrimName: "4.0L V-6 (All Trims)",
+        Engine: "4.0L DOHC V6 (270 hp / 278 lb-ft)",
+        Transmission: "5-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Consistent 5,000 lb rating across SR5, TRD Off-Road, Limited, and TRD Pro with standard integrated receiver hitch.",
+      },
+    ],
+  },
+  {
+    Year: 2018,
+    Make: "Toyota",
+    Model: "4Runner",
+    Trim: [
+      {
+        TrimName: "4.0L V-6 (All Trims)",
+        Engine: "4.0L V6 (270 hp)",
+        Transmission: "5-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Full frame construction with integrated hitch receiver.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Toyota",
+    Model: "Land Cruiser",
+    Trim: [
+      {
+        TrimName: "i-FORCE MAX 2.4L Turbo Hybrid",
+        Engine: "2.4L Turbo Hybrid (326 hp / 465 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "Full-Time 4WD",
+        "Max Towing Capacity": 6000,
+        Notes: "TNGA-F truck platform with integrated hitch and trailer brake controller.",
+      },
+    ],
+  },
+  {
+    Year: 2020,
+    Make: "Toyota",
+    Model: "Land Cruiser",
+    Trim: [
+      {
+        TrimName: "200 Series 5.7L V-8",
+        Engine: "5.7L V8 (381 hp / 401 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "Full-Time 4WD",
+        "Max Towing Capacity": 8100,
+        Notes: "Heritage Edition and standard 200 Series with factory integrated Class IV tow hitch.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // JEEP & DODGE (2015–2024)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Jeep",
+    Model: "Grand Cherokee",
+    Trim: [
+      {
+        TrimName: "5.7L HEMI V-8 (Trailer Tow Package)",
+        Engine: "5.7L HEMI V8 (357 hp / 390 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 7200,
+        Notes: "Best-in-class midsize SUV towing with Quadra-Lift air suspension.",
+      },
+      {
+        TrimName: "3.6L Pentastar V-6 (Trailer Tow Package)",
+        Engine: "3.6L V6 (293 hp / 260 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 6200,
+        Notes: "Includes Class IV receiver, 4- and 7-pin harness, and full-size spare.",
+      },
+      {
+        TrimName: "4xe 2.0L Turbo Plug-In Hybrid",
+        Engine: "2.0L Turbo Hybrid (375 hp / 470 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 6000,
+        Notes: "Instant electric torque assists trailer launch.",
+      },
+    ],
+  },
+  {
+    Year: 2019,
+    Make: "Jeep",
+    Model: "Grand Cherokee",
+    Trim: [
+      {
+        TrimName: "5.7L HEMI V-8",
+        Engine: "5.7L V8 (360 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 7200,
+        Notes: "With factory Class IV hitch.",
+      },
+      {
+        TrimName: "3.0L EcoDiesel V-6",
+        Engine: "3.0L EcoDiesel (240 hp / 420 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 7400,
+        Notes: "Highest towing capacity for WK2 generation.",
+      },
+      {
+        TrimName: "3.6L Pentastar V-6",
+        Engine: "3.6L V6 (295 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD",
+        "Max Towing Capacity": 6200,
+        Notes: "Standard V6 with tow package.",
+      },
+      {
+        TrimName: "Grand Cherokee Trackhawk 6.2L Supercharged",
+        Engine: "6.2L Supercharged Hellcat V8 (707 hp / 645 lb-ft)",
+        Transmission: "8-Speed Heavy Duty Automatic",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 7200,
+        Notes: "World's fastest production tow vehicle.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Jeep",
+    Model: "Wagoneer / Grand Wagoneer",
+    Trim: [
+      {
+        TrimName: "Heavy-Duty Trailer Tow Package (Hurricane Twin-Turbo I-6)",
+        Engine: "3.0L Hurricane Twin-Turbo Inline-6 (420-510 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "4WD / RWD",
+        "Max Towing Capacity": 10000,
+        Notes: "Best-in-class full-size luxury SUV towing rating (10,000 lbs).",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Dodge",
+    Model: "Durango",
+    Trim: [
+      {
+        TrimName: "SRT Hellcat / SRT 392 (Tow N Go Package)",
+        Engine: "6.2L Supercharged (710 hp) or 6.4L 392 HEMI (475 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 8700,
+        Notes: "Class-leading 3-row crossover towing capacity (8,700 lbs) with Brembo brakes and active damping.",
+      },
+      {
+        TrimName: "R/T 5.7L HEMI (Tow N Go Package)",
+        Engine: "5.7L HEMI V8 (360 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 8700,
+        Notes: "Includes SRT drive modes, Bilstein dampers, and electronic limited-slip differential.",
+      },
+      {
+        TrimName: "3.6L Pentastar V-6",
+        Engine: "3.6L V6 (295 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD / RWD",
+        "Max Towing Capacity": 6200,
+        Notes: "With factory Class IV hitch receiver.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // ELECTRIC TOWING VEHICLES (RIVIAN, TESLA, FORD)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Rivian",
+    Model: "R1T",
+    Trim: [
+      {
+        TrimName: "Quad-Motor AWD / Performance Dual-Motor (Max Pack)",
+        Engine: "Quad-Motor / Dual-Motor AWD (Up to 835 hp / 908 lb-ft)",
+        Transmission: "Direct Drive Independent Motors",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 11000,
+        Notes: "Class-leading electric truck capacity with air suspension, auto-leveling, and dedicated Tow Mode with range estimation.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Rivian",
+    Model: "R1S",
+    Trim: [
+      {
+        TrimName: "Dual-Motor / Quad-Motor AWD",
+        Engine: "Electric Motors (Up to 835 hp)",
+        Transmission: "Direct Drive",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 7700,
+        Notes: "3-row electric SUV with 7,700 lbs towing capacity.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Tesla",
+    Model: "Cybertruck",
+    Trim: [
+      {
+        TrimName: "All-Wheel Drive / Cyberbeast",
+        Engine: "Dual / Tri Electric Motors (600 - 845 hp)",
+        Transmission: "Single-Speed Direct Drive",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 11000,
+        Notes: "4-wheel steer and adaptive air suspension with up to 12 inches of travel.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Tesla",
+    Model: "Model X",
+    Trim: [
+      {
+        TrimName: "Long Range / Plaid (Factory Tow Package)",
+        Engine: "Dual / Tri Motor AWD (Up to 1,020 hp)",
+        Transmission: "Direct Drive",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Includes Class III high-strength steel tow bar and Trailer Mode software.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Tesla",
+    Model: "Model Y",
+    Trim: [
+      {
+        TrimName: "Long Range / Performance (Tow Hitch Option)",
+        Engine: "Dual Motor AWD",
+        Transmission: "Direct Drive",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 3500,
+        Notes: "Includes 2-inch receiver hitch and Trailer Mode brake management.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Kia",
+    Model: "EV9",
+    Trim: [
+      {
+        TrimName: "Land / GT-Line (Dual Motor AWD)",
+        Engine: "Dual Electric Motors (379 hp / 516 lb-ft)",
+        Transmission: "Direct Drive",
+        Drivetrain: "e-AWD",
+        "Max Towing Capacity": 5000,
+        Notes: "3-row electric SUV with self-leveling rear suspension and 5,000 lbs towing capacity.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // HYUNDAI, KIA & MAZDA (2018–2024)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Kia",
+    Model: "Telluride",
+    Trim: [
+      {
+        TrimName: "X-Pro (3.8L V-6 with Heavy-Duty Cooling)",
+        Engine: "3.8L Lambda II V6 (291 hp / 262 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 5500,
+        Notes: "X-Pro trim adds upgraded radiator fan and heavy-duty transmission cooler for 5,500 lbs.",
+      },
+      {
+        TrimName: "Standard AWD / FWD (Tow Package)",
+        Engine: "3.8L V6 (291 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD / FWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Self-leveling rear suspension on EX and SX trims.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Hyundai",
+    Model: "Palisade",
+    Trim: [
+      {
+        TrimName: "3.8L V-6 (Factory Heavy-Duty Tow Package)",
+        Engine: "3.8L Atkinson V6 (291 hp / 262 lb-ft)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "HTRAC AWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Includes auto-leveling rear suspension and pre-wired harness.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Hyundai",
+    Model: "Santa Cruz",
+    Trim: [
+      {
+        TrimName: "2.5L Turbo AWD (Tow Package)",
+        Engine: "2.5L Turbocharged Inline-4 (281 hp / 311 lb-ft)",
+        Transmission: "8-Speed Wet Dual-Clutch",
+        Drivetrain: "HTRAC AWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Compact pickup with 5,000 lbs capacity and auto-leveling rear suspension.",
+      },
+      {
+        TrimName: "2.5L Naturally Aspirated",
+        Engine: "2.5L 4-Cylinder (191 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "FWD / AWD",
+        "Max Towing Capacity": 3500,
+        Notes: "Standard entry model.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Mazda",
+    Model: "CX-90",
+    Trim: [
+      {
+        TrimName: "e-SKYACTIV G 3.3L Turbo Inline-6 (Tow Package)",
+        Engine: "3.3L Turbocharged Inline-6 (280-340 hp / 332-369 lb-ft)",
+        Transmission: "8-Speed Multi-Plate Wet-Clutch Automatic",
+        Drivetrain: "i-ACTIV AWD",
+        "Max Towing Capacity": 5000,
+        Notes: "Rear-biased AWD platform with dedicated Towing Drive Mode.",
+      },
+      {
+        TrimName: "e-SKYACTIV PHEV (Plug-In Hybrid)",
+        Engine: "2.5L 4-Cylinder + 68 kW Electric Motor (323 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "i-ACTIV AWD",
+        "Max Towing Capacity": 3500,
+        Notes: "Plug-in hybrid capacity.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // LEXUS & ACURA (2018–2024)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Lexus",
+    Model: "GX 550",
+    Trim: [
+      {
+        TrimName: "3.4L Twin-Turbo V-6 (Overtrail / Premium)",
+        Engine: "3.4L Twin-Turbo V6 (349 hp / 479 lb-ft)",
+        Transmission: "10-Speed Direct-Shift Automatic",
+        Drivetrain: "Full-Time 4WD with Torsen Differential",
+        "Max Towing Capacity": 9063,
+        Notes: "Class-leading luxury midsize SUV towing (up to 9,063 lbs on Premium and Overtrail).",
+      },
+    ],
+  },
+  {
+    Year: 2021,
+    Make: "Lexus",
+    Model: "GX 460",
+    Trim: [
+      {
+        TrimName: "4.6L V-8 (Tow Hitch Option)",
+        Engine: "4.6L 32-Valve V8 (301 hp / 329 lb-ft)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "Full-Time 4WD",
+        "Max Towing Capacity": 6500,
+        Notes: "Body-on-frame platform with trailer sway control.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Lexus",
+    Model: "LX 600",
+    Trim: [
+      {
+        TrimName: "3.4L Twin-Turbo V-6",
+        Engine: "3.4L Twin-Turbo V6 (409 hp / 479 lb-ft)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "Full-Time 4WD",
+        "Max Towing Capacity": 8000,
+        Notes: "Active Height Control hydraulic suspension with integrated hitch.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Acura",
+    Model: "MDX",
+    Trim: [
+      {
+        TrimName: "SH-AWD with ATF Cooler (3.5L V-6 / Type S 3.0L Turbo)",
+        Engine: "3.5L V6 (290 hp) or 3.0L Turbo V6 (355 hp)",
+        Transmission: "10-Speed Automatic",
+        Drivetrain: "Super Handling All-Wheel Drive (SH-AWD)",
+        "Max Towing Capacity": 5000,
+        Notes: "Requires Acura accessory trailer hitch and transmission fluid cooler (FWD models rated at 3,500 lbs).",
+      },
+    ],
+  },
+
+  // ==========================================
+  // EUROPEAN LUXURY (BMW, AUDI, MERCEDES, PORSCHE, LAND ROVER, VOLVO)
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "BMW",
+    Model: "X7",
+    Trim: [
+      {
+        TrimName: "xDrive40i / M60i (Factory Trailer Hitch)",
+        Engine: "3.0L Turbo I-6 (375 hp) or 4.4L Twin-Turbo V8 (523 hp)",
+        Transmission: "8-Speed Sport Automatic",
+        Drivetrain: "xDrive AWD",
+        "Max Towing Capacity": 7500,
+        Notes: "2-axle air suspension with dynamic stability control trailer stability program.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "BMW",
+    Model: "X5",
+    Trim: [
+      {
+        TrimName: "xDrive40i / xDrive50e PHEV / M60i",
+        Engine: "3.0L Turbo I-6 or 4.4L Twin-Turbo V8",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "xDrive AWD",
+        "Max Towing Capacity": 7200,
+        Notes: "Factory electrically deployable or 2-inch receiver hitch.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Audi",
+    Model: "Q7",
+    Trim: [
+      {
+        TrimName: "55 TFSI (3.0L Turbo V-6)",
+        Engine: "3.0L Turbocharged V6 (335 hp / 369 lb-ft)",
+        Transmission: "8-Speed Tiptronic",
+        Drivetrain: "quattro AWD",
+        "Max Towing Capacity": 7700,
+        Notes: "Adaptive air suspension with factory Class III hitch.",
+      },
+      {
+        TrimName: "45 TFSI (2.0L Turbo I-4)",
+        Engine: "2.0L Turbo I-4 (261 hp)",
+        Transmission: "8-Speed Tiptronic",
+        Drivetrain: "quattro AWD",
+        "Max Towing Capacity": 4400,
+        Notes: "Entry 4-cylinder quattro rating.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Porsche",
+    Model: "Cayenne",
+    Trim: [
+      {
+        TrimName: "Cayenne / Cayenne S / Turbo E-Hybrid",
+        Engine: "3.0L Turbo V6 (348 hp) or 4.0L Twin-Turbo V8 (468-729 hp)",
+        Transmission: "8-Speed Tiptronic S",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 7716,
+        Notes: "Class-leading sports SUV towing stability with adaptive air suspension and PASM.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Mercedes-Benz",
+    Model: "GLS",
+    Trim: [
+      {
+        TrimName: "GLS 450 / GLS 580 4MATIC",
+        Engine: "3.0L Inline-6 (375 hp) or 4.0L Twin-Turbo V8 (510 hp)",
+        Transmission: "9G-TRONIC 9-Speed Automatic",
+        Drivetrain: "4MATIC AWD",
+        "Max Towing Capacity": 7700,
+        Notes: "AIRMATIC air suspension with ESP Trailer Stability Assist.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Mercedes-Benz",
+    Model: "G-Class",
+    Trim: [
+      {
+        TrimName: "G 550 / AMG G 63",
+        Engine: "4.0L Twin-Turbo V8 (416 - 577 hp)",
+        Transmission: "9-Speed Automatic",
+        Drivetrain: "Full-Time 4WD with 3 Locking Differentials",
+        "Max Towing Capacity": 7700,
+        Notes: "Ladder frame construction with integrated heavy-duty trailer hitch.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Land Rover",
+    Model: "Defender",
+    Trim: [
+      {
+        TrimName: "Defender 110 / 130 (3.0L I-6 / 5.0L V-8)",
+        Engine: "3.0L Mild-Hybrid Turbo I-6 (395 hp) or 5.0L Supercharged V8 (518 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD with Low Range",
+        "Max Towing Capacity": 8201,
+        Notes: "Advanced Tow Assist software with configurable terrain response.",
+      },
+    ],
+  },
+
+  // ==========================================
+  // SMALL CARS, COMPACT SEDANS & HATCHBACKS
+  // ==========================================
+  {
+    Year: 2024,
+    Make: "Toyota",
+    Model: "Corolla",
+    Trim: [
+      {
+        TrimName: "2.0L Dynamic Force I-4 (Class I Hitch)",
+        Engine: "2.0L 4-Cylinder (169 hp / 151 lb-ft)",
+        Transmission: "Dynamic-Shift CVT",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1500,
+        Notes: "Maximum trailer rating with aftermarket Class I 1.25-inch receiver hitch. Suitable for jet ski, single motorcycle trailer, or light teardrop camper under 1,500 lbs. Max tongue weight: 150 lbs.",
+      },
+      {
+        TrimName: "Corolla Hybrid (AWD / FWD)",
+        Engine: "1.8L 4-Cylinder Hybrid (138 hp)",
+        Transmission: "e-CVT",
+        Drivetrain: "AWD / FWD",
+        "Max Towing Capacity": 1200,
+        Notes: "Electric motor assist allows light utility towing. Keep tongue weight under 120 lbs.",
+      },
+      {
+        TrimName: "GR Corolla (1.6L Turbo All-Wheel Drive)",
+        Engine: "1.6L Turbocharged 3-Cylinder (300 hp / 273 lb-ft)",
+        Transmission: "6-Speed Manual",
+        Drivetrain: "GR-FOUR AWD",
+        "Max Towing Capacity": 1200,
+        Notes: "Track-focused performance hatchback. Light duty utility or tire trailer only.",
+      },
+    ],
+  },
+  {
+    Year: 2020,
+    Make: "Toyota",
+    Model: "Corolla",
+    Trim: [
+      {
+        TrimName: "1.8L / 2.0L (Class I Hitch)",
+        Engine: "1.8L or 2.0L 4-Cylinder",
+        Transmission: "CVT / 6-Speed Manual",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1500,
+        Notes: "Max 1,500 lbs trailer weight with trailer brakes (1,000 lbs unbraked). Tongue weight limit: 150 lbs.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Toyota",
+    Model: "Camry",
+    Trim: [
+      {
+        TrimName: "2.5L 4-Cylinder / 3.5L V-6 (Class I Receiver)",
+        Engine: "2.5L 4-Cyl (203 hp) or 3.5L V6 (301 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "FWD / AWD",
+        "Max Towing Capacity": 1000,
+        Notes: "Class I hitch rating (1.25-inch receiver). Recommended for cargo carriers, bike racks, and small 4x8 utility trailers.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Honda",
+    Model: "Civic",
+    Trim: [
+      {
+        TrimName: "1.5L Turbo / 2.0L Naturally Aspirated",
+        Engine: "1.5L Turbo (180 hp) or 2.0L 4-Cylinder (158 hp)",
+        Transmission: "CVT / 6-Speed Manual",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1000,
+        Notes: "North American rating with Class I receiver hitch. Great for bike racks, hitch carriers, or light utility trailers up to 1,000 lbs. Max tongue weight: 100 lbs.",
+      },
+      {
+        TrimName: "Civic Type R (2.0L Turbo)",
+        Engine: "2.0L Turbocharged 4-Cylinder (315 hp)",
+        Transmission: "6-Speed Manual",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1000,
+        Notes: "Center triple exhaust requires specialized hitch mount. Light tire trailer capable.",
+      },
+    ],
+  },
+  {
+    Year: 2020,
+    Make: "Honda",
+    Model: "Civic",
+    Trim: [
+      {
+        TrimName: "Sedan / Hatchback (1.5L Turbo / 2.0L)",
+        Engine: "1.5L Turbo or 2.0L I-4",
+        Transmission: "CVT / 6-Speed Manual",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1000,
+        Notes: "Class I hitch rating (1,000 lbs max gross trailer weight, 100 lbs tongue weight).",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Honda",
+    Model: "Accord",
+    Trim: [
+      {
+        TrimName: "1.5L Turbo / 2.0L Hybrid (Class I Hitch)",
+        Engine: "1.5L Turbo (192 hp) or 2.0L Hybrid (204 hp)",
+        Transmission: "CVT / e-CVT",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1000,
+        Notes: "Maximum 1,000 lbs gross trailer weight. Max tongue weight: 100 lbs.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Subaru",
+    Model: "Impreza",
+    Trim: [
+      {
+        TrimName: "2.5L RS / 2.0L Base (Symmetrical AWD)",
+        Engine: "2.5L Boxer (182 hp) or 2.0L Boxer (152 hp)",
+        Transmission: "Lineartronic CVT",
+        Drivetrain: "Symmetrical AWD",
+        "Max Towing Capacity": 1500,
+        Notes: "1,500 lbs trailer rating with trailer brakes (1,000 lbs without brakes). Standard AWD provides excellent traction on boat ramps and gravel.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Subaru",
+    Model: "Crosstrek",
+    Trim: [
+      {
+        TrimName: "Crosstrek Wilderness (Heavy-Duty Transmission Cooler)",
+        Engine: "2.5L SUBARU BOXER (182 hp / 178 lb-ft)",
+        Transmission: "Lineartronic CVT with aux transmission oil cooler",
+        Drivetrain: "Symmetrical AWD",
+        "Max Towing Capacity": 3500,
+        Notes: "Wilderness trim doubles towing capacity to 3,500 lbs with heavy-duty transmission cooler and 4.111 final drive ratio.",
+      },
+      {
+        TrimName: "Standard Crosstrek (2.0L / 2.5L)",
+        Engine: "2.0L or 2.5L Boxer 4-Cylinder",
+        Transmission: "Lineartronic CVT",
+        Drivetrain: "Symmetrical AWD",
+        "Max Towing Capacity": 1500,
+        Notes: "Standard 1,500 lbs rating with trailer brakes. Max tongue weight: 150 lbs.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Subaru",
+    Model: "WRX",
+    Trim: [
+      {
+        TrimName: "2.4L Turbocharged SUBARU BOXER",
+        Engine: "2.4L Turbo Boxer (271 hp / 258 lb-ft)",
+        Transmission: "6-Speed Manual / Subaru Performance Transmission",
+        Drivetrain: "Symmetrical AWD",
+        "Max Towing Capacity": 1500,
+        Notes: "High-power sports sedan capable of towing small utility and motorcycle trailers up to 1,500 lbs with trailer brakes.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Mazda",
+    Model: "Mazda3",
+    Trim: [
+      {
+        TrimName: "2.5L Turbo AWD / 2.5L FWD",
+        Engine: "2.5L Turbo (250 hp / 320 lb-ft) or 2.5L SkyActiv-G (191 hp)",
+        Transmission: "6-Speed Automatic",
+        Drivetrain: "i-ACTIV AWD / FWD",
+        "Max Towing Capacity": 1500,
+        Notes: "Conventional 6-speed torque converter automatic handles towing stress better than CVTs. Rated up to 1,500 lbs braked (1,000 lbs unbraked).",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Volkswagen",
+    Model: "Jetta",
+    Trim: [
+      {
+        TrimName: "1.5L TSI / GLI 2.0L Turbo",
+        Engine: "1.5L Turbo (158 hp) or 2.0L Turbo GLI (228 hp)",
+        Transmission: "8-Speed Automatic / 7-Speed DSG",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1500,
+        Notes: "European engineered chassis. Max 1,500 lbs with trailer brakes; 1,000 lbs unbraked.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Volkswagen",
+    Model: "Golf",
+    Trim: [
+      {
+        TrimName: "Golf GTI / Golf R (2.0L TSI)",
+        Engine: "2.0L Turbocharged Inline-4 (241 - 315 hp)",
+        Transmission: "7-Speed DSG Dual-Clutch / 6-Speed Manual",
+        Drivetrain: "FWD / 4MOTION AWD",
+        "Max Towing Capacity": 1650,
+        Notes: "Euro tow spec up to 1,650 lbs (750 kg unbraked) with Class I receiver. Capable of towing small camper or tire hauler.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Hyundai",
+    Model: "Elantra",
+    Trim: [
+      {
+        TrimName: "2.0L I-4 / 1.6L Turbo (N Line)",
+        Engine: "2.0L (147 hp) or 1.6L Turbo (201 hp)",
+        Transmission: "Intelligent Variable / 7-Speed Dual Clutch",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1000,
+        Notes: "Class I receiver hitch rating for cargo trays, bike racks, and small yard trailers under 1,000 lbs.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Kia",
+    Model: "Forte",
+    Trim: [
+      {
+        TrimName: "2.0L / GT 1.6L Turbo",
+        Engine: "2.0L (147 hp) or 1.6L Turbo (201 hp)",
+        Transmission: "IVT / 7-Speed Dual Clutch",
+        Drivetrain: "FWD",
+        "Max Towing Capacity": 1000,
+        Notes: "Max 1,000 lbs trailer weight with 100 lbs tongue limit.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Tesla",
+    Model: "Model 3",
+    Trim: [
+      {
+        TrimName: "Rear-Wheel Drive / Long Range AWD (Tow Hitch Option)",
+        Engine: "Single / Dual Electric Motors (272 - 394 hp)",
+        Transmission: "Direct Drive",
+        Drivetrain: "RWD / AWD",
+        "Max Towing Capacity": 2000,
+        Notes: "Factory tow hitch option rated up to 1,000 kg (2,200 lbs) in Europe; 2,000 lbs in North America. Features active Trailer Mode trailer sway damping.",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Volvo",
+    Model: "V60 / S60",
+    Trim: [
+      {
+        TrimName: "B5 / T8 Recharge AWD (Factory Foldable Hitch)",
+        Engine: "2.0L Turbo / Plug-In Hybrid (247 - 455 hp)",
+        Transmission: "8-Speed Automatic",
+        Drivetrain: "AWD",
+        "Max Towing Capacity": 3500,
+        Notes: "Best-in-class compact luxury sedan/wagon towing capacity (3,500 lbs with factory hitch and trailer brakes).",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "BMW",
+    Model: "3 Series",
+    Trim: [
+      {
+        TrimName: "330i / M340i xDrive",
+        Engine: "2.0L Turbo I-4 (255 hp) or 3.0L Turbo I-6 (382 hp)",
+        Transmission: "8-Speed Sport Automatic",
+        Drivetrain: "xDrive AWD / RWD",
+        "Max Towing Capacity": 2000,
+        Notes: "Rated up to 2,000 lbs with Class I/II receiver hitch in North America (up to 3,500 lbs Euro braked spec).",
+      },
+    ],
+  },
+  {
+    Year: 2024,
+    Make: "Audi",
+    Model: "A4",
+    Trim: [
+      {
+        TrimName: "40 TFSI / 45 TFSI quattro",
+        Engine: "2.0L Turbocharged Inline-4 (201 - 261 hp)",
+        Transmission: "7-Speed S tronic Dual-Clutch",
+        Drivetrain: "quattro AWD",
+        "Max Towing Capacity": 2500,
+        Notes: "quattro all-wheel drive provides confident traction with trailers up to 2,500 lbs with trailer brakes.",
+      },
+    ],
+  },
+];

@@ -1,60 +1,74 @@
-
-
-
 # TowWise
 
-TowWise is a web application designed to provide users with information about the maximum towing capacity of their vehicles. The app serves as a valuable tool for individuals who need to tow trailers, or other loads, offering insights into the safe and optimal towing limits based on their specific vehicle models.
-## Table of contents
-* [Background](#Background)
-* [Features](#Features)
-* [Tech Stack](#TechStack)
-* [Acknowledgements](#Acknowledgements)
-* [Authors](#Authors)
+TowWise is a modern web application designed to provide vehicle owners, renters, and road-trippers with precise information about safe towing capacities, trailer compatibility, and safety margins.
+
+## Table of Contents
+* [Background](#background)
+* [Features](#features)
+* [Tech Stack](#tech-stack)
+* [Getting Started](#getting-started)
+* [Authors](#authors)
 
 ## Background
 
-In my part-time job, many customers frequently exhibit confidence in their vehicles, asserting they can tow anything. A few years ago, the company implemented an update to the system, mandating us to take pictures of the towing vehicles for safety reasons during rentals. However, there seems to be a lack of consideration from the customer's perspective regarding potential risks. As a customer myself,  I recognize that often we focus on achieving our objectives without thoroughly considering the potential downsides, especially since vehicles are primarily viewed as tools to accomplish tasks.
+In vehicle and trailer rentals, customers frequently overestimate their vehicle's towing ability without considering transmission strain, braking distance, or dangerous trailer sway. TowWise bridges this gap by offering fast vehicle lookups, official US DOT VIN decoding, and an interactive safety advisor based on the industry-standard 80% towing rule.
+
 ## Features
 
-* Towing capacities 
-    * 2018-2023 various models
-    * More (coming soon)
-* US VIN decoding (coming soon)
-* category of possible trailers you can tow(coming soon)
-* autocomplete formatted
+* **3 Ways to Look Up Towing Limits**:
+  * 🚗 **Vehicle Selector**: Filter by Model Year (2018–2024), Make, Model, and Trim package.
+  * ⚡ **Instant Autocomplete Search**: Start typing any vehicle name (e.g. "F-150", "Tahoe", "Telluride") for instant results.
+  * 📋 **US & Canadian VIN Decoder**: Enter any 17-character VIN to decode exact specifications (engine, cylinders, displacement, drive type, GVWR class) directly from the US Department of Transportation NHTSA vPIC API.
+* **Towing Specifications Card**:
+  * Detailed breakdown of Engine, Transmission, Drivetrain, Max Towing Capacity, and manufacturer notes.
+  * Instant unit toggle between **Pounds (lbs)** and **Kilograms (kg)**.
+* **Trailer Category Compatibility**:
+  * Real-time matching against standard trailer classes (Class I Light Utility up to Class V 5th Wheels).
+* **The 80% Safety Rule Advisor**:
+  * Calculates recommended continuous towing limits (80% margin) and safe tongue weight estimates (10–15%).
+  * Interactive trailer + cargo weight calculator with color-coded safety gauge.
+* **Zero-Config Serverless Architecture**:
+  * Works 100% serverless out-of-the-box using an embedded vehicle dataset.
+  * Optional MongoDB Atlas integration for persistent custom data and contact messages (`npm run seed` included).
 
 ## Tech Stack
 
 ### Frontend
-- **Frontend Framework**: 
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+- **Framework**: [Next.js 14 App Router](https://nextjs.org/)
+- **UI Library**: [HeroUI](https://heroui.com/) (formerly NextUI)
+- **Styling**: [TailwindCSS](https://tailwindcss.com/)
+- **Animations**: [Motion](https://motion.dev/) (Framer Motion v12)
+- **Theming**: [next-themes](https://github.com/pacocoursey/next-themes) (Light / Dark mode)
+- **Forms & Validation**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
 
-- **Component Library**: 
-![NextUI](https://img.shields.io/badge/NextUI-000000?style=for-the-badge&logo=nextui&logoColor=ffff)
+### Backend & APIs
+- **Serverless API Routes**: Next.js App Router (`/api/towing`, `/api/vin`, `/api/contact`)
+- **VIN Decoding**: US DOT NHTSA vPIC API (free, public REST API)
+- **Database (Optional)**: MongoDB Atlas & Mongoose
 
-- **CSS Library**: 
-![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+## Getting Started
 
-### Backend
-- **Backend Framework**: 
-![Next JS](https://img.shields.io/badge/Next-black?style=for-the-badge&logo=next.js&logoColor=white) 
-![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+### 1. Install Dependencies
+```bash
+npm install
+```
 
-- **Database**: 
-![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white)
+### 2. Run the Development Server
+```bash
+npm run dev
+```
 
-- **ORM**: 
-![mongoose](https://img.shields.io/badge/mongoose-880000?style=for-the-badge&logo=mongoose&logoColor=ffff)
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### Hosting
-
-- **Frontend & Backend**:
-![Vercel](https://img.shields.io/badge/Vercel-black?style=for-the-badge&logo=vercel&logoColor=white)
-## Acknowledgements
-
+### 3. Optional: MongoDB Atlas Setup
+To connect to an external MongoDB database:
+1. Copy `.env.example` to `.env.local`
+2. Add your MongoDB connection string to `TOWING_URI`
+3. Seed the database:
+```bash
+npm run seed
+```
 
 ## Authors
 
 - [Anderson Torres](https://www.github.com/and3rsontorres)
-

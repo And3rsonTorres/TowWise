@@ -5,12 +5,11 @@ import ContactForm from "./ui/components/ContactForm";
 
 export default function Home() {
   return (
-    <main className="mt-10">
+    <main className="mt-8 mb-12 flex-1">
       <AnimatedText
-        textLines={["Welcome to", "TowWise", "Where Towing", "Get SIMPLE"]}
+        textLines={["Welcome to", "TowWise", "Where Towing", "Gets SIMPLE"]}
       />
       <SelectionSearch />
-
       <ContactForm />
     </main>
   );

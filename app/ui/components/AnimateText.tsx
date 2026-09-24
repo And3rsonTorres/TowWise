@@ -1,55 +1,48 @@
-/**
- * AnimatedText component displays text with staggered reveal animation.
- * Each line fades in with a delay, and each character in a line also
- * fades in with a delay. Customizable delays are provided.
- */
+"use client";
 
+import React from "react";
 import * as motion from "motion/react-client";
 import { AnimatedTextProps } from "@/app/lib/Types";
 
-const staggerDelay = 0.5;
-const letterStaggerDelay = 0.2;
+const staggerDelay = 0.35;
+const letterStaggerDelay = 0.05;
 
 const createLineAnimation = (text: string, lineIndex: number): JSX.Element => {
   const characters: string[] = text.split("");
 
   const characterVariants = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1 },
+    hidden: { opacity: 0, y: 15 },
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <motion.div key={lineIndex} style={{ display: "flex flex-wrap" }}>
+    <div key={lineIndex} className="flex flex-wrap justify-center">
       {characters.map((char, index) => (
         <motion.span
           key={`${lineIndex}-${index}`}
           variants={characterVariants}
           initial="hidden"
           animate="visible"
-          transition={{ delay: index * letterStaggerDelay }}
+          transition={{ delay: index * letterStaggerDelay, duration: 0.3 }}
+          className="inline-block"
         >
-          {char}
-          {index !== characters.length - 1 && (
-            <motion.span variants={{ visible: { opacity: 0 } }}>
-              &#8203;
-            </motion.span>
-          )}
+          {char === " " ? "\u00A0" : char}
         </motion.span>
       ))}
-    </motion.div>
+    </div>
   );
 };
 
 const AnimateText: React.FC<AnimatedTextProps> = ({ textLines }) => {
   return (
-    <div className=" text-4xl sm:text-5xl md:text-6xl font-bold tracking-widest text-center ">
+    <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-wider text-center text-white drop-shadow-lg mb-8 space-y-1">
       {textLines.map((line, index) => (
         <motion.div
           key={index}
-          style={{ display: "Block-inline" }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: index * staggerDelay }}
+          className="inline-block mx-2"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: index * staggerDelay, duration: 0.4 }}
         >
           {createLineAnimation(line, index)}
         </motion.div>
