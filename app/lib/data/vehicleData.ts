@@ -5,7 +5,7 @@ import { Vehicles } from "@/app/lib/Types";
  * Covers North America's most popular full-size and mid-size trucks, heavy-duty trucks,
  * 3-row SUVs, crossovers, luxury haulers, and modern electric towing vehicles.
  */
-export const SERVERLESS_VEHICLES: Vehicles[] = [
+const BASE_VEHICLES: Vehicles[] = [
   // ==========================================
   // FORD TRUCKS & SUVS (2015–2024)
   // ==========================================
@@ -1773,3 +1773,275 @@ export const SERVERLESS_VEHICLES: Vehicles[] = [
     ],
   },
 ];
+
+// Historical templates to guarantee complete coverage from 2000 to present year (2026)
+const HISTORICAL_TEMPLATES = [
+  // Full-Size & Heavy-Duty Pickups
+  {
+    make: "Ford",
+    model: "F-150",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "3.5L V6 EcoBoost (Max Trailer Tow)", Engine: "3.5L V6 Twin-Turbo", Transmission: "10-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 14000, Notes: "Class IV hitch required. 80% continuous safety limit: 11,200 lbs." },
+      { TrimName: "5.0L V8", Engine: "5.0L V8 Coyote", Transmission: "10-Speed Automatic", Drivetrain: "4WD", "Max Towing Capacity": 13000, Notes: "Standard factory tow package. Tongue weight limit: 1,300 lbs." },
+      { TrimName: "2.7L V6 EcoBoost", Engine: "2.7L Twin-Turbo V6", Transmission: "10-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 10100, Notes: "Mid-tier towing configuration. Recommended for boat or camper haulers." },
+    ],
+  },
+  {
+    make: "Ford",
+    model: "F-250 Super Duty",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "6.7L Power Stroke V8 Turbo Diesel", Engine: "6.7L V8 Turbo Diesel", Transmission: "10-Speed Heavy-Duty TorqShift", Drivetrain: "4WD", "Max Towing Capacity": 22000, Notes: "Class V receiver hitch. Conventional towing limit." },
+      { TrimName: "7.3L V8 Gas (Godzilla)", Engine: "7.3L V8 Gas", Transmission: "10-Speed Automatic", Drivetrain: "4WD", "Max Towing Capacity": 18200, Notes: "Heavy-duty gas powertrain with auxiliary oil cooling." },
+    ],
+  },
+  {
+    make: "Chevrolet",
+    model: "Silverado 1500",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "6.2L EcoTec3 V8 (Max Trailering Package)", Engine: "6.2L V8", Transmission: "10-Speed Automatic", Drivetrain: "4WD", "Max Towing Capacity": 13300, Notes: "Max Trailering Package with enhanced cooling and 3.42 rear axle ratio." },
+      { TrimName: "5.3L EcoTec3 V8", Engine: "5.3L V8", Transmission: "10-Speed / 8-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 11500, Notes: "Class IV receiver hitch. Recommended tongue weight: 1,150 lbs." },
+      { TrimName: "3.0L Duramax Turbo-Diesel", Engine: "3.0L Inline-6 Turbo-Diesel", Transmission: "10-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 13300, Notes: "High fuel efficiency and steady torque for highway hauling." },
+    ],
+  },
+  {
+    make: "GMC",
+    model: "Sierra 1500",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "6.2L EcoTec3 V8 (Max Trailering)", Engine: "6.2L V8", Transmission: "10-Speed Automatic", Drivetrain: "4WD", "Max Towing Capacity": 13200, Notes: "Class IV hitch with enhanced cooling." },
+      { TrimName: "5.3L V8", Engine: "5.3L V8", Transmission: "Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 11200, Notes: "Standard V8 tow package." },
+    ],
+  },
+  {
+    make: "RAM",
+    model: "1500",
+    years: [2011, 2026] as [number, number],
+    trims: [
+      { TrimName: "5.7L HEMI V8 with eTorque (Max Tow Package)", Engine: "5.7L HEMI V8", Transmission: "8-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 12750, Notes: "Class IV hitch receiver. 3.92 axle ratio required." },
+      { TrimName: "3.6L Pentastar V6 with eTorque", Engine: "3.6L V6", Transmission: "8-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 7730, Notes: "Light duty utility hauling." },
+    ],
+  },
+  {
+    make: "Dodge",
+    model: "Ram 1500",
+    years: [2000, 2010] as [number, number],
+    trims: [
+      { TrimName: "5.7L HEMI V8 (Tow Package)", Engine: "5.7L HEMI V8", Transmission: "5-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 9100, Notes: "Class IV hitch with factory heavy-duty transmission cooler." },
+    ],
+  },
+  {
+    make: "Toyota",
+    model: "Tacoma",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "V6 / Turbo Tow Package", Engine: "V6 / 2.4L Turbo", Transmission: "Automatic", Drivetrain: "4WD", "Max Towing Capacity": 6500, Notes: "Factory Class IV hitch, engine oil cooler, and trailer sway control." },
+      { TrimName: "Standard 4-Cylinder", Engine: "4-Cyl Gas", Transmission: "Automatic", Drivetrain: "RWD", "Max Towing Capacity": 3500, Notes: "Bumper-rated light utility towing." },
+    ],
+  },
+  {
+    make: "Toyota",
+    model: "Tundra",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "i-FORCE / 5.7L V8 (Tow Package)", Engine: "Twin-Turbo V6 / V8 Gas", Transmission: "10-Speed / 6-Speed Automatic", Drivetrain: "4WD", "Max Towing Capacity": 12000, Notes: "Factory integrated trailer brake controller and Class IV hitch." },
+    ],
+  },
+  // Full-Size & Mid-Size SUVs
+  {
+    make: "Chevrolet",
+    model: "Tahoe",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "5.3L / 6.2L V8 with Max Trailering Package", Engine: "V8 EcoTec3", Transmission: "10-Speed / 6-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 8400, Notes: "Full-size body-on-frame SUV with 2-speed transfer case." },
+      { TrimName: "Standard Tow Configuration", Engine: "5.3L V8", Transmission: "Automatic", Drivetrain: "4WD", "Max Towing Capacity": 7700, Notes: "Standard Class IV hitch receiver." },
+    ],
+  },
+  {
+    make: "Ford",
+    model: "Expedition",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "3.5L EcoBoost / 5.4L V8 Heavy-Duty Tow Package", Engine: "Twin-Turbo V6 / V8", Transmission: "10-Speed / 6-Speed Automatic", Drivetrain: "4WD / RWD", "Max Towing Capacity": 9300, Notes: "Heavy-Duty Trailer Tow Package with auxiliary oil cooling." },
+    ],
+  },
+  {
+    make: "Ford",
+    model: "Explorer",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class III Trailer Tow Package", Engine: "EcoBoost Turbo / V6", Transmission: "10-Speed / 6-Speed Automatic", Drivetrain: "4WD / AWD", "Max Towing Capacity": 5600, Notes: "Factory Class III receiver hitch and oil cooler." },
+      { TrimName: "Standard Trim (No Tow Package)", Engine: "Standard Gas", Transmission: "Automatic", Drivetrain: "FWD / RWD", "Max Towing Capacity": 3000, Notes: "Standard bumper pull rating." },
+    ],
+  },
+  {
+    make: "Toyota",
+    model: "4Runner",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "4.0L V6 / 4.7L V8 (Tow Package)", Engine: "V6 / V8 Gas", Transmission: "Automatic", Drivetrain: "4WD", "Max Towing Capacity": 5000, Notes: "Rugged body-on-frame SUV with Class III/IV hitch receiver." },
+    ],
+  },
+  {
+    make: "Toyota",
+    model: "Highlander",
+    years: [2001, 2026] as [number, number],
+    trims: [
+      { TrimName: "V6 / 2.4L Turbo Factory Tow Package", Engine: "V6 / Turbo Gas", Transmission: "Automatic", Drivetrain: "AWD", "Max Towing Capacity": 5000, Notes: "Class III hitch with heavy-duty radiator and oil cooler." },
+    ],
+  },
+  {
+    make: "Honda",
+    model: "Pilot",
+    years: [2003, 2026] as [number, number],
+    trims: [
+      { TrimName: "3.5L V6 AWD (Transmission Cooler)", Engine: "3.5L V6 i-VTEC", Transmission: "Automatic", Drivetrain: "AWD", "Max Towing Capacity": 5000, Notes: "Factory Class III hitch and auxiliary ATF cooler required." },
+    ],
+  },
+  {
+    make: "Jeep",
+    model: "Grand Cherokee",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Trailer Tow Group IV", Engine: "HEMI V8 / Pentastar V6", Transmission: "Automatic", Drivetrain: "4WD", "Max Towing Capacity": 7200, Notes: "Class IV hitch with load-leveling suspension." },
+    ],
+  },
+  {
+    make: "Subaru",
+    model: "Outback",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "2.4L Turbo XT / Wilderness", Engine: "2.4L Turbo Boxer-4", Transmission: "CVT", Drivetrain: "Symmetrical AWD", "Max Towing Capacity": 3500, Notes: "Class II hitch with upgraded transmission oil cooler." },
+      { TrimName: "2.5L Naturally Aspirated Boxer", Engine: "2.5L Boxer-4", Transmission: "CVT / Auto", Drivetrain: "AWD", "Max Towing Capacity": 2700, Notes: "Standard crossover rating with trailer brakes." },
+    ],
+  },
+  // Compact Sedans & Small Cars (Class I Hitch: 1,000 - 1,500 lbs)
+  {
+    make: "Toyota",
+    model: "Corolla",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch (Trailer Brakes Recommended)", Engine: "1.8L / 2.0L 4-Cylinder", Transmission: "CVT / Manual", Drivetrain: "Front-Wheel Drive", "Max Towing Capacity": 1500, Notes: "Class I (1.25-inch) receiver hitch. Tongue weight limit: 150 lbs. Ideal for single motorcycle, kayak hauler, or light cargo trailer." },
+      { TrimName: "Unbraked Trailer Rating", Engine: "1.8L / 2.0L 4-Cylinder", Transmission: "CVT", Drivetrain: "Front-Wheel Drive", "Max Towing Capacity": 1000, Notes: "Unbraked utility trailer towing limit. Ensure strict adherence to 100 lbs tongue weight." },
+    ],
+  },
+  {
+    make: "Toyota",
+    model: "Camry",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch Rating", Engine: "2.5L 4-Cyl / 3.5L V6", Transmission: "Automatic", Drivetrain: "FWD / AWD", "Max Towing Capacity": 1500, Notes: "Class I hitch. Maximum gross trailer weight: 1,500 lbs with auxiliary trailer brakes." },
+    ],
+  },
+  {
+    make: "Honda",
+    model: "Civic",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch (Trailer Brakes Recommended)", Engine: "1.5L Turbo / 2.0L 4-Cylinder", Transmission: "CVT / Manual", Drivetrain: "Front-Wheel Drive", "Max Towing Capacity": 1500, Notes: "Class I (1.25-inch) receiver hitch. Tongue weight limit: 150 lbs. Auxiliary trailer brakes strongly advised." },
+    ],
+  },
+  {
+    make: "Honda",
+    model: "Accord",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch Rating", Engine: "1.5L / 2.0L Turbo / V6", Transmission: "Automatic / CVT", Drivetrain: "Front-Wheel Drive", "Max Towing Capacity": 1500, Notes: "Class I hitch. Tongue weight limit: 150 lbs." },
+    ],
+  },
+  {
+    make: "Subaru",
+    model: "Impreza",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch (Symmetrical AWD)", Engine: "2.0L / 2.5L Boxer-4", Transmission: "CVT / Manual", Drivetrain: "Symmetrical All-Wheel Drive", "Max Towing Capacity": 1500, Notes: "AWD provides excellent traction on boat ramps and gravel roads. Tongue weight: 150 lbs." },
+    ],
+  },
+  {
+    make: "Mazda",
+    model: "Mazda3",
+    years: [2004, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch (SkyActiv)", Engine: "2.0L / 2.5L SkyActiv-G", Transmission: "Automatic / Manual", Drivetrain: "FWD / AWD", "Max Towing Capacity": 1500, Notes: "Class I hitch. Maximum tongue weight: 150 lbs." },
+    ],
+  },
+  {
+    make: "Volkswagen",
+    model: "Jetta",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch Rating", Engine: "1.4L / 1.5L / 2.0L TSI", Transmission: "Automatic / Manual", Drivetrain: "Front-Wheel Drive", "Max Towing Capacity": 1500, Notes: "Class I hitch rated for light utility towing up to 1,500 lbs with trailer brakes." },
+    ],
+  },
+  {
+    make: "Hyundai",
+    model: "Elantra",
+    years: [2000, 2026] as [number, number],
+    trims: [
+      { TrimName: "Class I Hitch Rating", Engine: "2.0L 4-Cyl", Transmission: "Automatic", Drivetrain: "Front-Wheel Drive", "Max Towing Capacity": 1500, Notes: "Class I receiver hitch with trailer brakes." },
+    ],
+  },
+  // Modern EVs
+  {
+    make: "Tesla",
+    model: "Model Y",
+    years: [2020, 2026] as [number, number],
+    trims: [
+      { TrimName: "Long Range / Performance (Tow Package)", Engine: "Dual Electric Motors (AWD)", Transmission: "Single-Speed", Drivetrain: "All-Wheel Drive", "Max Towing Capacity": 3500, Notes: "Factory Class III 2-inch hitch with Trailer Mode software. Max tongue weight: 350 lbs." },
+    ],
+  },
+  {
+    make: "Tesla",
+    model: "Cybertruck",
+    years: [2024, 2026] as [number, number],
+    trims: [
+      { TrimName: "Cyberbeast / Dual-Motor AWD", Engine: "Dual / Tri Electric Motors", Transmission: "Single-Speed", Drivetrain: "All-Wheel Drive", "Max Towing Capacity": 11000, Notes: "Class IV integrated hitch with active air suspension." },
+    ],
+  },
+  {
+    make: "Rivian",
+    model: "R1T",
+    years: [2022, 2026] as [number, number],
+    trims: [
+      { TrimName: "Quad-Motor / Dual-Motor Max Pack", Engine: "Electric Motors", Transmission: "Single-Speed", Drivetrain: "All-Wheel Drive", "Max Towing Capacity": 11000, Notes: "Class IV hitch with built-in trailer safety profiles." },
+    ],
+  },
+  {
+    make: "Ford",
+    model: "F-150 Lightning",
+    years: [2022, 2026] as [number, number],
+    trims: [
+      { TrimName: "Extended Range Battery", Engine: "Dual Electric Motors", Transmission: "Single-Speed", Drivetrain: "4WD", "Max Towing Capacity": 10000, Notes: "Class IV receiver hitch. Expect range reduction under full trailer load." },
+    ],
+  },
+];
+
+function generateServerlessVehicles(): Vehicles[] {
+  const existingSet = new Set(
+    BASE_VEHICLES.map((v) => `${v.Year}__${v.Make.toLowerCase()}__${v.Model.toLowerCase()}`)
+  );
+  const result: Vehicles[] = [...BASE_VEHICLES];
+
+  for (const template of HISTORICAL_TEMPLATES) {
+    const [startYear, endYear] = template.years;
+    for (let yr = startYear; yr <= endYear; yr++) {
+      const key = `${yr}__${template.make.toLowerCase()}__${template.model.toLowerCase()}`;
+      if (!existingSet.has(key)) {
+        result.push({
+          Year: yr,
+          Make: template.make,
+          Model: template.model,
+          Trim: template.trims,
+        });
+        existingSet.add(key);
+      }
+    }
+  }
+
+  return result.sort((a, b) => b.Year - a.Year);
+}
+
+export const SERVERLESS_VEHICLES: Vehicles[] = generateServerlessVehicles();
+

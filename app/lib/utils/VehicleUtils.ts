@@ -55,6 +55,10 @@ export function processingVehicles(
         }
       });
     }
+
+    if (trimOptionsMap[yearKey][vehicle.Make][vehicle.Model].size === 0) {
+      trimOptionsMap[yearKey][vehicle.Make][vehicle.Model].add("Standard Configuration");
+    }
   });
 
   // Sort sets for consistent alphabetical dropdown presentation

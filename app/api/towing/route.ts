@@ -172,7 +172,31 @@ export async function GET(req: NextRequest) {
         ).lean();
 
         if (trims && trims.length > 0) {
-          return NextResponse.json(trims);
+          // Merge with embedded fallback vehicles to ensure complete coverage from 2000 to present
+          const seen = new Set(
+            trims.map((t: any) => `${t.Year}__${t.Make?.toLowerCase()}__${t.Model?.toLowerCase()}`)
+          );
+          const merged: Array<{ Year: number; Make: string; Model: string; Trim: { TrimName: string }[] }> =
+            trims.map((t: any) => ({
+              Year: t.Year,
+              Make: t.Make,
+              Model: t.Model,
+              Trim: Array.isArray(t.Trim) ? t.Trim.map((tr: any) => ({ TrimName: tr.TrimName })) : [],
+            }));
+
+          for (const v of SERVERLESS_VEHICLES) {
+            const key = `${v.Year}__${v.Make?.toLowerCase()}__${v.Model?.toLowerCase()}`;
+            if (!seen.has(key)) {
+              merged.push({
+                Year: v.Year,
+                Make: v.Make,
+                Model: v.Model,
+                Trim: v.Trim.map((t) => ({ TrimName: t.TrimName })),
+              });
+              seen.add(key);
+            }
+          }
+          return NextResponse.json(merged);
         }
       } else {
         const parsed = TowingSchema.safeParse(params);
