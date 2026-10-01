@@ -30,7 +30,7 @@ export function ThemeSwitcher() {
         size="sm"
         aria-label="themes"
         radius="full"
-        className="text-gray-700  bg-chocolate_cosmos dark:text-warning"
+        className="text-amber-400 bg-white/10 hover:bg-white/20 border border-white/20 shadow-sm"
         onClick={() =>
           theme === "dark" ? setTheme("light") : setTheme("dark")
         }

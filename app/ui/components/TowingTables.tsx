@@ -93,7 +93,7 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
                         className={index % 2 === 0 ? "bg-slate-800/40" : "bg-slate-800/20"}
                       >
                         <td className="w-1/3 px-4 py-3.5 text-xs sm:text-sm md:text-base font-semibold text-slate-300 border-b border-slate-800/60">
-                          <Chip size="sm" variant="flat" color="default" className="text-xs">
+                          <Chip size="sm" variant="flat" color="default" className="text-xs font-semibold bg-slate-800 text-slate-200 border border-slate-700/60">
                             {key}
                           </Chip>
                         </td>
@@ -145,7 +145,7 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
                                     >
                                       {capacityDisplay}
                                     </span>
-                                    <span className="text-xs text-slate-400 hidden sm:inline">
+                                    <span className="text-xs text-slate-300 hidden sm:inline font-medium">
                                       (Gross Trailer Weight)
                                     </span>
                                   </div>
@@ -172,7 +172,7 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
             <div className="mt-4 pt-3 border-t border-slate-800/80 w-full text-center">
               <a
                 href="#feedback-section"
-                className="text-xs text-slate-400 hover:text-primary transition-colors inline-flex items-center gap-1"
+                className="text-xs text-slate-300 hover:text-blue-400 font-medium transition-colors inline-flex items-center gap-1"
               >
                 <span>💬</span> Have a question or missing trim for this {vehicle.Year} {vehicle.Make} {vehicle.Model}? Submit feedback below!
               </a>

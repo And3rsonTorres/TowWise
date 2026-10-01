@@ -111,37 +111,37 @@ export default function TrailerAdvisor({ maxTowingCapacity, vehicleName }: Trail
           {/* 80% Rule Card */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-slate-800/70 p-4 rounded-xl border border-slate-700">
-              <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+              <span className="text-xs uppercase tracking-wider text-slate-300 font-bold">
                 80% Safe Towing Limit
               </span>
               <p className="text-2xl font-extrabold text-success mt-1">
-                {safeEightyPercent.toLocaleString()} <span className="text-sm font-normal text-slate-300">lbs</span>
+                {safeEightyPercent.toLocaleString()} <span className="text-sm font-normal text-slate-200">lbs</span>
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                 Recommended loaded trailer weight to protect transmission & maintain steering control.
               </p>
             </div>
 
             <div className="bg-slate-800/70 p-4 rounded-xl border border-slate-700">
-              <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+              <span className="text-xs uppercase tracking-wider text-slate-300 font-bold">
                 Est. Tongue Weight (10–15%)
               </span>
               <p className="text-2xl font-extrabold text-primary mt-1">
-                {minTongueWeight.toLocaleString()}–{maxTongueWeight.toLocaleString()} <span className="text-sm font-normal text-slate-300">lbs</span>
+                {minTongueWeight.toLocaleString()}–{maxTongueWeight.toLocaleString()} <span className="text-sm font-normal text-slate-200">lbs</span>
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                 Downward force on hitch ball. Proper tongue weight prevents dangerous trailer sway.
               </p>
             </div>
 
             <div className="bg-slate-800/70 p-4 rounded-xl border border-slate-700">
-              <span className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+              <span className="text-xs uppercase tracking-wider text-slate-300 font-bold">
                 Max Factory Towing
               </span>
               <p className="text-2xl font-extrabold text-warning mt-1">
-                {maxTowingCapacity.toLocaleString()} <span className="text-sm font-normal text-slate-300">lbs</span>
+                {maxTowingCapacity.toLocaleString()} <span className="text-sm font-normal text-slate-200">lbs</span>
               </p>
-              <p className="text-xs text-slate-400 mt-1">
+              <p className="text-xs text-slate-300 mt-1 leading-relaxed">
                 Maximum gross trailer weight rating specified by vehicle manufacturer.
               </p>
             </div>
@@ -151,7 +151,7 @@ export default function TrailerAdvisor({ maxTowingCapacity, vehicleName }: Trail
           <div className="bg-slate-800/50 p-5 rounded-xl border border-slate-700/80">
             <h4 className="text-base font-semibold text-white mb-2 flex items-center justify-between">
               <span>Interactive Safety Calculator</span>
-              <Chip color={status.color} variant="flat" size="sm">
+              <Chip color={status.color} variant="flat" size="sm" className="font-semibold">
                 {status.label}
               </Chip>
             </h4>
@@ -165,15 +165,20 @@ export default function TrailerAdvisor({ maxTowingCapacity, vehicleName }: Trail
                   variant="bordered"
                   size="sm"
                   className="max-w-xs"
+                  classNames={{
+                    label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                    input: "text-white font-bold text-base",
+                    inputWrapper: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary",
+                  }}
                 />
               </div>
-              <div className="w-full sm:w-1/2 text-sm text-slate-300">
+              <div className="w-full sm:w-1/2 text-sm text-slate-200 leading-relaxed">
                 <p>{status.description}</p>
               </div>
             </div>
 
             <div className="space-y-1">
-              <div className="flex justify-between text-xs text-slate-400">
+              <div className="flex justify-between text-xs text-slate-300 font-medium">
                 <span>0 lbs</span>
                 <span className="text-success font-semibold">80% Margin ({safeEightyPercent.toLocaleString()} lbs)</span>
                 <span className="text-warning font-semibold">100% Limit ({maxTowingCapacity.toLocaleString()} lbs)</span>
@@ -184,7 +189,7 @@ export default function TrailerAdvisor({ maxTowingCapacity, vehicleName }: Trail
                 color={status.color}
                 className="h-3 rounded-full"
               />
-              <div className="text-right text-xs text-slate-400 pt-1">
+              <div className="text-right text-xs text-slate-300 pt-1 font-medium">
                 Current Load: <span className="font-bold text-white">{percentage}%</span> of vehicle capacity
               </div>
             </div>
@@ -251,7 +256,7 @@ export default function TrailerAdvisor({ maxTowingCapacity, vehicleName }: Trail
                         </Chip>
                       </div>
                       <p className="text-xs text-warning font-medium">{cat.weightRange}</p>
-                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">{cat.examples}</p>
+                      <p className="text-xs text-slate-300 mt-1 leading-relaxed">{cat.examples}</p>
                     </div>
                   </div>
                 );

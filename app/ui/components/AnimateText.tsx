@@ -8,33 +8,51 @@ const staggerDelay = 0.25;
 const letterStaggerDelay = 0.03;
 
 const createLineAnimation = (text: string, lineIndex: number): JSX.Element => {
-  const characters: string[] = text.split("");
+  const words = text.split(" ");
 
   const characterVariants = {
     hidden: { opacity: 0, y: 15 },
     visible: { opacity: 1, y: 0 },
   };
 
-  const isGradient = text.toLowerCase() === "towwise" || text.toLowerCase() === "simple";
+  let charOffset = 0;
 
   return (
-    <div key={lineIndex} className="flex flex-wrap justify-center">
-      {characters.map((char, index) => (
-        <motion.span
-          key={`${lineIndex}-${index}`}
-          variants={characterVariants}
-          initial="hidden"
-          animate="visible"
-          transition={{ delay: index * letterStaggerDelay, duration: 0.3 }}
-          className={`inline-block ${
-            isGradient
-              ? "bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent font-black"
-              : "text-white"
-          }`}
-        >
-          {char === " " ? "\u00A0" : char}
-        </motion.span>
-      ))}
+    <div key={lineIndex} className="flex flex-wrap justify-center items-center gap-x-2">
+      {words.map((word, wordIndex) => {
+        const isGradient =
+          word.toLowerCase() === "towwise" ||
+          word.toLowerCase() === "simple" ||
+          word.toLowerCase().includes("simple");
+
+        const characters = word.split("");
+        const startOffset = charOffset;
+        charOffset += characters.length + 1;
+
+        return (
+          <span key={`${lineIndex}-w-${wordIndex}`} className="inline-flex">
+            {characters.map((char, charIndex) => (
+              <motion.span
+                key={`${lineIndex}-${wordIndex}-${charIndex}`}
+                variants={characterVariants}
+                initial="hidden"
+                animate="visible"
+                transition={{
+                  delay: (startOffset + charIndex) * letterStaggerDelay,
+                  duration: 0.3,
+                }}
+                className={`inline-block ${
+                  isGradient
+                    ? "bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
+                    : "text-white font-extrabold drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
+                }`}
+              >
+                {char}
+              </motion.span>
+            ))}
+          </span>
+        );
+      })}
     </div>
   );
 };
@@ -42,17 +60,6 @@ const createLineAnimation = (text: string, lineIndex: number): JSX.Element => {
 const AnimateText: React.FC<AnimatedTextProps> = ({ textLines }) => {
   return (
     <div className="flex flex-col items-center justify-center text-center px-4 mb-6">
-      {/* Top feature badge */}
-      <motion.div
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-        className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-300 text-xs sm:text-sm font-medium mb-4 backdrop-blur-sm shadow-sm"
-      >
-        <span className="flex h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-        <span>Next.js 15 • 2,000+ Vehicles • 100% Offline VIN Engine</span>
-      </motion.div>
-
       {/* Main animated title */}
       <div className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-wider text-center drop-shadow-lg space-y-1">
         {textLines.map((line, index) => (
@@ -73,7 +80,7 @@ const AnimateText: React.FC<AnimatedTextProps> = ({ textLines }) => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.6, duration: 0.5 }}
-        className="max-w-2xl text-slate-300 text-sm sm:text-base mt-4 leading-relaxed font-normal"
+        className="max-w-2xl text-slate-100 sm:text-slate-200 text-sm sm:text-base mt-4 leading-relaxed font-medium drop-shadow-[0_1px_4px_rgba(0,0,0,0.8)]"
       >
         Calculate safe continuous towing capacity, discover hitch ratings from small cars to heavy-duty haulers, and verify specs using your 17-digit VIN.
       </motion.p>
@@ -83,18 +90,18 @@ const AnimateText: React.FC<AnimatedTextProps> = ({ textLines }) => {
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.8, duration: 0.5 }}
-        className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4 text-xs text-slate-300"
+        className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mt-4 text-xs font-medium"
       >
-        <span className="px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 shadow-sm flex items-center gap-1.5">
+        <span className="px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-md backdrop-blur-md flex items-center gap-1.5 text-slate-200">
           🚗 <span>2000–2026 Models</span>
         </span>
-        <span className="px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 shadow-sm flex items-center gap-1.5">
+        <span className="px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-md backdrop-blur-md flex items-center gap-1.5 text-slate-200">
           🛡️ <span>80% Continuous Safety Margin</span>
         </span>
-        <span className="px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 shadow-sm flex items-center gap-1.5">
+        <span className="px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-md backdrop-blur-md flex items-center gap-1.5 text-slate-200">
           ⚡ <span>100% Offline VIN Decoding</span>
         </span>
-        <span className="px-3 py-1 rounded-full bg-slate-800/80 border border-slate-700/60 shadow-sm flex items-center gap-1.5">
+        <span className="px-3.5 py-1.5 rounded-full bg-slate-900/90 border border-slate-700/80 shadow-md backdrop-blur-md flex items-center gap-1.5 text-slate-200">
           🚙 <span>Compact Sedans & EV Support</span>
         </span>
       </motion.div>

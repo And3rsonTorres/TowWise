@@ -146,6 +146,11 @@ export default function VinSearch() {
                 errorMessage={error || undefined}
                 className="w-full font-mono tracking-wider text-base"
                 maxLength={17}
+                classNames={{
+                  label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                  input: "text-white font-mono tracking-wider text-base font-semibold",
+                  inputWrapper: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary",
+                }}
               />
               <div className="absolute right-3 top-3 flex items-center gap-1.5 z-10">
                 {vin.length > 0 && (
@@ -153,7 +158,7 @@ export default function VinSearch() {
                     size="sm"
                     variant="flat"
                     color={vin.length === 17 ? "success" : "default"}
-                    className="font-mono text-xs"
+                    className="font-mono text-xs font-semibold"
                   >
                     {vin.length}/17
                   </Chip>
@@ -166,7 +171,7 @@ export default function VinSearch() {
               variant="flat"
               size="lg"
               onPress={handlePasteClipboard}
-              className="px-4 font-medium h-[56px] text-slate-300 hover:text-white"
+              className="px-4 font-medium h-[56px] text-slate-200 hover:text-white bg-slate-800 border border-slate-700"
               title="Paste from clipboard"
             >
               📋 Paste
@@ -187,10 +192,10 @@ export default function VinSearch() {
           {/* VIN Structural Breakdown Preview */}
           {vin.length >= 3 && (
             <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800 text-xs">
-              <div className="text-slate-400 font-semibold mb-1 flex items-center justify-between">
+              <div className="text-slate-300 font-semibold mb-1 flex items-center justify-between">
                 <span>VIN Structure Breakdown:</span>
                 {country && (
-                  <span className="text-slate-300">
+                  <span className="text-slate-200">
                     {country.flag} Origin: <strong>{country.name}</strong>
                   </span>
                 )}
@@ -217,14 +222,14 @@ export default function VinSearch() {
           )}
 
           {/* Quick sample VIN buttons */}
-          <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-400">
-            <span>Try sample VINs:</span>
+          <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-300">
+            <span className="font-semibold">Try sample VINs:</span>
             {SAMPLE_VINS.map((sample, idx) => (
               <Button
                 key={idx}
                 size="sm"
                 variant="flat"
-                className="bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs h-7"
+                className="bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs h-7"
                 onPress={() => {
                   setVin(sample.vin);
                   handleDecode(sample.vin);
@@ -240,36 +245,36 @@ export default function VinSearch() {
             <div className="mt-4 p-5 rounded-xl bg-slate-800/70 border border-slate-700">
               <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-700 pb-3 mb-4">
                 <div>
-                  <span className="text-xs text-slate-400 uppercase font-bold tracking-wider">
+                  <span className="text-xs text-slate-300 uppercase font-bold tracking-wider">
                     Decoded Vehicle
                   </span>
                   <h3 className="text-xl sm:text-2xl font-extrabold text-white">
                     {decodedData.year} {decodedData.make} {decodedData.model}
                   </h3>
                   {decodedData.trim && (
-                    <span className="text-sm text-slate-300">{decodedData.trim}</span>
+                    <span className="text-sm text-slate-200">{decodedData.trim}</span>
                   )}
                 </div>
-                <Chip color="success" variant="flat" size="sm">
+                <Chip color="success" variant="flat" size="sm" className="font-semibold">
                   NHTSA Verified
                 </Chip>
               </div>
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
                 <div>
-                  <span className="text-xs text-slate-400 block">Engine</span>
+                  <span className="text-xs text-slate-300 block font-medium">Engine</span>
                   <span className="font-semibold text-white">{decodedData.engine || "N/A"}</span>
                 </div>
                 <div>
-                  <span className="text-xs text-slate-400 block">Drivetrain</span>
+                  <span className="text-xs text-slate-300 block font-medium">Drivetrain</span>
                   <span className="font-semibold text-white">{decodedData.driveType || "N/A"}</span>
                 </div>
                 <div>
-                  <span className="text-xs text-slate-400 block">Body Class</span>
+                  <span className="text-xs text-slate-300 block font-medium">Body Class</span>
                   <span className="font-semibold text-white">{decodedData.bodyClass || "N/A"}</span>
                 </div>
                 <div>
-                  <span className="text-xs text-slate-400 block">GVWR Class</span>
+                  <span className="text-xs text-slate-300 block font-medium">GVWR Class</span>
                   <span className="font-semibold text-white text-xs">{decodedData.gvwr || "N/A"}</span>
                 </div>
               </div>

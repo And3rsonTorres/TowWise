@@ -59,7 +59,7 @@ export default function AutoCompleteSearch() {
 
           {/* Category Filter Pills */}
           <div className="flex flex-wrap items-center gap-2 pb-1 border-b border-slate-800/80">
-            <span className="text-xs text-slate-400 font-semibold mr-1">Category:</span>
+            <span className="text-xs text-slate-300 font-semibold mr-1">Category:</span>
             {CATEGORIES.map((cat) => (
               <Button
                 key={cat.id}
@@ -67,7 +67,7 @@ export default function AutoCompleteSearch() {
                 variant={selectedCategory === cat.id ? "solid" : "flat"}
                 color={selectedCategory === cat.id ? "primary" : "default"}
                 className={`text-xs h-7 rounded-full font-medium ${
-                  selectedCategory === cat.id ? "font-bold shadow" : "bg-slate-800 text-slate-300 hover:text-white"
+                  selectedCategory === cat.id ? "font-bold shadow" : "bg-slate-800 text-slate-200 hover:text-white border border-slate-700"
                 }`}
                 onPress={() => {
                   setSelectedCategory(cat.id);
@@ -99,13 +99,18 @@ export default function AutoCompleteSearch() {
                 setSelectedVehicle(null);
               }}
               className="text-base"
+              classNames={{
+                label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                input: "text-white text-base font-medium",
+                inputWrapper: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary",
+              }}
             />
 
             {/* Suggestions Dropdown */}
             {(query.length >= 2 || selectedCategory !== "all") && !selectedVehicle && (
               <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-slate-900 border border-slate-700 rounded-xl shadow-2xl overflow-hidden max-h-80 overflow-y-auto divide-y divide-slate-800">
                 {filteredVehicles.length === 0 ? (
-                  <div className="p-4 text-center text-sm text-slate-400">
+                  <div className="p-4 text-center text-sm text-slate-300">
                     No matching vehicles found for &quot;{query}&quot;. Try checking your spelling or use the Dropdown Selector tab.
                   </div>
                 ) : (
@@ -121,7 +126,7 @@ export default function AutoCompleteSearch() {
                           <p className="text-white font-semibold text-base">
                             {v.Year} {v.Make} {v.Model}
                           </p>
-                          <p className="text-xs text-slate-400">
+                          <p className="text-xs text-slate-300">
                             {v.Trim.length} trim configuration{v.Trim.length > 1 ? "s" : ""} available
                           </p>
                         </div>
@@ -137,14 +142,14 @@ export default function AutoCompleteSearch() {
           </div>
 
           {/* Quick search suggestion pills */}
-          <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-400">
-            <span>Popular:</span>
+          <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-300">
+            <span className="font-semibold">Popular:</span>
             {["Ford F-150", "Chevy Tahoe", "Ram 1500", "Toyota Tundra", "Subaru Outback", "Honda Civic", "Tesla Model Y"].map((term) => (
               <Button
                 key={term}
                 size="sm"
                 variant="flat"
-                className="bg-slate-800/80 hover:bg-slate-700 text-slate-300 text-xs h-7"
+                className="bg-slate-800/90 hover:bg-slate-700 text-slate-200 border border-slate-700 text-xs h-7"
                 onPress={() => {
                   setQuery(term);
                   const matched = SERVERLESS_VEHICLES.find(

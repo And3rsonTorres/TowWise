@@ -192,6 +192,7 @@ export default function SearchBySelection() {
           variant="flat"
           key={item.key}
           size="sm"
+          className="font-semibold text-emerald-200 bg-emerald-950/80 border border-emerald-500/50"
         >
           {item.textValue}
         </Chip>
@@ -271,7 +272,7 @@ export default function SearchBySelection() {
 
               {/* Step indicator breadcrumbs */}
               <div className="flex flex-wrap items-center gap-2 pb-2 border-b border-slate-800 text-xs">
-                <span className="text-slate-400 font-semibold mr-1">Selection Steps:</span>
+                <span className="text-slate-300 font-semibold mr-1">Selection Steps:</span>
                 <Chip
                   size="sm"
                   variant={state.year ? "solid" : "bordered"}
@@ -280,7 +281,7 @@ export default function SearchBySelection() {
                 >
                   {state.year ? `1. Year: ${state.year}` : "1. Year"}
                 </Chip>
-                <span className="text-slate-600">→</span>
+                <span className="text-slate-400 font-bold">→</span>
                 <Chip
                   size="sm"
                   variant={state.make ? "solid" : "bordered"}
@@ -289,7 +290,7 @@ export default function SearchBySelection() {
                 >
                   {state.make ? `2. Make: ${state.make}` : "2. Make"}
                 </Chip>
-                <span className="text-slate-600">→</span>
+                <span className="text-slate-400 font-bold">→</span>
                 <Chip
                   size="sm"
                   variant={state.model ? "solid" : "bordered"}
@@ -298,7 +299,7 @@ export default function SearchBySelection() {
                 >
                   {state.model ? `3. Model: ${state.model}` : "3. Model"}
                 </Chip>
-                <span className="text-slate-600">→</span>
+                <span className="text-slate-400 font-bold">→</span>
                 <Chip
                   size="sm"
                   variant={state.trim ? "solid" : "bordered"}
@@ -319,9 +320,15 @@ export default function SearchBySelection() {
                   selectedKeys={state.year ? [state.year] : []}
                   onChange={(e) => handleYearChange(e.target.value)}
                   renderValue={renderValue}
+                  classNames={{
+                    label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                    value: "text-white font-semibold",
+                    trigger: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary data-[focus=true]:border-primary text-white",
+                    popoverContent: "bg-slate-900 border border-slate-700 text-white shadow-2xl",
+                  }}
                 >
                   {availableYears.map((year) => (
-                    <SelectItem key={year} value={year} textValue={year}>
+                    <SelectItem key={year} value={year} textValue={year} className="text-slate-100 data-[hover=true]:bg-slate-800 data-[hover=true]:text-white font-medium">
                       {year}
                     </SelectItem>
                   ))}
@@ -337,9 +344,15 @@ export default function SearchBySelection() {
                   onChange={(e) => handleMakeChange(e.target.value)}
                   isDisabled={!state.year || state.makeOptions.length === 0}
                   renderValue={renderValue}
+                  classNames={{
+                    label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                    value: "text-white font-semibold",
+                    trigger: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary data-[focus=true]:border-primary text-white",
+                    popoverContent: "bg-slate-900 border border-slate-700 text-white shadow-2xl",
+                  }}
                 >
                   {state.makeOptions.map((make) => (
-                    <SelectItem key={make} value={make} textValue={make}>
+                    <SelectItem key={make} value={make} textValue={make} className="text-slate-100 data-[hover=true]:bg-slate-800 data-[hover=true]:text-white font-medium">
                       {make}
                     </SelectItem>
                   ))}
@@ -355,9 +368,15 @@ export default function SearchBySelection() {
                   onChange={(e) => handleModelChange(e.target.value)}
                   isDisabled={!state.make || state.modelOptions.length === 0}
                   renderValue={renderValue}
+                  classNames={{
+                    label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                    value: "text-white font-semibold",
+                    trigger: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary data-[focus=true]:border-primary text-white",
+                    popoverContent: "bg-slate-900 border border-slate-700 text-white shadow-2xl",
+                  }}
                 >
                   {state.modelOptions.map((model) => (
-                    <SelectItem key={model} value={model} textValue={model}>
+                    <SelectItem key={model} value={model} textValue={model} className="text-slate-100 data-[hover=true]:bg-slate-800 data-[hover=true]:text-white font-medium">
                       {model}
                     </SelectItem>
                   ))}
@@ -373,9 +392,15 @@ export default function SearchBySelection() {
                   onChange={(e) => handleTrimChange(e.target.value)}
                   isDisabled={!state.model || state.trimOptions.length === 0}
                   renderValue={renderValue}
+                  classNames={{
+                    label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                    value: "text-white font-semibold",
+                    trigger: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary data-[focus=true]:border-primary text-white",
+                    popoverContent: "bg-slate-900 border border-slate-700 text-white shadow-2xl",
+                  }}
                 >
                   {state.trimOptions.map((trimName) => (
-                    <SelectItem key={trimName} value={trimName} textValue={trimName}>
+                    <SelectItem key={trimName} value={trimName} textValue={trimName} className="text-slate-100 data-[hover=true]:bg-slate-800 data-[hover=true]:text-white font-medium">
                       {trimName}
                     </SelectItem>
                   ))}
@@ -400,7 +425,7 @@ export default function SearchBySelection() {
                     color="default"
                     variant="flat"
                     size="lg"
-                    className="font-medium text-slate-300 hover:text-white py-6"
+                    className="font-medium text-slate-200 hover:text-white py-6 bg-slate-800 border border-slate-700 hover:bg-slate-700"
                     onPress={() => handleYearChange("")}
                   >
                     Reset

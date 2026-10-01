@@ -156,9 +156,15 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 selectedKeys={[feedbackType]}
                 onChange={(e) => setFeedbackType(e.target.value)}
                 className="text-base"
+                classNames={{
+                  label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                  value: "text-white font-semibold",
+                  trigger: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary data-[focus=true]:border-primary text-white",
+                  popoverContent: "bg-slate-900 border border-slate-700 text-white shadow-2xl",
+                }}
               >
                 {FEEDBACK_TYPES.map((type) => (
-                  <SelectItem key={type.key} value={type.key} textValue={type.label}>
+                  <SelectItem key={type.key} value={type.key} textValue={type.label} className="text-slate-100 data-[hover=true]:bg-slate-800 data-[hover=true]:text-white font-medium">
                     {type.label}
                   </SelectItem>
                 ))}
@@ -178,6 +184,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   color={errors.Name ? "danger" : "primary"}
                   {...register("Name")}
                   className="w-full text-base"
+                  classNames={{
+                    label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                    input: "text-white font-medium text-base",
+                    inputWrapper: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary",
+                  }}
                 />
               </div>
 
@@ -193,13 +204,18 @@ const ContactForm: React.FC<ContactFormProps> = ({
                   color={errors.Email ? "danger" : "primary"}
                   {...register("Email")}
                   className="w-full text-base"
+                  classNames={{
+                    label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                    input: "text-white font-medium text-base",
+                    inputWrapper: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary",
+                  }}
                 />
               </div>
             </div>
 
             {/* Optional 5-Star Rating */}
             <div className="flex items-center justify-between p-3 rounded-xl bg-slate-800/40 border border-slate-800">
-              <span className="text-xs sm:text-sm text-slate-300 font-medium">
+              <span className="text-xs sm:text-sm text-slate-200 font-medium">
                 App Satisfaction Rating (optional):
               </span>
               <div className="flex gap-1">
@@ -233,6 +249,11 @@ const ContactForm: React.FC<ContactFormProps> = ({
                 {...register("Message")}
                 minRows={4}
                 className="w-full text-base"
+                classNames={{
+                  label: "text-slate-200 font-medium group-data-[filled=true]:text-slate-100",
+                  input: "text-white font-medium text-base",
+                  inputWrapper: "bg-slate-950/50 border-slate-700 data-[hover=true]:border-primary",
+                }}
               />
             </div>
 

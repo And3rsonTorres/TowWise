@@ -19,8 +19,10 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} min-h-screen bg-LightModeBG dark:bg-DarkModeBG bg-cover bg-no-repeat bg-center bg-fixed text-slate-100 selection:bg-amber-500 selection:text-black flex flex-col justify-between`}
+        className={`${inter.className} min-h-screen bg-LightModeBG dark:bg-DarkModeBG bg-cover bg-no-repeat bg-center bg-fixed text-slate-100 selection:bg-amber-500 selection:text-black flex flex-col justify-between relative`}
       >
+        {/* Full-screen contrast scrim to ensure high text readability over background photography */}
+        <div className="fixed inset-0 bg-slate-950/65 dark:bg-slate-950/75 pointer-events-none -z-10" />
         <Providers>{children}</Providers>
       </body>
     </html>
