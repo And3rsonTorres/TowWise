@@ -1,24 +1,38 @@
 # TowWise
 
-TowWise is a modern web application designed to provide vehicle owners, renters, and road-trippers with precise information about safe towing capacities, trailer compatibility, and safety margins.
+TowWise is a modern, high-performance web application designed to provide vehicle owners, renters, and road-trippers with precise information about safe towing capacities, trailer compatibility, and safety margins.
+
+Built with Next.js 14, a 100% offline self-hosted US DOT NHTSA vPIC decoding engine, and dual MongoDB Atlas integration.
+
+---
 
 ## Table of Contents
 * [Background](#background)
 * [Features](#features)
+* [Architecture & 100% Offline Engine](#architecture--100-offline-engine)
 * [Tech Stack](#tech-stack)
 * [Getting Started](#getting-started)
+* [Database Configuration](#database-configuration)
+* [Annual NHTSA vPIC Maintenance](#annual-nhtsa-vpic-maintenance)
 * [Authors](#authors)
+
+---
 
 ## Background
 
-In vehicle and trailer rentals, customers frequently overestimate their vehicle's towing ability without considering transmission strain, braking distance, or dangerous trailer sway. TowWise bridges this gap by offering fast vehicle lookups, official US DOT VIN decoding, and an interactive safety advisor based on the industry-standard 80% towing rule.
+In vehicle and trailer rentals, customers frequently overestimate their vehicle's towing ability without considering transmission strain, braking distance, or dangerous trailer sway. TowWise bridges this gap by offering instant vehicle lookups, 100% offline US & Canadian VIN decoding, capacity guidelines for small cars, and an interactive safety advisor based on the industry-standard 80% continuous towing rule.
+
+---
 
 ## Features
 
 * **3 Ways to Look Up Towing Limits**:
-  * 🚗 **Vehicle Selector**: Filter by Model Year (2018–2024), Make, Model, and Trim package.
-  * ⚡ **Instant Autocomplete Search**: Start typing any vehicle name (e.g. "F-150", "Tahoe", "Telluride") for instant results.
-  * 📋 **US & Canadian VIN Decoder**: Enter any 17-character VIN to decode exact specifications (engine, cylinders, displacement, drive type, GVWR class) directly from the US Department of Transportation NHTSA vPIC API.
+  * 🚗 **Vehicle Selector**: Filter by Model Year (2015–2024), Make, Model, and Trim package across trucks, SUVs, EVs, and compact sedans.
+  * ⚡ **Instant Autocomplete Search**: Start typing any vehicle name (e.g. "F-150", "Tahoe", "Corolla", "Rivian", "Telluride") for instant results.
+  * 📋 **100% Offline US & Canadian VIN Decoder**: Enter any 17-character VIN to decode exact specifications (manufacturer, country of origin, year, body class, engine, GVWR class) with zero external network calls.
+* **Small Car & Compact Vehicle Towing Support**:
+  * Dedicated Class I hitch specifications (1,000–1,500 lbs max gross trailer weight, 100–150 lbs tongue weight).
+  * Guidance on unbraked vs. braked trailer limits and transmission cooling for compact cars (Corolla, Civic, Impreza, Mazda3, Jetta, Elantra, etc.).
 * **Towing Specifications Card**:
   * Detailed breakdown of Engine, Transmission, Drivetrain, Max Towing Capacity, and manufacturer notes.
   * Instant unit toggle between **Pounds (lbs)** and **Kilograms (kg)**.
@@ -27,9 +41,23 @@ In vehicle and trailer rentals, customers frequently overestimate their vehicle'
 * **The 80% Safety Rule Advisor**:
   * Calculates recommended continuous towing limits (80% margin) and safe tongue weight estimates (10–15%).
   * Interactive trailer + cargo weight calculator with color-coded safety gauge.
-* **Zero-Config Serverless Architecture**:
-  * Works 100% serverless out-of-the-box using an embedded vehicle dataset.
-  * Optional MongoDB Atlas integration for persistent custom data and contact messages (`npm run seed` included).
+* **Feedback & Vehicle Inquiries System**:
+  * In-app feedback form with category selection, 5-star ratings, and auto-attached vehicle context.
+  * Persists directly to MongoDB Atlas (`Towing/contacts`) with graceful serverless logging fallback.
+
+---
+
+## Architecture & 100% Offline Engine
+
+TowWise operates **100% offline** at runtime without relying on live government servers:
+- **Self-Hosted NHTSA vPIC Engine** (`app/lib/nhtsa/localVpicDatabase.ts`):
+  - Embedded World Manufacturer Identifier (WMI) registry covering 26+ makes and 70+ country codes.
+  - 10th-character VIN model year map covering 1980 through 2039.
+  - Vehicle Descriptor Section (VDS) pattern matcher for instant local identification.
+  - Direct integration with MongoDB `Towing/capacities` and embedded fallback catalogs.
+  - **Zero runtime network calls** — eliminates API rate limits, latency, and government downtime.
+
+---
 
 ## Tech Stack
 
@@ -41,10 +69,13 @@ In vehicle and trailer rentals, customers frequently overestimate their vehicle'
 - **Theming**: [next-themes](https://github.com/pacocoursey/next-themes) (Light / Dark mode)
 - **Forms & Validation**: [React Hook Form](https://react-hook-form.com/) & [Zod](https://zod.dev/)
 
-### Backend & APIs
-- **Serverless API Routes**: Next.js App Router (`/api/towing`, `/api/vin`, `/api/contact`)
-- **VIN Decoding**: US DOT NHTSA vPIC API (free, public REST API)
-- **Database (Optional)**: MongoDB Atlas & Mongoose
+### Backend & Data
+- **API Routes**: Next.js App Router (`/api/towing`, `/api/vin`, `/api/contact`)
+- **VIN Engine**: 100% Offline Local US DOT NHTSA vPIC Engine
+- **Database**: MongoDB Atlas (`Towing/capacities` and `Towing/contacts`) via Mongoose
+- **Maintenance**: Annual NHTSA vPIC Dataset Updater CLI (`npm run update-vpic`)
+
+---
 
 ## Getting Started
 
@@ -53,21 +84,57 @@ In vehicle and trailer rentals, customers frequently overestimate their vehicle'
 npm install
 ```
 
-### 2. Run the Development Server
+### 2. Configure Environment (Optional)
+TowWise works out-of-the-box with zero configuration using its embedded catalog. To connect to MongoDB Atlas, create `.env.local`:
+
+```bash
+# Vehicle Towing Capacities (Database: Towing, Collection: capacities)
+TOWING_URI="mongodb+srv://<username>:<password>@towinfo.3an5qxb.mongodb.net/Towing?retryWrites=true&w=majority&appName=TowInfo"
+
+# Feedback & Inquiries (Database: Towing, Collection: contacts)
+FEEDBACK_DB_URI="mongodb+srv://<username>:<password>@towinfo.3an5qxb.mongodb.net/Towing?retryWrites=true&w=majority&appName=TowInfo"
+```
+
+### 3. Verify Database Connection
+Run the diagnostic test script:
+```bash
+node scripts/test-mongo.mjs
+```
+
+### 4. Run the Development Server
 ```bash
 npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 3. Optional: MongoDB Atlas Setup
-To connect to an external MongoDB database:
-1. Copy `.env.example` to `.env.local`
-2. Add your MongoDB connection string to `TOWING_URI`
-3. Seed the database:
+---
+
+## Database Configuration
+
+### Collections
+- **`Towing/capacities`**: Stores verified vehicle towing specifications, engine options, drivetrains, and manufacturer notes.
+- **`Towing/contacts`**: Captures user reviews, bug reports, and missing vehicle requests submitted via the contact form.
+
+### Seeding Vehicles (Optional)
+To populate or restore the `capacities` collection with the comprehensive vehicle catalog:
 ```bash
 npm run seed
 ```
+
+---
+
+## Annual NHTSA vPIC Maintenance
+
+The application runtime is 100% offline. To update the local NHTSA dataset with newly registered manufacturer WMIs and model releases **once a year**:
+
+```bash
+npm run update-vpic
+```
+
+This CLI tool queries the US DOT NHTSA vPIC catalog, precompiles verified models, and updates `app/lib/nhtsa/vpicCache.json`, keeping the web app 100% offline for the remaining 364 days.
+
+---
 
 ## Authors
 
