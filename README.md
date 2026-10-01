@@ -265,6 +265,17 @@ npm run sanitize-trims
 
 ---
 
+## Disclaimer & Trademark Notice
+
+TowWise is an independent, community-driven information tool developed solely for informational and educational purposes. 
+
+- **Non-Affiliation**: TowWise is **not affiliated with, associated with, authorized by, endorsed by, or in any way officially connected with any automotive manufacturer, brand, or subsidiary** mentioned in this project (including but not limited to Ford, Chevrolet, Toyota, Honda, Subaru, Acura, Ram, GMC, Jeep, and others).
+- **Trademarks & Intellectual Property**: All product names, company names, logos, brand names, vehicle model names, trim designations, and registered trademarks belong exclusively to their respective owners. TowWise does not own, claim, or represent any rights, ownership, or licensing to these trademarks, patents, or intellectual property.
+- **Safety Advisory**: All towing capacities, payload ratings, GCWR metrics, and technical specifications are aggregated from public safety datasets (such as NHTSA vPIC) and published manufacturer documentation. Towing ratings vary by configuration, packages, passengers, and cargo. **Always consult your vehicle's official owner's manual, driver-side door jamb tire/certification label, and authorized dealership or manufacturer specifications before towing or configuring towing equipment.**
+
+---
+
 ## Authors
 
 - [Anderson Torres](https://www.github.com/and3rsontorres)
+
