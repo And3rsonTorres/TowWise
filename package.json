@@ -10,7 +10,8 @@
     "start": "next start",
     "lint": "next lint",
     "seed": "node scripts/seed.mjs",
-    "update-vpic": "node scripts/update-vpic.mjs"
+    "update-vpic": "node scripts/update-vpic.mjs",
+    "benchmark": "node scripts/benchmark.mjs"
   },
   "dependencies": {
     "@heroui/react": "^2.6.14",
