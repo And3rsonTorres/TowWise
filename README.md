@@ -159,6 +159,20 @@ This CLI tool queries the US DOT NHTSA vPIC catalog, precompiles verified models
 
 ---
 
+## Trim Accuracy & Generation Integrity
+
+TowWise includes auditing and sanitization tools to guarantee trims accurately reflect vehicle release dates and generations across 2000–2026:
+
+```bash
+# Audit MongoDB for anachronistic trims or unreleased models
+npm run audit-trims
+
+# Sanitize database records to generation-accurate regular versions
+npm run sanitize-trims
+```
+
+---
+
 ## Authors
 
 - [Anderson Torres](https://www.github.com/and3rsontorres)
