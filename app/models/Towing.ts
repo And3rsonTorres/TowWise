@@ -6,6 +6,6 @@ import mongoose from "mongoose";
 import { vehicleSchema } from "../lib/mongo/Schema";
 
 const VehicleModel =
-  mongoose.models.Capacities || mongoose.model("Capacities", vehicleSchema);
+  mongoose.models.Capacities || mongoose.model("Capacities", vehicleSchema, "capacities");
 
 export default VehicleModel;

@@ -239,47 +239,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json(result);
   }
 
-  // 3. Fallback: Dynamic NHTSA Auto-Enrichment for any vehicle not explicitly in static dataset
-  try {
-    const nhtsaUrl = `https://vpic.nhtsa.dot.gov/api/vehicles/getmodelsformakeyear/make/${encodeURIComponent(
-      params.Make
-    )}/modelyear/${params.Year}?format=json`;
-
-    const nhtsaRes = await fetch(nhtsaUrl, { next: { revalidate: 86400 } });
-    if (nhtsaRes.ok) {
-      const nhtsaData = await nhtsaRes.json();
-      const modelsList = nhtsaData.Results || [];
-      const found = modelsList.find(
-        (m: any) =>
-          m.Model_Name?.toLowerCase() === params.Model.toLowerCase() ||
-          m.Model_Name?.toLowerCase().includes(params.Model.toLowerCase())
-      );
-
-      if (found) {
-        const est = estimateCapacityByVehicleClass(params.Make, params.Model, "");
-        const enrichedVehicle: Vehicles = {
-          Year: params.Year,
-          Make: params.Make,
-          Model: found.Model_Name,
-          Trim: [
-            {
-              TrimName: params.TrimName || "Standard Tow Package (NHTSA Verified Model)",
-              Engine: "Standard Manufacturer Powertrain",
-              Transmission: "Automatic Transmission",
-              Drivetrain: est.drivetrain,
-              "Max Towing Capacity": est.capacity,
-              Notes: est.notes,
-            },
-          ],
-        };
-        return NextResponse.json([enrichedVehicle]);
-      }
-    }
-  } catch (enrichErr) {
-    console.warn("NHTSA auto-enrichment query error:", enrichErr);
-  }
-
-  // Final fallback: return safe estimate so user is never left without answers
+  // 3. Fallback: Local vehicle class safety estimation (100% offline, zero network calls)
   const est = estimateCapacityByVehicleClass(params.Make, params.Model, "");
   const fallbackVehicle: Vehicles = {
     Year: params.Year,

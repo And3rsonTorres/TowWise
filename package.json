@@ -9,7 +9,8 @@
     "format": "prettier --cache \"**/*.{css,js,json,jsx,ts,tsx}\"",
     "start": "next start",
     "lint": "next lint",
-    "seed": "node scripts/seed.mjs"
+    "seed": "node scripts/seed.mjs",
+    "update-vpic": "node scripts/update-vpic.mjs"
   },
   "dependencies": {
     "@heroui/react": "^2.6.14",

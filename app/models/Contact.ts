@@ -7,9 +7,9 @@ import { contactSchema } from "../lib/mongo/Schema";
 
 export const getFeedbackModel = (conn?: mongoose.Connection | null): Model<any> => {
   if (conn) {
-    return conn.models.Feedback || conn.model("Feedback", contactSchema);
+    return conn.models.Contact || conn.model("Contact", contactSchema, "contacts");
   }
-  return mongoose.models.Feedback || mongoose.model("Feedback", contactSchema);
+  return mongoose.models.Contact || mongoose.model("Contact", contactSchema, "contacts");
 };
 
 const Contact = getFeedbackModel();

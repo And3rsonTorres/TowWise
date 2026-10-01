@@ -28,7 +28,8 @@ const vehicleSchema = new mongoose.Schema({
   Trim: [TrimSchema],
 });
 
-const Capacities = mongoose.models.Capacities || mongoose.model("Capacities", vehicleSchema);
+const Capacities =
+  mongoose.models.Capacities || mongoose.model("Capacities", vehicleSchema, "capacities");
 
 async function seed() {
   try {

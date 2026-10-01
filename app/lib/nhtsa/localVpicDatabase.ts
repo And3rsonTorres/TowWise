@@ -270,10 +270,15 @@ export function decodeVinLocally(vin: string): LocalDecodedVin | null {
   const year = MODEL_YEAR_MAP[yearChar] || 2024;
   const make = wmiEntry.make;
 
-  // Find matching model from patterns
-  const candidate = COMMON_MODEL_PATTERNS.find(
-    (p) => p.make.toLowerCase() === make.toLowerCase()
-  );
+  // Find matching model by checking keywords against VIN descriptors
+  const vdsAndPrefix = cleanVin.substring(0, 8);
+  const candidate =
+    COMMON_MODEL_PATTERNS.find(
+      (p) =>
+        p.make.toLowerCase() === make.toLowerCase() &&
+        p.keywords.some((kw) => cleanVin.includes(kw) || vdsAndPrefix.includes(kw))
+    ) ||
+    COMMON_MODEL_PATTERNS.find((p) => p.make.toLowerCase() === make.toLowerCase());
 
   const model = candidate?.model || `${make} Vehicle`;
   const bodyClass = candidate?.bodyClass || wmiEntry.vehicleType;
