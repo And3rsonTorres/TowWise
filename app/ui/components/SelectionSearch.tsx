@@ -6,7 +6,7 @@ import {
   fetchingVehicle,
 } from "@/app/lib/utils/VehicleUtils";
 import { Button, Select, SelectItem, Chip, Tabs, Tab, Card, CardBody } from "@heroui/react";
-import { CheckIcon } from "@/public/assets/CheckIcon";
+import { CheckIcon } from "./CheckIcon";
 import { Vehicles, VehicleContextType, State, Action } from "@/app/lib/Types";
 import TowingTable from "./TowingTables";
 import Loading from "./Loading";

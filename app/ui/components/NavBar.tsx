@@ -7,7 +7,7 @@
  *
  */
 import React from "react";
-import HomeIcon from "@/app/HomeIcon";
+import HomeIcon from "./HomeIcon";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 export default function NavBar() {

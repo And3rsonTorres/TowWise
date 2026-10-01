@@ -12,7 +12,7 @@
 import { Button, Tooltip } from "@heroui/react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import ThemeIcon from "@/public/assets/ThemeIcon";
+import ThemeIcon from "./ThemeIcon";
 
 export function ThemeSwitcher() {
   const [mounted, setMounted] = useState(false);
