@@ -20,11 +20,6 @@ const createLineAnimation = (text: string, lineIndex: number): JSX.Element => {
   return (
     <div key={lineIndex} className="flex flex-wrap justify-center items-center gap-x-2">
       {words.map((word, wordIndex) => {
-        const isGradient =
-          word.toLowerCase() === "towwise" ||
-          word.toLowerCase() === "simple" ||
-          word.toLowerCase().includes("simple");
-
         const characters = word.split("");
         const startOffset = charOffset;
         charOffset += characters.length + 1;
@@ -41,11 +36,7 @@ const createLineAnimation = (text: string, lineIndex: number): JSX.Element => {
                   delay: (startOffset + charIndex) * letterStaggerDelay,
                   duration: 0.3,
                 }}
-                className={`inline-block ${
-                  isGradient
-                    ? "bg-gradient-to-r from-blue-400 via-teal-300 to-indigo-400 bg-clip-text text-transparent font-black drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]"
-                    : "text-white font-extrabold drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
-                }`}
+                className="inline-block text-white font-extrabold drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]"
               >
                 {char}
               </motion.span>
