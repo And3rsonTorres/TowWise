@@ -269,6 +269,46 @@ export default function SearchBySelection() {
                 </p>
               </div>
 
+              {/* Step indicator breadcrumbs */}
+              <div className="flex flex-wrap items-center gap-2 pb-2 border-b border-slate-800 text-xs">
+                <span className="text-slate-400 font-semibold mr-1">Selection Steps:</span>
+                <Chip
+                  size="sm"
+                  variant={state.year ? "solid" : "bordered"}
+                  color={state.year ? "success" : "default"}
+                  className="font-medium"
+                >
+                  {state.year ? `1. Year: ${state.year}` : "1. Year"}
+                </Chip>
+                <span className="text-slate-600">→</span>
+                <Chip
+                  size="sm"
+                  variant={state.make ? "solid" : "bordered"}
+                  color={state.make ? "success" : "default"}
+                  className="font-medium"
+                >
+                  {state.make ? `2. Make: ${state.make}` : "2. Make"}
+                </Chip>
+                <span className="text-slate-600">→</span>
+                <Chip
+                  size="sm"
+                  variant={state.model ? "solid" : "bordered"}
+                  color={state.model ? "success" : "default"}
+                  className="font-medium"
+                >
+                  {state.model ? `3. Model: ${state.model}` : "3. Model"}
+                </Chip>
+                <span className="text-slate-600">→</span>
+                <Chip
+                  size="sm"
+                  variant={state.trim ? "solid" : "bordered"}
+                  color={state.trim ? "success" : "default"}
+                  className="font-medium"
+                >
+                  {state.trim ? `4. Trim: ${state.trim}` : "4. Trim (Optional)"}
+                </Chip>
+              </div>
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <Select
                   isRequired
@@ -342,17 +382,31 @@ export default function SearchBySelection() {
                 </Select>
               </div>
 
-              <Button
-                color="primary"
-                isDisabled={!state.year || !state.make || !state.model || isSearching}
-                isLoading={isSearching}
-                className="w-full font-bold text-base py-6 tracking-wide shadow-lg"
-                size="lg"
-                variant="shadow"
-                onPress={handleSearch}
-              >
-                Find My Vehicle Towing Capacity
-              </Button>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  color="primary"
+                  isDisabled={!state.year || !state.make || !state.model || isSearching}
+                  isLoading={isSearching}
+                  className="flex-1 font-bold text-base py-6 tracking-wide shadow-lg"
+                  size="lg"
+                  variant="shadow"
+                  onPress={handleSearch}
+                >
+                  Find My Vehicle Towing Capacity
+                </Button>
+
+                {(state.year || state.make || state.model || state.trim || state.selectedVehicle) && (
+                  <Button
+                    color="default"
+                    variant="flat"
+                    size="lg"
+                    className="font-medium text-slate-300 hover:text-white py-6"
+                    onPress={() => handleYearChange("")}
+                  >
+                    Reset
+                  </Button>
+                )}
+              </div>
 
               {searchError && (
                 <div className="p-4 bg-danger-900/30 border border-danger-700/50 rounded-xl text-danger-300 text-sm text-center">

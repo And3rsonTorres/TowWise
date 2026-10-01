@@ -1,6 +1,37 @@
 import http from "http";
+import { spawn } from "child_process";
 
 const BASE_URL = "http://localhost:3005";
+let spawnedServer = null;
+
+async function ensureServerRunning() {
+  try {
+    const res = await fetch(`${BASE_URL}/`);
+    if (res.status) return;
+  } catch {
+    // Server not running, let's start it
+  }
+
+  console.log("Starting Next.js production server on port 3005...");
+  spawnedServer = spawn("npx", ["next", "start", "-p", "3005"], {
+    shell: true,
+    stdio: "ignore",
+  });
+
+  const startTime = Date.now();
+  while (Date.now() - startTime < 15000) {
+    try {
+      const res = await fetch(`${BASE_URL}/`);
+      if (res.status) {
+        console.log("  ✓ Next.js server ready on " + BASE_URL + "\n");
+        return;
+      }
+    } catch {
+      await new Promise((r) => setTimeout(r, 500));
+    }
+  }
+  throw new Error("Failed to start Next.js server within 15 seconds.");
+}
 
 async function measureRequest(path, options = {}) {
   const start = performance.now();
@@ -72,6 +103,8 @@ async function runConcurrentTest(path, concurrency = 25) {
 }
 
 async function main() {
+  await ensureServerRunning();
+
   console.log("================================================================================");
   console.log(" TowWise Full Application Performance Benchmark");
   console.log(" Target: " + BASE_URL);
@@ -195,7 +228,16 @@ async function main() {
   console.log("\n================================================================================");
 }
 
-main().catch((err) => {
-  console.error("Benchmark failed:", err);
-  process.exit(1);
-});
+main()
+  .catch((err) => {
+    console.error("Benchmark failed:", err);
+    process.exitCode = 1;
+  })
+  .finally(() => {
+    if (spawnedServer) {
+      console.log("Shutting down benchmark server process...");
+      try {
+        spawnedServer.kill();
+      } catch {}
+    }
+  });

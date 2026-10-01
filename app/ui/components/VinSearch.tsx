@@ -75,39 +75,102 @@ export default function VinSearch() {
     }
   };
 
+  const handlePasteClipboard = async () => {
+    try {
+      if (typeof navigator !== "undefined" && navigator.clipboard) {
+        const text = await navigator.clipboard.readText();
+        const cleaned = text.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 17);
+        if (cleaned) {
+          setVin(cleaned);
+          if (error) setError(null);
+          if (cleaned.length === 17) {
+            handleDecode(cleaned);
+          }
+        }
+      }
+    } catch (e) {
+      // Clipboard access denied or unsupported
+    }
+  };
+
+  const getCountryFromVin = (v: string) => {
+    if (!v || v.length < 1) return null;
+    const c = v[0];
+    if (["1", "4", "5"].includes(c)) return { name: "United States", flag: "🇺🇸" };
+    if (c === "2") return { name: "Canada", flag: "🇨🇦" };
+    if (c === "3") return { name: "Mexico", flag: "🇲🇽" };
+    if (c === "J") return { name: "Japan", flag: "🇯🇵" };
+    if (c === "K") return { name: "South Korea", flag: "🇰🇷" };
+    if (c === "S") return { name: "United Kingdom", flag: "🇬🇧" };
+    if (["W", "V"].includes(c)) return { name: "Germany / Europe", flag: "🇪🇺" };
+    return null;
+  };
+
+  const country = getCountryFromVin(vin);
+
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
       <Card className="bg-slate-900/80 border border-slate-800 shadow-2xl backdrop-blur-md p-4 sm:p-6 mb-8">
         <CardBody className="gap-4">
-          <div>
-            <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-              <span>🔍</span> US & Canadian VIN Decoder
-            </h2>
-            <p className="text-sm text-slate-300 mt-1">
-              Enter your vehicle&apos;s 17-character VIN (found on your dashboard, driver door jamb, or insurance card) to decode exact specifications and towing limits directly from the US DOT NHTSA database.
-            </p>
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div>
+              <h2 className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+                <span>🔍</span> US & Canadian VIN Decoder
+              </h2>
+              <p className="text-sm text-slate-300 mt-1">
+                Enter your 17-character VIN to decode exact specifications and towing limits directly with the offline US DOT NHTSA vPIC engine.
+              </p>
+            </div>
+            <Chip color="success" variant="flat" size="sm" className="self-start sm:self-auto font-semibold">
+              ⚡ 100% Offline Engine
+            </Chip>
           </div>
 
           <div className="flex flex-col sm:flex-row gap-3">
-            <Input
-              type="text"
-              label="Vehicle Identification Number (VIN)"
-              placeholder="e.g. 1FTFW1ED4MFB12345"
-              value={vin}
-              onChange={(e) => {
-                setVin(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 17));
-                if (error) setError(null);
-              }}
-              onKeyDown={(e) => {
-                if (e.key === "Enter") handleDecode();
-              }}
-              variant="bordered"
-              color={error ? "danger" : "primary"}
-              isInvalid={!!error}
-              errorMessage={error || undefined}
-              className="flex-1 font-mono tracking-wider text-base"
-              maxLength={17}
-            />
+            <div className="relative flex-1">
+              <Input
+                type="text"
+                label="Vehicle Identification Number (VIN)"
+                placeholder="e.g. 1FTFW1ED4MFB12345"
+                value={vin}
+                onChange={(e) => {
+                  setVin(e.target.value.toUpperCase().replace(/[^A-Z0-9]/g, "").slice(0, 17));
+                  if (error) setError(null);
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") handleDecode();
+                }}
+                variant="bordered"
+                color={error ? "danger" : vin.length === 17 ? "success" : "primary"}
+                isInvalid={!!error}
+                errorMessage={error || undefined}
+                className="w-full font-mono tracking-wider text-base"
+                maxLength={17}
+              />
+              <div className="absolute right-3 top-3 flex items-center gap-1.5 z-10">
+                {vin.length > 0 && (
+                  <Chip
+                    size="sm"
+                    variant="flat"
+                    color={vin.length === 17 ? "success" : "default"}
+                    className="font-mono text-xs"
+                  >
+                    {vin.length}/17
+                  </Chip>
+                )}
+              </div>
+            </div>
+
+            <Button
+              color="default"
+              variant="flat"
+              size="lg"
+              onPress={handlePasteClipboard}
+              className="px-4 font-medium h-[56px] text-slate-300 hover:text-white"
+              title="Paste from clipboard"
+            >
+              📋 Paste
+            </Button>
 
             <Button
               color="primary"
@@ -120,6 +183,38 @@ export default function VinSearch() {
               {loading ? <Spinner size="sm" color="current" /> : "Decode VIN"}
             </Button>
           </div>
+
+          {/* VIN Structural Breakdown Preview */}
+          {vin.length >= 3 && (
+            <div className="p-3 bg-slate-950/60 rounded-xl border border-slate-800 text-xs">
+              <div className="text-slate-400 font-semibold mb-1 flex items-center justify-between">
+                <span>VIN Structure Breakdown:</span>
+                {country && (
+                  <span className="text-slate-300">
+                    {country.flag} Origin: <strong>{country.name}</strong>
+                  </span>
+                )}
+              </div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 font-mono text-center">
+                <div className="p-1.5 bg-blue-950/40 border border-blue-800/40 rounded">
+                  <span className="block text-[10px] text-blue-300 uppercase">WMI (Make/Country)</span>
+                  <span className="font-bold text-blue-200">{vin.slice(0, 3)}</span>
+                </div>
+                <div className="p-1.5 bg-purple-950/40 border border-purple-800/40 rounded">
+                  <span className="block text-[10px] text-purple-300 uppercase">VDS (Model/Specs)</span>
+                  <span className="font-bold text-purple-200">{vin.slice(3, 8) || "..."}</span>
+                </div>
+                <div className="p-1.5 bg-amber-950/40 border border-amber-800/40 rounded">
+                  <span className="block text-[10px] text-amber-300 uppercase">Check & Year</span>
+                  <span className="font-bold text-amber-200">{vin.slice(8, 10) || "..."}</span>
+                </div>
+                <div className="p-1.5 bg-emerald-950/40 border border-emerald-800/40 rounded">
+                  <span className="block text-[10px] text-emerald-300 uppercase">VIS (Serial ID)</span>
+                  <span className="font-bold text-emerald-200">{vin.slice(10, 17) || "..."}</span>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Quick sample VIN buttons */}
           <div className="flex flex-wrap items-center gap-2 pt-1 text-xs text-slate-400">
