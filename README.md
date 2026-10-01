@@ -31,9 +31,10 @@ In vehicle and trailer rentals, customers frequently overestimate their vehicle'
   * 🚗 **Vehicle Selector**: Step-by-step selector from Model Year **2000 through 2026**, Make, Model, and Trim package with generational accuracy, reset controls, and visual breadcrumbs.
   * ⚡ **Instant Autocomplete Search**: Start typing any vehicle name or filter by category pills (🛻 Trucks, 🚙 SUVs, 🚘 Compacts, ⚡ EVs & Hybrids) for instant results.
   * 📋 **100% Offline US & Canadian VIN Decoder**: Enter any 17-character VIN with clipboard paste support, real-time character counter, country flags, and interactive WMI/VDS structural breakdown diagram.
-* **Full 2000–2026 Model Year Coverage & Data Integrity**:
-  * Over 2,013 verified vehicle trim documents in MongoDB Atlas (`Towing/capacities`).
-  * Generational trim sanitization ensures trims reflect actual launch dates (e.g. Subaru Wilderness trims strictly 2022+, Ford PowerBoost 2021+, Ram Hurricane 2025+).
+* **Full 2000–2026 Model Year Coverage & Complete Brand Integrity**:
+  * Over **2,510 verified vehicle documents** in MongoDB Atlas (`Towing/capacities`).
+  * 100% full-span coverage across all 30 major manufacturers (Acura, Audi, BMW, Buick, Cadillac, Chevrolet, Chrysler, Dodge, Ford, GMC, Honda, Hyundai, Infiniti, Jeep, Kia, Land Rover, Lexus, Lincoln, Mazda, Mercedes-Benz, Mitsubishi, Nissan, Porsche, RAM, Rivian, Subaru, Tesla, Toyota, Volkswagen, Volvo).
+  * Generational trim sanitization ensures trims reflect actual launch dates (e.g. Subaru Wilderness trims strictly 2022+, Ford PowerBoost 2021+, Ram Hurricane 2025+, MDX Gen 4 2022+).
 * **Small Car & Compact Vehicle Towing Support**:
   * Dedicated Class I hitch specifications (1,000–1,500 lbs max gross trailer weight, 100–150 lbs tongue weight).
   * Guidance on unbraked vs. braked trailer limits and transmission cooling for compact cars (Corolla, Civic, Impreza, Mazda3, Jetta, Elantra, etc.).
@@ -58,7 +59,7 @@ TowWise operates **100% offline** at runtime without relying on live government 
   - Embedded World Manufacturer Identifier (WMI) registry covering 26+ makes and 70+ country codes.
   - 10th-character VIN model year map covering 1980 through 2039.
   - Vehicle Descriptor Section (VDS) pattern matcher for instant local identification.
-  - Direct integration with MongoDB `Towing/capacities` (2,013 vehicles) and embedded fallback catalogs.
+  - Direct integration with MongoDB `Towing/capacities` (2,510+ vehicles) and embedded fallback catalogs.
   - **Zero runtime network calls** — eliminates API rate limits, latency, and government downtime.
 
 ---
@@ -143,7 +144,7 @@ npm run benchmark
 | **Offline VIN Decoder** | **20.43 ms** | 25.30 ms | 30 concurrent reqs | 100% Success |
 | **Filtered Towing Specs** | **23.03 ms** | 28.53 ms | 30 concurrent reqs | 100% Success |
 | **MongoDB Atlas Capacities** | **20.40 ms** | 27.75 ms | Single / Live Atlas | 200 OK |
-| **Full 2,013 Catalog** | **131.99 ms** | 198.39 ms | 20 concurrent reqs | 100% Success |
+| **Full 2,510+ Catalog** | **175.42 ms** | 284.56 ms | 20 concurrent reqs | 100% Success |
 
 ---
 

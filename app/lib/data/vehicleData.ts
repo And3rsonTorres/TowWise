@@ -1917,6 +1917,23 @@ const HISTORICAL_TEMPLATES = [
       { TrimName: "2.5L Naturally Aspirated Boxer", Engine: "2.5L Boxer-4", Transmission: "CVT / Auto", Drivetrain: "AWD", "Max Towing Capacity": 2700, Notes: "Standard crossover rating with trailer brakes." },
     ],
   },
+  {
+    make: "Acura",
+    model: "MDX",
+    years: [2001, 2026] as [number, number],
+    trims: [
+      { TrimName: "SH-AWD (Factory Tow Package)", Engine: "3.5L V6 / 3.7L V6", Transmission: "Automatic", Drivetrain: "SH-AWD", "Max Towing Capacity": 5000, Notes: "Class III receiver hitch with factory auxiliary transmission fluid cooler." },
+      { TrimName: "Standard / Regular Model (FWD)", Engine: "3.5L V6", Transmission: "Automatic", Drivetrain: "FWD", "Max Towing Capacity": 3500, Notes: "Front-wheel drive towing limit." },
+    ],
+  },
+  {
+    make: "Acura",
+    model: "RDX",
+    years: [2007, 2026] as [number, number],
+    trims: [
+      { TrimName: "SH-AWD / FWD (Class I Hitch)", Engine: "2.0L Turbo / 3.5L V6 / 2.3L Turbo", Transmission: "Automatic", Drivetrain: "SH-AWD / FWD", "Max Towing Capacity": 1500, Notes: "Class I (1.25-inch) receiver hitch with trailer brakes." },
+    ],
+  },
   // Compact Sedans & Small Cars (Class I Hitch: 1,000 - 1,500 lbs)
   {
     make: "Toyota",
@@ -2052,6 +2069,8 @@ function getGenerationalTrims(make: string, model: string, year: number): any[] 
   if (mL === "pilot" && year < 2003) return "UNRELEASED";
   if (mL === "mazda3" && year < 2004) return "UNRELEASED";
   if (mL === "forte" && year < 2010) return "UNRELEASED";
+  if (mL === "mdx" && (year < 2001 || year === 2021)) return "UNRELEASED";
+  if (mL === "rdx" && year < 2007) return "UNRELEASED";
 
   // ==========================================
   // 1. FORD F-150
@@ -2959,6 +2978,56 @@ function getGenerationalTrims(make: string, model: string, year: number): any[] 
         "Max Towing Capacity": 1000,
         Notes: "Unbraked utility trailer rating. Avoid long steep highway inclines."
       }
+    ];
+  }
+
+  // ==========================================
+  // 28. ACURA MDX
+  // ==========================================
+  if (mkL === "acura" && mL === "mdx") {
+    if (year <= 2006) {
+      return [
+        { TrimName: "Standard / Regular Model (3.5L V6 Factory Tow Package)", Engine: "3.5L SOHC VTEC V6 (240–265 hp / 245–253 lb-ft)", Transmission: "5-Speed Automatic", Drivetrain: "VTM-4 AWD", "Max Towing Capacity": 4500, Notes: "Includes factory transmission fluid cooler and power steering cooler. 4,500 lbs for boat trailers; 3,500 lbs for standard box trailers." },
+        { TrimName: "Standard / Regular Model (Base Towing)", Engine: "3.5L V6", Transmission: "5-Speed Automatic", Drivetrain: "VTM-4 AWD", "Max Towing Capacity": 3500, Notes: "Standard uncooled rating." }
+      ];
+    }
+    if (year <= 2013) {
+      return [
+        { TrimName: "Standard / Regular Model (3.7L VTEC V6 SH-AWD Tow Package)", Engine: "3.7L VTEC V6 (300 hp / 270–275 lb-ft)", Transmission: "5-Speed / 6-Speed Automatic", Drivetrain: "SH-AWD", "Max Towing Capacity": 5000, Notes: "Class III receiver hitch with factory auxiliary ATF cooler." },
+        { TrimName: "Standard / Regular Model (Standard Towing)", Engine: "3.7L V6", Transmission: "Automatic", Drivetrain: "SH-AWD", "Max Towing Capacity": 3500, Notes: "Base rating without auxiliary transmission fluid cooler." }
+      ];
+    }
+    if (year <= 2020) {
+      return [
+        { TrimName: "Standard / Regular Model (3.5L i-VTEC V6 SH-AWD Tow Package)", Engine: "3.5L i-VTEC V6 (290 hp / 267 lb-ft)", Transmission: "6-Speed / 9-Speed Automatic", Drivetrain: "SH-AWD", "Max Towing Capacity": 5000, Notes: "Class III hitch with dealer-installed ATF cooler." },
+        { TrimName: "Standard / Regular Model (FWD)", Engine: "3.5L V6", Transmission: "Automatic", Drivetrain: "FWD", "Max Towing Capacity": 3500, Notes: "Front-wheel drive towing limit." }
+      ];
+    }
+    // 2022+ (MDX skipped 2021)
+    return [
+      { TrimName: "Standard / Regular Model (3.5L V6 SH-AWD Tow Package)", Engine: "3.5L V6 (290 hp / 267 lb-ft)", Transmission: "10-Speed Automatic", Drivetrain: "SH-AWD", "Max Towing Capacity": 5000, Notes: "Factory accessory Class III hitch with auxiliary transmission fluid cooler." },
+      { TrimName: "Type S (3.0L Turbo V6 SH-AWD)", Engine: "3.0L Twin-Scroll Turbo V6 (355 hp / 354 lb-ft)", Transmission: "10-Speed Automatic", Drivetrain: "SH-AWD", "Max Towing Capacity": 5000, Notes: "High-performance air suspension hauler." },
+      { TrimName: "Standard / Regular Model (FWD)", Engine: "3.5L V6", Transmission: "10-Speed Automatic", Drivetrain: "FWD", "Max Towing Capacity": 3500, Notes: "Front-wheel drive limit." }
+    ];
+  }
+
+  // ==========================================
+  // 29. ACURA RDX
+  // ==========================================
+  if (mkL === "acura" && mL === "rdx") {
+    if (year <= 2012) {
+      return [
+        { TrimName: "Standard / Regular Model (2.3L Turbo SH-AWD / FWD)", Engine: "2.3L Turbocharged I-4 (240 hp / 260 lb-ft)", Transmission: "5-Speed Automatic", Drivetrain: "SH-AWD / FWD", "Max Towing Capacity": 1500, Notes: "Class I (1.25-inch) receiver hitch with auxiliary trailer brakes." }
+      ];
+    }
+    if (year <= 2018) {
+      return [
+        { TrimName: "Standard / Regular Model (3.5L i-VTEC V6 AWD / FWD)", Engine: "3.5L V6 (273–279 hp / 251–252 lb-ft)", Transmission: "6-Speed Automatic", Drivetrain: "AWD / FWD", "Max Towing Capacity": 1500, Notes: "Class I hitch rating for light cargo, bicycle racks, or lightweight utility." }
+      ];
+    }
+    // 2019+
+    return [
+      { TrimName: "Standard / Regular Model (2.0L VTEC Turbo SH-AWD / FWD)", Engine: "2.0L Turbo I-4 (272 hp / 280 lb-ft)", Transmission: "10-Speed Automatic", Drivetrain: "SH-AWD / FWD", "Max Towing Capacity": 1500, Notes: "Class I receiver hitch. Maximum tongue weight: 150 lbs." }
     ];
   }
 

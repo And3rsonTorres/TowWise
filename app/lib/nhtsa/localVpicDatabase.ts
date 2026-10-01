@@ -77,6 +77,11 @@ export const WMI_REGISTRY: Record<string, { make: string; country: string; vehic
   "5FN": { make: "Honda", country: "United States", vehicleType: "SUV / Minivan" },
   "5J6": { make: "Honda", country: "United States", vehicleType: "SUV" },
   "5J8": { make: "Acura", country: "United States", vehicleType: "SUV" },
+  "19U": { make: "Acura", country: "United States", vehicleType: "Passenger Car" },
+  "19V": { make: "Acura", country: "United States", vehicleType: "Passenger Car / Crossover" },
+  "2HN": { make: "Acura", country: "Canada", vehicleType: "SUV / MPV" },
+  "2NY": { make: "Acura", country: "Canada", vehicleType: "SUV / MPV" },
+  "JH4": { make: "Acura", country: "Japan", vehicleType: "Passenger Car / SUV" },
   "19X": { make: "Honda", country: "United States", vehicleType: "Passenger Car" },
   "2HG": { make: "Honda", country: "Canada", vehicleType: "Passenger Car" },
   "2HK": { make: "Honda", country: "Canada", vehicleType: "SUV" },
@@ -230,6 +235,10 @@ export const COMMON_MODEL_PATTERNS: ModelPattern[] = [
   { make: "Honda", model: "Civic", bodyClass: "Sedan / Hatchback", defaultEngine: "1.5L Turbo / 2.0L 4-Cyl", driveType: "FWD", gvwr: "Class 1B: 3,001 - 4,000 lb", keywords: ["CIVIC"] },
   { make: "Honda", model: "Accord", bodyClass: "Sedan", defaultEngine: "1.5L Turbo / 2.0L Turbo", driveType: "FWD", gvwr: "Class 1C: 4,001 - 5,000 lb", keywords: ["ACCORD"] },
   { make: "Honda", model: "CR-V", bodyClass: "SUV / Crossover", defaultEngine: "1.5L Turbo / 2.0L Hybrid", driveType: "AWD / FWD", gvwr: "Class 1C: 4,001 - 5,000 lb", keywords: ["CR-V", "CRV"] },
+
+  // Acura
+  { make: "Acura", model: "MDX", bodyClass: "SUV", defaultEngine: "3.5L V6", driveType: "SH-AWD / FWD", gvwr: "Class 1D/2A: 5,001 - 6,000 lb", keywords: ["MDX", "YD1", "YD2", "YD3", "YD4", "2HN", "5J8"] },
+  { make: "Acura", model: "RDX", bodyClass: "SUV / Crossover", defaultEngine: "2.0L Turbo / 3.5L V6", driveType: "SH-AWD / FWD", gvwr: "Class 1C: 4,001 - 5,000 lb", keywords: ["RDX", "TB1", "TB2", "TC1", "TC2"] },
 
   // Subaru
   { make: "Subaru", model: "Impreza", bodyClass: "Hatchback / Sedan", defaultEngine: "2.0L / 2.5L Boxer", driveType: "AWD", gvwr: "Class 1B: 3,001 - 4,000 lb", keywords: ["IMPREZA"] },
