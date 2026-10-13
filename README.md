@@ -1,11 +1,13 @@
-# TowWise
-
-<p align="center">
-  <img src="public/assets/TowWise.png" alt="TowWise Logo" width="220" />
-</p>
+# 🚙 TowWise
 
 <p align="center">
   <strong>High-Performance Vehicle Towing Capacity, Trailer Category Compatibility & 80% Safety Advisor</strong>
+</p>
+
+<p align="center">
+  <a href="https://github.com/And3rsonTorres/TowWise/actions/workflows/ci.yml"><img src="https://github.com/And3rsonTorres/TowWise/actions/workflows/ci.yml/badge.svg" alt="CI Build Status" /></a>
+  <a href="https://github.com/And3rsonTorres/TowWise/releases"><img src="https://img.shields.io/github/v/release/And3rsonTorres/TowWise?color=00ED64&logo=github" alt="GitHub Release" /></a>
+  <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAnd3rsonTorres%2FTowWise&env=TOWING_URI,FEEDBACK_DB_URI"><img src="https://vercel.com/button" alt="Deploy with Vercel" /></a>
 </p>
 
 <p align="center">
@@ -27,7 +29,6 @@
   <img src="https://img.shields.io/badge/Offline_Engine-100%25_Local-0284C7?style=flat-square&logo=cloudflarepages&logoColor=white" alt="100% Offline Engine" />
   <img src="https://img.shields.io/badge/SSR_Shell_Latency-%3C_2.5ms-8B5CF6?style=flat-square&logo=fastapi&logoColor=white" alt="Sub-2.5ms Latency" />
   <img src="https://img.shields.io/badge/Trim_Integrity-0_Anachronisms-10B981?style=flat-square&logo=shieldcheck&logoColor=white" alt="Trim Integrity Audited" />
-  <img src="https://img.shields.io/badge/Next.js_Build-Passing-brightgreen?style=flat-square&logo=vercel&logoColor=white" alt="Build Passing" />
 </p>
 
 ---
