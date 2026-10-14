@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+
+  nav,
+  footer,
+  button,
+  input,
+  .no-print {
+    display: none !important;
+  }
+
+  #tow-certificate {
+    display: block !important;
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #tow-certificate * {
+    color: black !important;
+    border-color: #cbd5e1 !important;
+    background: transparent !important;
+  }
+}
+

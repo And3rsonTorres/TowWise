@@ -13,7 +13,8 @@
     "update-vpic": "node scripts/update-vpic.mjs",
     "benchmark": "node scripts/benchmark.mjs",
     "audit-trims": "node scripts/audit-db-trims.mjs",
-    "sanitize-trims": "node scripts/sanitize-all-db-trims.mjs"
+    "sanitize-trims": "node scripts/sanitize-all-db-trims.mjs",
+    "test": "node --experimental-strip-types tests/towCalculations.test.mjs && node --experimental-strip-types tests/evCalculations.test.mjs"
   },
   "dependencies": {
     "@heroui/react": "^2.6.14",

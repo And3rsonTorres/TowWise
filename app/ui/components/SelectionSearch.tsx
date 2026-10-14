@@ -73,6 +73,58 @@ export default function SearchBySelection() {
         const result = await fetchTrims();
         if (isMounted) {
           dispatch({ type: "SET_DATA", payload: result });
+
+          // Deep linking: read ?year=&make=&model=&trim= query params on initial load
+          if (typeof window !== "undefined") {
+            const params = new URLSearchParams(window.location.search);
+            const qYear = params.get("year");
+            const qMake = params.get("make");
+            const qModel = params.get("model");
+            const qTrim = params.get("trim") || "";
+
+            if (qYear && qMake && qModel && result.makeMap?.[qYear]) {
+              dispatch({ type: "SET_YEAR", payload: qYear });
+              dispatch({
+                type: "SET_MAKE_OPTIONS",
+                payload: Array.from(result.makeMap[qYear] || []),
+              });
+
+              if (result.modelMap?.[qYear]?.[qMake]) {
+                dispatch({ type: "SET_MAKE", payload: qMake });
+                dispatch({
+                  type: "SET_MODEL_OPTIONS",
+                  payload: Array.from(result.modelMap[qYear][qMake] || []),
+                });
+
+                if (result.trimOptionsMap?.[qYear]?.[qMake]?.[qModel]) {
+                  dispatch({ type: "SET_MODEL", payload: qModel });
+                  const trims = Array.from(
+                    result.trimOptionsMap[qYear][qMake][qModel] || []
+                  );
+                  dispatch({ type: "SET_TRIM_OPTIONS", payload: trims });
+
+                  if (qTrim && trims.includes(qTrim)) {
+                    dispatch({ type: "SET_TRIM", payload: qTrim });
+                  }
+
+                  // Auto-resolve vehicle specs from URL
+                  fetchingVehicle({
+                    Year: parseInt(qYear, 10),
+                    Make: qMake,
+                    Model: qModel,
+                    Trim: qTrim ? [{ TrimName: qTrim }] : [],
+                  }).then((fetched) => {
+                    if (isMounted && fetched && fetched.length > 0) {
+                      dispatch({
+                        type: "SET_SELECTED_VEHICLE",
+                        payload: fetched[0],
+                      });
+                    }
+                  });
+                }
+              }
+            }
+          }
         }
       } catch (err) {
         console.error("Failed to load vehicle catalog:", err);
@@ -173,6 +225,16 @@ export default function SearchBySelection() {
 
       if (result && result.length > 0 && result[0]?.Trim && result[0].Trim.length > 0) {
         dispatch({ type: "SET_SELECTED_VEHICLE", payload: result[0] });
+
+        // Update URL query parameters for shareability
+        if (typeof window !== "undefined") {
+          const p = new URLSearchParams();
+          p.set("year", state.year);
+          p.set("make", state.make);
+          p.set("model", state.model);
+          if (state.trim) p.set("trim", state.trim);
+          window.history.replaceState({}, "", `${window.location.pathname}?${p.toString()}`);
+        }
       } else {
         setSearchError(`No towing specs found for ${state.year} ${state.make} ${state.model} ${state.trim || ""}.`);
       }
@@ -426,7 +488,12 @@ export default function SearchBySelection() {
                     variant="flat"
                     size="lg"
                     className="font-medium text-slate-200 hover:text-white py-6 bg-slate-800 border border-slate-700 hover:bg-slate-700"
-                    onPress={() => handleYearChange("")}
+                    onPress={() => {
+                      handleYearChange("");
+                      if (typeof window !== "undefined") {
+                        window.history.replaceState({}, "", window.location.pathname);
+                      }
+                    }}
                   >
                     Reset
                   </Button>

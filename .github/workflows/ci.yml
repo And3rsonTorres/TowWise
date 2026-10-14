@@ -31,6 +31,9 @@ jobs:
       - name: Lint codebase
         run: npm run lint
 
+      - name: Run calculation unit tests
+        run: npm test
+
       - name: Build Next.js application
         run: npm run build
         env:

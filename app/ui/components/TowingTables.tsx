@@ -5,6 +5,10 @@ import { Chip, Button } from "@heroui/react";
 import { Vehicles } from "../../lib/Types";
 import * as motion from "motion/react-client";
 import TrailerAdvisor from "./TrailerAdvisor";
+import TowReportModal from "./TowReportModal";
+import EvRangeAdvisor from "./EvRangeAdvisor";
+import VehicleCompare from "./VehicleCompare";
+import toast, { Toaster } from "react-hot-toast";
 
 interface TowingTableProps {
   vehicle: Vehicles;
@@ -12,6 +16,9 @@ interface TowingTableProps {
 
 const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
   const [unit, setUnit] = useState<"lbs" | "kg">("lbs");
+  const [isReportOpen, setIsReportOpen] = useState(false);
+  const [compareList, setCompareList] = useState<Vehicles[]>([]);
+  const [isCompareOpen, setIsCompareOpen] = useState(false);
 
   if (!vehicle || !Array.isArray(vehicle.Trim) || vehicle.Trim.length === 0) {
     return (
@@ -26,11 +33,81 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
     ...vehicle.Trim.map((t) => Number(t["Max Towing Capacity"]) || 0)
   );
 
+  const handleShareLink = () => {
+    if (typeof window !== "undefined") {
+      const trimName = vehicle.Trim?.[0]?.TrimName || "";
+      const url = `${window.location.origin}/?year=${vehicle.Year}&make=${encodeURIComponent(vehicle.Make)}&model=${encodeURIComponent(vehicle.Model)}${trimName ? `&trim=${encodeURIComponent(trimName)}` : ""}`;
+      navigator.clipboard.writeText(url);
+      toast.success("Shareable link copied to clipboard!");
+    }
+  };
+
+  const handleAddToCompare = () => {
+    if (compareList.length >= 3) {
+      toast.error("You can compare up to 3 vehicles at once.");
+      setIsCompareOpen(true);
+      return;
+    }
+    const alreadyAdded = compareList.some(
+      (v) => v.Year === vehicle.Year && v.Make === vehicle.Make && v.Model === vehicle.Model
+    );
+    if (!alreadyAdded) {
+      setCompareList((prev) => [...prev, vehicle]);
+      toast.success(`Added ${vehicle.Year} ${vehicle.Make} ${vehicle.Model} to comparison!`);
+    }
+    setIsCompareOpen(true);
+  };
+
+  const handleRemoveCompareVehicle = (index: number) => {
+    setCompareList((prev) => prev.filter((_, i) => i !== index));
+  };
+
   return (
     <div className="w-full max-w-4xl mx-auto px-4">
-      {/* Unit Toggle */}
-      <div className="flex justify-end mb-3">
-        <div className="bg-slate-900/80 p-1 rounded-lg border border-slate-800 flex items-center gap-1 text-xs">
+      <Toaster position="top-right" />
+
+      {/* Action Toolbar */}
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-3 bg-slate-900/80 p-2 rounded-xl border border-slate-800">
+        <div className="flex flex-wrap items-center gap-2">
+          {/* Share Link Button */}
+          <Button
+            size="sm"
+            variant="flat"
+            color="primary"
+            onPress={handleShareLink}
+            className="text-xs font-semibold"
+            startContent={<span>🔗</span>}
+          >
+            Share Link
+          </Button>
+
+          {/* Export Certificate Button */}
+          <Button
+            size="sm"
+            variant="flat"
+            color="success"
+            onPress={() => setIsReportOpen(true)}
+            className="text-xs font-semibold"
+            startContent={<span>📄</span>}
+          >
+            Export Tow Certificate
+          </Button>
+
+          {/* Add to Compare Button */}
+          <Button
+            size="sm"
+            variant="flat"
+            color="warning"
+            onPress={handleAddToCompare}
+            className="text-xs font-semibold"
+            startContent={<span>⚖️</span>}
+          >
+            Compare ({compareList.length})
+          </Button>
+        </div>
+
+        {/* Unit Toggle */}
+        <div className="flex items-center gap-1 bg-slate-950/60 p-1 rounded-lg border border-slate-800 text-xs">
           <Button
             size="sm"
             variant={unit === "lbs" ? "solid" : "light"}
@@ -38,7 +115,7 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
             onPress={() => setUnit("lbs")}
             className="h-7 text-xs font-semibold"
           >
-            Pounds (lbs)
+            LBS
           </Button>
           <Button
             size="sm"
@@ -47,11 +124,12 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
             onPress={() => setUnit("kg")}
             className="h-7 text-xs font-semibold"
           >
-            Kilograms (kg)
+            KG
           </Button>
         </div>
       </div>
 
+      {/* Vehicle Specification Cards */}
       {vehicle.Trim.map((trim, trimIdx) => {
         const { TrimName, _id, ...rest } = trim;
 
@@ -100,32 +178,14 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
                         <td className="w-2/3 px-4 py-3.5 text-xs sm:text-sm md:text-base text-white border-b border-slate-800/60">
                           {(() => {
                             switch (key) {
-                              case "Engine":
-                                return (
-                                  <span className="font-medium text-slate-100 flex items-center gap-1.5">
-                                    <span className="text-primary font-bold">⚙️</span> {String(value)}
-                                  </span>
-                                );
-                              case "Transmission":
-                                return (
-                                  <Chip size="sm" color="secondary" variant="flat" className="font-medium">
-                                    {String(value)}
-                                  </Chip>
-                                );
-                              case "Drivetrain":
-                                return (
-                                  <Chip size="sm" color="success" variant="flat" className="font-medium">
-                                    {String(value)}
-                                  </Chip>
-                                );
                               case "Max Towing Capacity": {
-                                const capacityLbs = parseInt(value.toString(), 10);
+                                const capacityLbs = Number(value) || 0;
                                 const capacityDisplay =
-                                  unit === "lbs"
-                                    ? `${capacityLbs.toLocaleString()} lbs`
-                                    : `${Math.round(capacityLbs * 0.453592).toLocaleString()} kg`;
+                                  unit === "kg"
+                                    ? `${Math.round(capacityLbs * 0.453592).toLocaleString()} kg`
+                                    : `${capacityLbs.toLocaleString()} lbs`;
 
-                                let badgeClass = "bg-blue-600 text-white";
+                                let badgeClass = "bg-emerald-600 text-white";
                                 if (capacityLbs <= 2000) {
                                   badgeClass = "bg-blue-600 text-white";
                                 } else if (capacityLbs <= 3500) {
@@ -181,6 +241,14 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
         );
       })}
 
+      {/* Electric Vehicle Range Degradation Estimator */}
+      <EvRangeAdvisor
+        vehicleModel={`${vehicle.Make} ${vehicle.Model}`}
+        engineDesc={vehicle.Trim?.[0]?.Engine}
+        notes={vehicle.Trim?.[0]?.Notes}
+        trailerWeight={Math.round(maxCapacityInTrims * 0.7)}
+      />
+
       {/* Embedded Trailer Safety Advisor for this vehicle */}
       {maxCapacityInTrims > 0 && (
         <TrailerAdvisor
@@ -188,6 +256,23 @@ const TowingTable: React.FC<TowingTableProps> = ({ vehicle }) => {
           vehicleName={`${vehicle.Year} ${vehicle.Make} ${vehicle.Model}`}
         />
       )}
+
+      {/* Tow Clearance Certificate Modal */}
+      <TowReportModal
+        isOpen={isReportOpen}
+        onClose={() => setIsReportOpen(false)}
+        vehicle={vehicle}
+        trailerWeight={Math.round(maxCapacityInTrims * 0.7)}
+      />
+
+      {/* Side-by-Side Comparison Modal */}
+      <VehicleCompare
+        isOpen={isCompareOpen}
+        onClose={() => setIsCompareOpen(false)}
+        vehicles={compareList}
+        onRemoveVehicle={handleRemoveCompareVehicle}
+        onClearAll={() => setCompareList([])}
+      />
     </div>
   );
 };
