@@ -14,7 +14,7 @@
     "benchmark": "node scripts/benchmark.mjs",
     "audit-trims": "node scripts/audit-db-trims.mjs",
     "sanitize-trims": "node scripts/sanitize-all-db-trims.mjs",
-    "test": "node --experimental-strip-types tests/towCalculations.test.mjs && node --experimental-strip-types tests/evCalculations.test.mjs && node --experimental-strip-types tests/hitchDropCalculations.test.mjs"
+    "test": "tsx tests/towCalculations.test.mjs && tsx tests/evCalculations.test.mjs && tsx tests/hitchDropCalculations.test.mjs"
   },
   "dependencies": {
     "@heroui/react": "^2.6.14",
@@ -41,6 +41,7 @@
     "eslint-config-next": "^15.5.27",
     "postcss": "^8.4.49",
     "tailwindcss": "^3.4.19",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }
