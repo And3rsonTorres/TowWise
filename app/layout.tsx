@@ -15,6 +15,10 @@ export const metadata: Metadata = {
   title: "TowWise · Vehicle Towing Capacity & Safety Advisor",
   description:
     "TowWise provides accurate vehicle towing capacities, US VIN decoding via NHTSA, trailer category compatibility, and 80% rule safety calculations for confident towing.",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/icons/icon-192x192.png",
+  },
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
