@@ -79,6 +79,23 @@ In vehicle and trailer rentals, customers frequently overestimate their vehicle'
 
 ## Features
 
+* **Advanced Towing & Weight Calculator Suite (v1.1)**:
+  * ⚖️ **Multi-Metric Safety Dashboard**: Instant live gauges for 80% Towing Margin, Tongue Weight, Hitch Receiver Class, and Remaining Payload Headroom.
+  * 🎯 **Tongue Weight & Hitch Class Matching**: Calculates 10%–15% target range, alerts on high-speed trailer sway risk (< 10%) or rear suspension squat (> 15%), and matches required SAE Hitch Class (I–V) with receiver tube dimensions (1-1/4", 2", 2-1/2", 3").
+  * 📦 **Payload & Passenger Allowance Calculator**: Real-time vehicle payload headroom calculation factoring in passengers (adult & child steppers), cargo, hitch hardware, and auto-synced tongue weight, with driver-door placard override.
+  * 🛡️ **80% Safety Rule & Trailer Compatibility**: Calculates recommended continuous towing limits (80% margin) and matches across 6 standard trailer categories.
+* **Electric Vehicle (EV) Towing Range Estimator**:
+  * ⚡ Automatically activates for electric pickups & SUVs (Rivian R1T/R1S, Tesla Cybertruck, Ford F-150 Lightning, Chevrolet Silverado EV, Tesla Model X/Y).
+  * 🔋 Physics-based aerodynamic drag and trailer weight battery degradation model predicting real-world range reduction (~40%–58%) and charging stop intervals.
+  * 🏎️ Interactive highway cruising speed slider demonstrating range sensitivity at 55 MPH vs. 65 MPH vs. 75 MPH.
+* **Official Printable / PDF Tow Safety Clearance Certificate**:
+  * 📄 One-click exportable certificate with vehicle specs, safety margins, tongue weight, and a pre-departure safety checklist (hitch pin, crossed chains, breakaway cable, trailer brakes, cold tire PSI).
+  * 🖨️ Formatted with dedicated `@media print` CSS rules for clean, distraction-free printing or saving to PDF.
+* **Deep-Link Shareable URLs**:
+  * 🔗 URL parameter synchronization (`?year=...&make=...&model=...&trim=...`) allowing instant link sharing with friends, buyers, or dealers that auto-loads the vehicle on visit.
+  * 📋 One-click "Share Link" button with toast notification.
+* **Side-by-Side Multi-Vehicle Comparison Drawer**:
+  * ⚖️ Pin up to 3 vehicles and compare towing capacities, payload ratings, hitch receiver classes, and powertrain specs side-by-side with winner highlights.
 * **3 Ways to Look Up Towing Limits**:
   * 🚗 **Vehicle Selector**: Step-by-step selector from Model Year **2000 through 2026**, Make, Model, and Trim package with generational accuracy, reset controls, and visual breadcrumbs.
   * ⚡ **Instant Autocomplete Search**: Start typing any vehicle name or filter by category pills (🛻 Trucks, 🚙 SUVs, 🚘 Compacts, ⚡ EVs & Hybrids) for instant results.
@@ -90,14 +107,6 @@ In vehicle and trailer rentals, customers frequently overestimate their vehicle'
 * **Small Car & Compact Vehicle Towing Support**:
   * Dedicated Class I hitch specifications (1,000–1,500 lbs max gross trailer weight, 100–150 lbs tongue weight).
   * Guidance on unbraked vs. braked trailer limits and transmission cooling for compact cars (Corolla, Civic, Impreza, Mazda3, Jetta, Elantra, etc.).
-* **Towing Specifications Card**:
-  * Detailed breakdown of Engine, Transmission, Drivetrain, Max Towing Capacity, and manufacturer notes.
-  * Instant unit toggle between **Pounds (lbs)** and **Kilograms (kg)**.
-* **Trailer Category Compatibility**:
-  * Real-time matching against standard trailer classes (Class I Light Utility up to Class V 5th Wheels).
-* **The 80% Safety Rule Advisor**:
-  * Calculates recommended continuous towing limits (80% margin) and safe tongue weight estimates (10–15%).
-  * Interactive trailer + cargo weight calculator with color-coded safety gauge.
 * **Feedback & Vehicle Inquiries System**:
   * In-app feedback form with category selection, 5-star ratings, and auto-attached vehicle context.
   * Persists directly to MongoDB Atlas (`Towing/contacts`) with graceful serverless logging fallback.
