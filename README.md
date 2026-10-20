@@ -33,6 +33,21 @@
 
 ---
 
+> [!NOTE]
+> ### 🌄 Upcoming Evolution: The TowWise Vintage Adventure Rebrand
+> <p align="center">
+>   <img src="Rebrand/media/towwise-retro-adventure.jpg" alt="TowWise Vintage Adventure Rebrand" width="620" style="border-radius: 12px; box-shadow: 0 6px 24px rgba(0,0,0,0.35);" />
+> </p>
+>
+> We are excited to announce the upcoming **TowWise Vintage Adventure Rebrand**! Inspired by the timeless heritage of American road trips, mountain trailheads, and classic trailering, our upcoming evolution will introduce:
+> - 🌲 **Classic Coupe & Teardrop Camper Heritage**: A handcrafted retro emblem celebrating vehicles and trailers traversing open dirt ridges and mountain passes.
+> - 🎨 **Vintage Adventure Palette**: Transitioning to Classic Coupe Teal (`#1E3A47` / `#244B5A`), Sunset Amber (`#E58A3C`), and Canyon Cream (`#FDF3E3`).
+> - ✍️ **Retro Script Typography & Illustrated Badges**: Warm script branding, full-scene PWA app icons, and an adventure-themed hero experience.
+>
+> *Detailed design blueprints and asset specifications are staged in [`Rebrand/`](Rebrand/README.md).*
+
+---
+
 ## Key Stats & Technical Metrics
 
 ```text
@@ -53,6 +68,7 @@
 ---
 
 ## Table of Contents
+* [🌄 Upcoming Rebrand Announcement](#-upcoming-evolution-the-towwise-vintage-adventure-rebrand)
 * [Background](#background)
 * [Features](#features)
 * [Brand Coverage Matrix (30 Automakers)](#brand-coverage-matrix-30-automakers)
