@@ -1,14 +1,25 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Providers } from "./providers";
 import { Inter } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
+export const viewport: Viewport = {
+  themeColor: "#52001F",
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "TowWise · Vehicle Towing Capacity & Safety Advisor",
   description:
     "TowWise provides accurate vehicle towing capacities, US VIN decoding via NHTSA, trailer category compatibility, and 80% rule safety calculations for confident towing.",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "default",
+    title: "TowWise",
+  },
 };
 
 export default function RootLayout({

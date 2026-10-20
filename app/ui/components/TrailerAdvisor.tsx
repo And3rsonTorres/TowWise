@@ -7,6 +7,7 @@ import {
   Progress,
   Chip,
   Input,
+  Button,
   Tabs,
   Tab,
 } from "@heroui/react";
@@ -17,6 +18,10 @@ import {
   calculatePayloadAllowance,
   estimateVehiclePayload,
 } from "@/app/lib/utils/TowCalculations";
+import {
+  calculateHitchDrop,
+  getVehicleDefaultHitchHeight,
+} from "@/app/lib/utils/HitchDropCalculator";
 
 interface TrailerAdvisorProps {
   maxTowingCapacity: number;
@@ -95,6 +100,26 @@ export default function TrailerAdvisor({
   const [childCount, setChildCount] = useState<number>(0);
   const [cargoWeight, setCargoWeight] = useState<number>(150);
   const [hitchEquipmentWeight, setHitchEquipmentWeight] = useState<number>(75);
+
+  // Hitch Drop & Leveling inputs
+  const defaultHitchHeight = useMemo(
+    () => getVehicleDefaultHitchHeight(vehicleName),
+    [vehicleName]
+  );
+  const [hitchHeight, setHitchHeight] = useState<number>(defaultHitchHeight);
+  const [couplerHeight, setCouplerHeight] = useState<number>(17);
+  const [accountForSquat, setAccountForSquat] = useState<boolean>(true);
+
+  const hitchDropResult = useMemo(
+    () =>
+      calculateHitchDrop({
+        hitchReceiverHeight: hitchHeight,
+        trailerCouplerHeight: couplerHeight,
+        accountForSquat,
+        grossTrailerWeight: trailerWeight,
+      }),
+    [hitchHeight, couplerHeight, accountForSquat, trailerWeight]
+  );
 
   // Computed Values via Calculation Engine
   const eightyPercent = useMemo(
@@ -701,6 +726,230 @@ export default function TrailerAdvisor({
                     <span className="text-[10px] text-blue-300">
                       Synced from Tab 1 & 2
                     </span>
+                  </div>
+                </div>
+              </div>
+            </Tab>
+
+            {/* TAB 4: Hitch Drop & Leveling Calculator */}
+            <Tab key="hitch_drop" title="4. Hitch Drop & Leveling">
+              <div className="space-y-5 pt-3">
+                {/* Result Banner & Ball Mount Recommendation */}
+                <div className="bg-slate-800/50 p-5 rounded-xl border border-slate-700/80">
+                  <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-3 mb-4">
+                    <div>
+                      <h4 className="text-base font-bold text-white flex items-center gap-2">
+                        <span>📐 Ball Mount Requirement:</span>
+                        <Chip
+                          color={
+                            hitchDropResult.mountType === "level"
+                              ? "success"
+                              : hitchDropResult.mountType === "drop"
+                              ? "warning"
+                              : "secondary"
+                          }
+                          variant="flat"
+                          size="sm"
+                          className="font-bold text-sm"
+                        >
+                          {hitchDropResult.recommendedMountSize}
+                        </Chip>
+                      </h4>
+                      <p className="text-xs text-slate-300 mt-1 leading-relaxed">
+                        {hitchDropResult.stanceAdvice}
+                      </p>
+                    </div>
+
+                    <div className="flex items-center gap-2 flex-shrink-0 bg-slate-900/80 px-3 py-2 rounded-xl border border-slate-700">
+                      <span className="text-xs text-slate-400 block font-semibold">
+                        Hitch Ball Size:
+                      </span>
+                      <Chip color="primary" variant="solid" size="sm" className="font-extrabold text-sm">
+                        {hitchDropResult.ballDiameterRecommendation} Ball
+                      </Chip>
+                    </div>
+                  </div>
+
+                  {/* Dynamic Visual Leveling Graphic */}
+                  <div className="bg-slate-950/70 p-4 rounded-xl border border-slate-800/80 mb-4">
+                    <div className="flex justify-between items-center mb-2">
+                      <span className="text-xs uppercase font-bold tracking-wider text-slate-400">
+                        Trailer Level Stance Simulation
+                      </span>
+                      <Chip
+                        size="sm"
+                        variant="dot"
+                        color={
+                          hitchDropResult.trailerStance === "level"
+                            ? "success"
+                            : hitchDropResult.trailerStance === "nose_high"
+                            ? "warning"
+                            : "danger"
+                        }
+                        className="text-xs font-semibold"
+                      >
+                        {hitchDropResult.trailerStance === "level"
+                          ? "Level Towing (Optimal)"
+                          : hitchDropResult.trailerStance === "nose_high"
+                          ? "Nose-High (Requires Drop)"
+                          : "Nose-Low (Requires Rise)"}
+                      </Chip>
+                    </div>
+
+                    {/* SVG Diagram showing Truck Hitch & Trailer Frame */}
+                    <div className="w-full flex justify-center py-2">
+                      <svg
+                        viewBox="0 0 500 120"
+                        className="w-full max-w-lg h-28 overflow-visible"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        {/* Ground Line */}
+                        <line x1="20" y1="105" x2="480" y2="105" stroke="#475569" strokeWidth="2" strokeDasharray="6 4" />
+                        <text x="485" y="108" fill="#64748b" fontSize="9" fontFamily="sans-serif">Ground</text>
+
+                        {/* Vehicle Receiver (Left) */}
+                        <rect x="50" y={95 - hitchDropResult.effectiveHitchHeight * 2.8} width="55" height="18" rx="2" fill="#334155" stroke="#0284c7" strokeWidth="2" />
+                        <text x="54" y={90 - hitchDropResult.effectiveHitchHeight * 2.8} fill="#94a3b8" fontSize="9" fontWeight="bold">
+                          Hitch ({hitchDropResult.effectiveHitchHeight}&quot;)
+                        </text>
+
+                        {/* Ball Mount Drop/Rise Shank */}
+                        {hitchDropResult.mountType === "drop" ? (
+                          <path
+                            d={`M 105 ${104 - hitchDropResult.effectiveHitchHeight * 2.8} L 130 ${104 - hitchDropResult.effectiveHitchHeight * 2.8} L 130 ${104 - hitchDropResult.trailerCouplerHeight * 2.8} L 145 ${104 - hitchDropResult.trailerCouplerHeight * 2.8}`}
+                            fill="none"
+                            stroke="#f59e0b"
+                            strokeWidth="5"
+                            strokeLinecap="round"
+                          />
+                        ) : hitchDropResult.mountType === "rise" ? (
+                          <path
+                            d={`M 105 ${104 - hitchDropResult.effectiveHitchHeight * 2.8} L 130 ${104 - hitchDropResult.effectiveHitchHeight * 2.8} L 130 ${104 - hitchDropResult.trailerCouplerHeight * 2.8} L 145 ${104 - hitchDropResult.trailerCouplerHeight * 2.8}`}
+                            fill="none"
+                            stroke="#8b5cf6"
+                            strokeWidth="5"
+                            strokeLinecap="round"
+                          />
+                        ) : (
+                          <line
+                            x1="105"
+                            y1={104 - hitchDropResult.effectiveHitchHeight * 2.8}
+                            x2="145"
+                            y2={104 - hitchDropResult.trailerCouplerHeight * 2.8}
+                            stroke="#10b981"
+                            strokeWidth="5"
+                            strokeLinecap="round"
+                          />
+                        )}
+
+                        {/* Hitch Ball */}
+                        <circle cx="145" cy={98 - hitchDropResult.trailerCouplerHeight * 2.8} r="6" fill="#f8fafc" stroke="#64748b" strokeWidth="1" />
+
+                        {/* Trailer Coupler (Right) */}
+                        <path
+                          d={`M 145 ${104 - hitchDropResult.trailerCouplerHeight * 2.8} L 200 ${104 - hitchDropResult.trailerCouplerHeight * 2.8} L 380 ${104 - (hitchDropResult.trailerCouplerHeight) * 2.8}`}
+                          stroke={hitchDropResult.trailerStance === "level" ? "#10b981" : "#e2e8f0"}
+                          strokeWidth="6"
+                          strokeLinecap="round"
+                        />
+                        <text x="205" y={92 - hitchDropResult.trailerCouplerHeight * 2.8} fill="#94a3b8" fontSize="9" fontWeight="bold">
+                          Coupler ({hitchDropResult.trailerCouplerHeight}&quot;)
+                        </text>
+
+                        {/* Trailer Box Body */}
+                        <rect x="230" y={40 - (hitchDropResult.trailerCouplerHeight - 17) * 2} width="160" height="55" rx="4" fill="#1e293b" stroke="#475569" strokeWidth="2" />
+                        <text x="275" y={72 - (hitchDropResult.trailerCouplerHeight - 17) * 2} fill="#94a3b8" fontSize="11" fontWeight="bold">
+                          Trailer Box
+                        </text>
+
+                        {/* Trailer Tires */}
+                        <circle cx="280" cy="98" r="10" fill="#0f172a" stroke="#64748b" strokeWidth="2" />
+                        <circle cx="330" cy="98" r="10" fill="#0f172a" stroke="#64748b" strokeWidth="2" />
+                      </svg>
+                    </div>
+
+                    <div className="flex justify-between items-center text-[11px] text-slate-400 pt-1 border-t border-slate-800">
+                      <span>Vehicle: Ground to Inside Receiver Roof</span>
+                      <span>Trailer: Ground to Coupler When Frame is Level</span>
+                    </div>
+                  </div>
+
+                  {/* Measurement Inputs */}
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                    <div className="bg-slate-900/60 p-3 rounded-lg border border-slate-700/60">
+                      <label className="text-xs font-semibold text-slate-200 block mb-1">
+                        1. Hitch Receiver Height (H)
+                      </label>
+                      <Input
+                        type="number"
+                        step="0.5"
+                        min="10"
+                        max="32"
+                        size="sm"
+                        value={hitchHeight.toString()}
+                        onChange={(e) =>
+                          setHitchHeight(Math.max(10, parseFloat(e.target.value) || 10))
+                        }
+                        endContent={<span className="text-xs text-slate-400">in</span>}
+                        classNames={{
+                          input: "text-white font-bold",
+                          inputWrapper: "bg-slate-950/60 border-slate-700",
+                        }}
+                      />
+                      <span className="text-[10px] text-slate-400 mt-1 block">
+                        Ground to top inside receiver
+                      </span>
+                    </div>
+
+                    <div className="bg-slate-900/60 p-3 rounded-lg border border-slate-700/60">
+                      <label className="text-xs font-semibold text-slate-200 block mb-1">
+                        2. Level Trailer Coupler (C)
+                      </label>
+                      <Input
+                        type="number"
+                        step="0.5"
+                        min="10"
+                        max="30"
+                        size="sm"
+                        value={couplerHeight.toString()}
+                        onChange={(e) =>
+                          setCouplerHeight(Math.max(10, parseFloat(e.target.value) || 10))
+                        }
+                        endContent={<span className="text-xs text-slate-400">in</span>}
+                        classNames={{
+                          input: "text-white font-bold",
+                          inputWrapper: "bg-slate-950/60 border-slate-700",
+                        }}
+                      />
+                      <span className="text-[10px] text-slate-400 mt-1 block">
+                        Ground to bottom of level coupler (std ~17&quot;)
+                      </span>
+                    </div>
+
+                    <div className="bg-slate-900/60 p-3 rounded-lg border border-slate-700/60 flex flex-col justify-between">
+                      <div>
+                        <label className="text-xs font-semibold text-slate-200 block mb-1">
+                          3. Suspension Squat Under Load
+                        </label>
+                        <span className="text-[10px] text-slate-400 block mb-2">
+                          Pickups & SUVs squat ~1.25&quot; under tongue weight
+                        </span>
+                      </div>
+                      <Button
+                        size="sm"
+                        variant={accountForSquat ? "solid" : "bordered"}
+                        color={accountForSquat ? "primary" : "default"}
+                        onPress={() => setAccountForSquat(!accountForSquat)}
+                        className="w-full text-xs font-semibold"
+                      >
+                        {accountForSquat ? "✓ Squat Compensated (-1.25\")" : "Off (Unladen Height Only)"}
+                      </Button>
+                    </div>
+                  </div>
+
+                  {/* Pro Tip Box */}
+                  <div className="mt-4 p-3 bg-slate-900/80 rounded-xl border border-slate-700 text-xs text-slate-300 leading-relaxed">
+                    💡 <strong>How to measure:</strong> Park vehicle and trailer on level concrete. Level your trailer frame using the tongue jack and a bubble level. Measure from the ground to the bottom of the coupler. Then measure from the ground to the top inside edge of your vehicle receiver tube. The difference equals your required drop or rise.
                   </div>
                 </div>
               </div>

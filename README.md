@@ -16,9 +16,9 @@
   <a href="https://react.dev/"><img src="https://img.shields.io/badge/React_18-20232A?style=for-the-badge&logo=react&logoColor=61DAFB" alt="React 18" /></a>
   <a href="https://www.typescriptlang.org/"><img src="https://img.shields.io/badge/TypeScript_5-3178C6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript 5" /></a>
   <a href="https://tailwindcss.com/"><img src="https://img.shields.io/badge/Tailwind_CSS_3.4-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" /></a>
-  <a href="https://heroui.com/"><img src="https://img.shields.io/badge/HeroUI_2.6-000000?style=for-the-badge&logo=nextui&logoColor=white" alt="HeroUI" /></a>
   <a href="https://www.mongodb.com/atlas"><img src="https://img.shields.io/badge/MongoDB_Atlas-47A248?style=for-the-badge&logo=mongodb&logoColor=white" alt="MongoDB Atlas" /></a>
   <a href="https://vpic.nhtsa.dot.gov/"><img src="https://img.shields.io/badge/NHTSA_vPIC-0284C7?style=for-the-badge&logo=speedtest&logoColor=white" alt="NHTSA vPIC" /></a>
+  <a href="https://web.dev/explore/progressive-web-apps"><img src="https://img.shields.io/badge/PWA-100%25_Offline-52001F?style=for-the-badge&logo=pwa&logoColor=white" alt="PWA Offline Ready" /></a>
 </p>
 
 <p align="center">
@@ -79,6 +79,14 @@ In vehicle and trailer rentals, customers frequently overestimate their vehicle'
 
 ## Features
 
+* **Hitch Drop / Rise & Ball Mount Leveling Calculator (v1.2)**:
+  * 📐 **Dynamic Leveling Visualizer**: Interactive side-profile diagram showing vehicle receiver, ball mount drop/rise shank, and trailer frame leveling angle.
+  * ⚖️ **Suspension Squat Compensation**: Factoring in 1"–1.5" vehicle suspension drop under tongue weight for loaded towing precision.
+  * 🔩 **Ball Mount & Ball Size Matching**: Recommends exact commercial drop/rise shank (2", 4", 6", 8" Drop or Rise) and required ball diameter (1-7/8", 2", 2-5/16").
+* **Progressive Web App (PWA) & 100% Offline Field Mode (v1.2)**:
+  * 📲 **Installable Standalone App**: One-click install prompt to add TowWise directly to iOS, Android, macOS, or Windows home screens.
+  * 🌲 **Off-Grid Field Ready**: Service worker pre-caches application shell, photography, and vehicle catalogs for lookups at remote boat ramps and trailheads with zero cellular reception.
+  * ⚡ **Live Connectivity Status**: Real-time indicator notifying when the app transitions into 100% offline mode.
 * **Advanced Towing & Weight Calculator Suite (v1.1)**:
   * ⚖️ **Multi-Metric Safety Dashboard**: Instant live gauges for 80% Towing Margin, Tongue Weight, Hitch Receiver Class, and Remaining Payload Headroom.
   * 🎯 **Tongue Weight & Hitch Class Matching**: Calculates 10%–15% target range, alerts on high-speed trailer sway risk (< 10%) or rear suspension squat (> 15%), and matches required SAE Hitch Class (I–V) with receiver tube dimensions (1-1/4", 2", 2-1/2", 3").

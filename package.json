@@ -1,6 +1,6 @@
 {
   "name": "towwise",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -14,7 +14,7 @@
     "benchmark": "node scripts/benchmark.mjs",
     "audit-trims": "node scripts/audit-db-trims.mjs",
     "sanitize-trims": "node scripts/sanitize-all-db-trims.mjs",
-    "test": "node --experimental-strip-types tests/towCalculations.test.mjs && node --experimental-strip-types tests/evCalculations.test.mjs"
+    "test": "node --experimental-strip-types tests/towCalculations.test.mjs && node --experimental-strip-types tests/evCalculations.test.mjs && node --experimental-strip-types tests/hitchDropCalculations.test.mjs"
   },
   "dependencies": {
     "@heroui/react": "^2.6.14",

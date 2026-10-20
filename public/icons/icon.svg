@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#52001F" />
+      <stop offset="100%" stop-color="#1E000B" />
+    </linearGradient>
+    <linearGradient id="accentGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24" />
+      <stop offset="100%" stop-color="#F59E0B" />
+    </linearGradient>
+  </defs>
+
+  <!-- Circular Rounded Background -->
+  <rect width="512" height="512" rx="108" fill="url(#bgGrad)" />
+  <rect x="8" y="8" width="496" height="496" rx="100" fill="none" stroke="#F59E0B" stroke-width="4" stroke-opacity="0.3" />
+
+  <!-- Tow Truck Cab Silhouette (Left) -->
+  <path d="M 90 290 L 140 220 L 210 220 L 230 250 L 260 250 L 260 330 L 90 330 Z" fill="#FFFFFF" />
+  <!-- Truck Window -->
+  <polygon points="145,230 200,230 218,255 145,255" fill="#52001F" />
+
+  <!-- Hitch Coupler Bar -->
+  <rect x="255" y="300" width="45" height="12" rx="4" fill="url(#accentGrad)" />
+  <circle cx="280" cy="306" r="8" fill="#FBBF24" />
+
+  <!-- Trailer Silhouette (Right) -->
+  <path d="M 295 240 L 420 240 L 420 330 L 295 330 Z" fill="url(#accentGrad)" />
+
+  <!-- Wheels with Rims -->
+  <circle cx="130" cy="330" r="28" fill="#0F172A" stroke="#FFFFFF" stroke-width="6" />
+  <circle cx="130" cy="330" r="10" fill="#94A3B8" />
+
+  <circle cx="220" cy="330" r="28" fill="#0F172A" stroke="#FFFFFF" stroke-width="6" />
+  <circle cx="220" cy="330" r="10" fill="#94A3B8" />
+
+  <circle cx="340" cy="330" r="28" fill="#0F172A" stroke="#FFFFFF" stroke-width="6" />
+  <circle cx="340" cy="330" r="10" fill="#94A3B8" />
+
+  <circle cx="390" cy="330" r="28" fill="#0F172A" stroke="#FFFFFF" stroke-width="6" />
+  <circle cx="390" cy="330" r="10" fill="#94A3B8" />
+
+  <!-- Ground Accent Line -->
+  <line x1="60" y1="365" x2="452" y2="365" stroke="#F59E0B" stroke-width="6" stroke-linecap="round" />
+
+  <!-- TowWise Brand Name -->
+  <text x="256" y="420" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="900" font-size="44" fill="#FFFFFF" text-anchor="middle" letter-spacing="4">TOWWISE</text>
+  <text x="256" y="450" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-weight="600" font-size="16" fill="#F59E0B" text-anchor="middle" letter-spacing="2">OFFLINE TOW ADVISOR</text>
+</svg>

@@ -5,6 +5,7 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 import NavBar from "./ui/components/NavBar";
 import Up from "./ui/components/Up";
 import Footer from "./ui/components/Footer";
+import PwaInstallPrompt from "./ui/components/PwaInstallPrompt";
 
 export function Providers({ children }: { children: React.ReactNode }) {
   const router = useRouter();
@@ -14,6 +15,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
         <NavBar />
         <Up />
         {children}
+        <PwaInstallPrompt />
         <Footer />
       </NextThemesProvider>
     </HeroUIProvider>
